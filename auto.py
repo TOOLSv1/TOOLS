@@ -1,4 +1,4 @@
-import requests, rich, os, sys, re, random, string, uuid, time, asyncio
+import requests, rich, os, sys, re, random, string,uuid,time,asyncio
 import httpx
 from time import sleep as sp
 from os import system as sm
@@ -7,7 +7,10 @@ from rich import print as rp
 from bs4 import BeautifulSoup as bsoup
 from rich.panel import Panel as pan
 from concurrent.futures import ThreadPoolExecutor as ter
-
+try:
+  os.mkdir("C:\Users\Beam\Documents\atc")
+except:
+  pass
 def clear():
     if sys.platform in ['win32','win64']:
         os.system('cls')
