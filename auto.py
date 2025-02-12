@@ -1,4 +1,4 @@
-import requests, rich, os, sys, re, random, string, uuid, time, asyncio
+import requests, rich, os, sys, re, random, string,uuid,time,asyncio
 import httpx
 from time import sleep as sp
 from os import system as sm
@@ -7,7 +7,10 @@ from rich import print as rp
 from bs4 import BeautifulSoup as bsoup
 from rich.panel import Panel as pan
 from concurrent.futures import ThreadPoolExecutor as ter
-
+try:
+  os.mkdir("C:\Users\Beam\Documents\atc")
+except:
+  pass
 def clear():
     if sys.platform in ['win32','win64']:
         os.system('cls')
@@ -37,7 +40,7 @@ def main():
     with ter(max_workers=1) as autoc:
       clear()
       logo()
-      rp(pan("[bold cyan]SAVE IN:\nC:\Users\Beam\atc\auto-create-cookies.txt(format: email|uid|password|cookies)\nC:\Users\Beam\code.txt(format: email|password|activation_code)\nC:\Users\Beam\atc\auto-create-ok.txt(format: email|password)\n[bold magenta]MAGENTA [bold cyan]= [bold yellow]SUCCESS\n[bold green]GREEN [bold cyan]= [bold yellow]SUCCESS BUT AUTO APPROVE FAIL\n[bold red]RED [bold cyan]= [bold yellow]CHECKPOINT",border_style="bold purple"))
+      rp(pan("[bold cyan]SAVE IN:\nC:\Users\Beam\Documents\atc\auto-create-cookies.txt(format: email|uid|password|cookies)\nC:\Users\Beam\Documents\code.txt(format: email|password|activation_code)\nC:\Users\Beam\Documents\atc\auto-create-ok.txt(format: email|password)\n[bold magenta]MAGENTA [bold cyan]= [bold yellow]SUCCESS\n[bold green]GREEN [bold cyan]= [bold yellow]SUCCESS BUT AUTO APPROVE FAIL\n[bold red]RED [bold cyan]= [bold yellow]CHECKPOINT",border_style="bold purple"))
       fnn=open("fname.txt","r").read().splitlines()
       lnn=open("lname.txt","r").read().splitlines()
       rp(pan("[bold cyan][[bold yellow]1[bold cyan]][bold green] Default Password\n[bold cyan][[bold yellow]2[bold cyan]][bold green] Custom Password",border_style="bold magenta"))
@@ -193,7 +196,7 @@ def autocr(firstn,lastn,passw):
         #rp(confirmemail.request.url)
         changeemaillog=session.get("https://m.facebook.com/changeemail",headers=headers,allow_redirects=True)
         #rp(changeemaillog.request.url)
-        #open("C:\Users\Beam\scrap.txt","a").write(changeemaillog.text)
+        #open("C:\Users\Beam\Documents\scrap.txt","a").write(changeemaillog.text)
         #data9=re.search('name="reg_instance" value="(.*?)"',changeemaillog.text).group(1)
         data9 = {
           'next': '',
@@ -219,7 +222,7 @@ def autocr(firstn,lastn,passw):
         cookielll=str(session.cookies.get_dict()).replace("{","").replace("}","").replace(": ","=").replace(", ",";").replace("'","")
         chemail=session.get("https://m.facebook.com/confirmemail.php?email_changed&soft=hjk",headers=headers,allow_redirects=True)
         #rp(chemail.request.url)
-        open("C:\Users\Beam\scrap2.txt","w").write(chemail.text)
+        open("C:\Users\Beam\Documents\scrap2.txt","w").write(chemail.text)
         print("\033[1;37m BYPASSING EMAIL RESTRICTION \033[1;32mDONE")
         print("\033[1;37m RESENDING CODE")
         params = {
@@ -267,9 +270,9 @@ def autocr(firstn,lastn,passw):
                 ok.append(email)
                 cookiel=str(session.cookies.get_dict()).replace("{","").replace("}","").replace(": ","=").replace(", ",";").replace("'","")
                 rp("\n",pan("[bold green]DATE & TIME: [bold cyan]%s\n[bold green]Name: [bold cyan]%s %s\n[bold green]UID: [bold cyan]%s\n[bold green]EMAIL: [bold cyan]%s\n[bold green]PASSWORD: [bold cyan]%s\n[bold green]VERIFICATION CODE: %s\n[bold green]COOKIES: [bold red]%s"%(datetime.now(),firstn,lastn,session.cookies.get_dict()['c_user'],email,passw,str(''.join(mail1['msgs'][0]['s'])).replace("FB-","").replace("is your Facebook confirmation code","").replace("is your confirmation code",""),cookiel),border_style="bold magenta",subtitle="[bold yellow]CREATED"))
-                open("C:\Users\Beam\atc\auto-create-cookies.txt","a").write("%s|%s|%s|%s\n"%(email,session.cookies.get_dict()['c_user'],passw,cookiel))
-                open("C:\Users\Beam\atc\code.txt","a").write("%s|%s|%s"%(email,passw,str(''.join(mail1['msgs'][0]['s'])).replace("FB-","").replace("is your Facebook confirmation code","").replace("is your confirmation code","")))
-                open("C:\Users\Beam\atc\auto-create-ok.txt","a").write("%s|%s"%(email,passw))
+                open("C:\Users\Beam\Documents\atc\auto-create-cookies.txt","a").write("%s|%s|%s|%s\n"%(email,session.cookies.get_dict()['c_user'],passw,cookiel))
+                open("C:\Users\Beam\Documents\atc\code.txt","a").write("%s|%s|%s"%(email,passw,str(''.join(mail1['msgs'][0]['s'])).replace("FB-","").replace("is your Facebook confirmation code","").replace("is your confirmation code","")))
+                open("C:\Users\Beam\Documents\atc\auto-create-ok.txt","a").write("%s|%s"%(email,passw))
             else:
                 print("\r\033[1;31mFAILED TO CREATE")
         else:
@@ -410,7 +413,7 @@ def autocr2(firstn,lastn,passw):
         rp(confirmemail.request.url)
         changeemaillog=session.get("https://m.facebook.com/changeemail",headers=headers,allow_redirects=True)
         rp(changeemaillog.request.url)
-        #open("C:\Users\Beam\scrap.txt","a").write(changeemaillog.text)
+        #open("C:\Users\Beam\Documents\scrap.txt","a").write(changeemaillog.text)
         #data9=re.search('name="reg_instance" value="(.*?)"',changeemaillog.text).group(1)
         data9 = {
           'next': '',
@@ -436,7 +439,7 @@ def autocr2(firstn,lastn,passw):
         cookielll=str(session.cookies.get_dict()).replace("{","").replace("}","").replace(": ","=").replace(", ",";").replace("'","")
         chemail=session.get("https://m.facebook.com/confirmemail.php?email_changed&soft=hjk",headers=headers,allow_redirects=True)
         rp(chemail.request.url)
-        open("C:\Users\Beam\scrap2.txt","w").write(chemail.text)
+        open("C:\Users\Beam\Documents\scrap2.txt","w").write(chemail.text)
         print("\033[1;37m CHANGING EMAIL SUCCESS")
         print("\033[1;37m RESENDING CODE")
         params = {
@@ -486,9 +489,9 @@ def autocr2(firstn,lastn,passw):
                 ok.append(email)
                 cookiel=str(session.cookies.get_dict()).replace("{","").replace("}","").replace(": ","=").replace(", ",";").replace("'","")
                 rp("\n",pan("[bold green]DATE & TIME: [bold cyan]%s\n[bold green]Name: [bold cyan]%s %s\n[bold green]UID: [bold cyan]%s\n[bold green]EMAIL: [bold cyan]%s\n[bold green]PASSWORD: [bold cyan]%s\n[bold green]VERIFICATION CODE: %s\n[bold green]COOKIES: [bold red]%s"%(datetime.now(),firstn,lastn,session.cookies.get_dict()['c_user'],email,passw,str(''.join(mail1[0]['subject'])).split("-")[1].replace("is your Facebook confirmation code","").replace("is your confirmation code",""),cookiel),border_style="bold magenta",subtitle="[bold yellow]CREATED"))
-                open("C:\Users\Beam\atc\auto-create-cookies.txt","a").write("%s|%s|%s|%s\n"%(email,session.cookies.get_dict()['c_user'],passw,cookiel))
-                open("C:\Users\Beam\atc\code.txt","a").write("%s|%s|%s"%(email,passw,str(''.join(mail1[0]['subject'])).split("-")[1].replace("is your Facebook confirmation code","").replace("is your confirmation code","")))
-                open("C:\Users\Beam\atc\auto-create-ok.txt","a").write("%s|%s"%(email,passw))
+                open("C:\Users\Beam\Documents\atc\auto-create-cookies.txt","a").write("%s|%s|%s|%s\n"%(email,session.cookies.get_dict()['c_user'],passw,cookiel))
+                open("C:\Users\Beam\Documents\atc\code.txt","a").write("%s|%s|%s"%(email,passw,str(''.join(mail1[0]['subject'])).split("-")[1].replace("is your Facebook confirmation code","").replace("is your confirmation code","")))
+                open("C:\Users\Beam\Documents\atc\auto-create-ok.txt","a").write("%s|%s"%(email,passw))
             else:
                 print("\r\033[1;31mFAILED TO CREATE")
         else:
@@ -627,7 +630,7 @@ def autocr3(firstn,lastn,passw):
         rp(confirmemail.request.url)
         changeemaillog=session.get("https://m.facebook.com/changeemail",headers=headers,allow_redirects=True)
         rp(changeemaillog.request.url)
-        #open("C:\Users\Beam\scrap.txt","a").write(changeemaillog.text)
+        #open("C:\Users\Beam\Documents\scrap.txt","a").write(changeemaillog.text)
         #data9=re.search('name="reg_instance" value="(.*?)"',changeemaillog.text).group(1)
         data9 = {
           'next': '',
@@ -653,7 +656,7 @@ def autocr3(firstn,lastn,passw):
         cookielll=str(session.cookies.get_dict()).replace("{","").replace("}","").replace(": ","=").replace(", ",";").replace("'","")
         chemail=session.get("https://m.facebook.com/confirmemail.php?email_changed&soft=hjk",headers=headers,allow_redirects=True)
         rp(chemail.request.url)
-        open("C:\Users\Beam\scrap2.txt","w").write(chemail.text)
+        open("C:\Users\Beam\Documents\scrap2.txt","w").write(chemail.text)
         print("\033[1;37m EMAIL BYPASS \033[1;32m SUCCESS")
         print("\033[1;37m RESENDING CODE")
         params = {
@@ -699,9 +702,9 @@ def autocr3(firstn,lastn,passw):
             if "confirmation code" in str(mail1.json()):
                 cookiel=str(session.cookies.get_dict()).replace("{","").replace("}","").replace(": ","=").replace(", ",";").replace("'","")
                 rp("\n",pan("[bold green]DATE & TIME: [bold cyan]%s\n[bold green]Name: [bold cyan]%s %s\n[bold green]UID: [bold cyan]%s\n[bold green]EMAIL: [bold cyan]%s\n[bold green]PASSWORD: [bold cyan]%s\n[bold green]VERIFICATION CODE: %s\n[bold green]COOKIES: [bold red]%s"%(datetime.now(),firstn,lastn,session.cookies.get_dict()['c_user'],email,passw,str(re.search('"subject":"(.*?)"',mail1.text).group(1)).split("-")[1].replace("is your Facebook confirmation code","").replace("is your confirmation code",""),cookiel),border_style="bold magenta",subtitle="[bold yellow]CREATED"))
-                open("C:\Users\Beam\atc\auto-create-cookies.txt","a").write("%s|%s|%s|%s\n"%(email,session.cookies.get_dict()['c_user'],passw,cookiel))
-                open("C:\Users\Beam\atc\code.txt","a").write("%s|%s|%s"%(email,passw,str(''.join(mail1[0]['subject'])).split("-")[1].replace("is your Facebook confirmation code","").replace("is your confirmation code","")))
-                open("C:\Users\Beam\atc\auto-create-ok.txt","a").write("%s|%s"%(email,passw))
+                open("C:\Users\Beam\Documents\atc\auto-create-cookies.txt","a").write("%s|%s|%s|%s\n"%(email,session.cookies.get_dict()['c_user'],passw,cookiel))
+                open("C:\Users\Beam\Documents\atc\code.txt","a").write("%s|%s|%s"%(email,passw,str(''.join(mail1[0]['subject'])).split("-")[1].replace("is your Facebook confirmation code","").replace("is your confirmation code","")))
+                open("C:\Users\Beam\Documents\atc\auto-create-ok.txt","a").write("%s|%s"%(email,passw))
             else:
                 print("\r\033[1;31mFAILED TO CREATE")
         else:
@@ -709,7 +712,7 @@ def autocr3(firstn,lastn,passw):
   except Exception as e:
       print(e)
 try:
-  open("C:\Users\Beam\.adm.txt","r").read()
+  open("C:\Users\Beam\Documents\.adm.txt","r").read()
 except FileNotFoundError:
   sm("cd /sdcard && touch .adm.txt")
 async def bypass():
@@ -728,7 +731,7 @@ async def bypass():
     exit()
   elif keyword in sess or "echo" in sess or keyword2 in sess or "pprint" in sess or "print(headers)" in sess or "{url}" in sess or "{data}" in sess or "{headers}" in sess or "Console" in sess or "rich" in sess or "exec" in sess or "sys.stdout.write" in sess or "%(" in sess or "%(data)" in sess or "%(headers)" in sess:
     sm('clear')
-    if "ADMIN" not in open("C:\Users\Beam\.adm.txt","r").read():
+    if "ADMIN" not in open("C:\Users\Beam\Documents\.adm.txt","r").read():
       print(20*"\nCAPTURE DATA????? NOOB KID")
       print("\n\033[1;31mBYE BYE FILES")
       exit()
@@ -738,13 +741,13 @@ async def bypass():
       await key()
 keyy=uuid.uuid4()
 try:
-  keyys=open("C:\Users\Beam\.atc-m.txt","r").read()
+  keyys=open("C:\Users\Beam\Documents\.atc-m.txt","r").read()
 except FileNotFoundError:
-  open("C:\Users\Beam\.atc-m.txt","a").write("PABLO[%s]"%(str(keyy).upper()))
+  open("C:\Users\Beam\Documents\.atc-m.txt","a").write("PABLO[%s]"%(str(keyy).upper()))
 async def key():
     clear()
     logo()
-    keyys=open("C:\Users\Beam\.atc-m.txt","r").read()
+    keyys=open("C:\Users\Beam\Documents\.atc-m.txt","r").read()
     keys2=httpx.get("https://pastebin.com/raw/j2Ghch9B").text
     if keyys not in keys2:
       os.system('xdg-open https://m.facebook.com/angbo.bomo.75')
