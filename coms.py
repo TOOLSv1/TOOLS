@@ -103,8 +103,8 @@ def threaded_commenting(post_id, user_ids, access_tokens, comment_texts, num_com
         console.print(f"Target achieved: {successful_comments}/{num_comments} comments.", style="bold green")
 
 def main():
-    user_ids = get_ids_tokens('/sdcard/Test/tokaid.txt')
-    access_tokens = get_ids_tokens('/sdcard/Test/toka.txt')
+    user_ids = get_ids_tokens('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt')
+    access_tokens = get_ids_tokens('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt')
     post_link = input('Enter the Facebook post, video, reel, or group permalink link: ')
     post_id = linktradio(post_link)
 
