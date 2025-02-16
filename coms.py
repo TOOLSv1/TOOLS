@@ -18,14 +18,12 @@ def linktradio(post_link):
             post_id = post_link.split('/videos/')[1].split('/')[0].split('?')[0]
         elif '/reel/' in post_link:
             post_id = post_link.split('/reel/')[1].split('/')[0].split('?')[0]
-        elif '/groups/' in post_link and '/permalink/' in post_link:
-            post_id = post_link.split('/permalink/')[1].split('/')[0].split('?')[0]
         else:
-            console.print("Invalid post, video, reel, or group permalink link.", style="bold red")
+            console.print("Invalid post, video, or reel link.", style="bold red")
             return None
         return post_id
     except IndexError:
-        console.print("Could not extract post, video, reel, or permalink ID.", style="bold red")
+        console.print("Could not extract post, video, or reel ID.", style="bold red")
         return None
 
 def has_commented(post_id, access_token, user_id):
@@ -105,7 +103,7 @@ def threaded_commenting(post_id, user_ids, access_tokens, comment_texts, num_com
 def main():
     user_ids = get_ids_tokens('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt')
     access_tokens = get_ids_tokens('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt')
-    post_link = input('Enter the Facebook post, video, reel, or group permalink link: ')
+    post_link = input('Enter the Facebook post, video, or reel link: ')
     post_id = linktradio(post_link)
 
     if post_id is None:
