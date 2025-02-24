@@ -5,7 +5,7 @@ console = Console()
 
 def get_ids_tokens(file_path):
     with open(file_path, 'r') as file:
-        return [line.strip() for line in file]
+        return [line.strip().split('|') for line in file]
 
 def linktradio(post_link):
     try:
@@ -54,17 +54,16 @@ def comment_on_post(post_id, user_id, access_token, comment_text):
         console.print(f"Failed to comment. User ID: {user_id}, Post ID: {post_id}", style="bold red")
     return False
 
-def comment_exactly(post_id, user_ids, access_tokens, comment_texts, num_comments):
+def comment_exactly(post_id, user_data, comment_texts, num_comments):
     successful_comments = 0
     used_indices = set()
     
-    for i in range(len(user_ids)):
+    for i in range(len(user_data)):
         if successful_comments >= num_comments:
             break
         if i not in used_indices:
             used_indices.add(i)
-            user_id = user_ids[i]
-            access_token = access_tokens[i]
+            user_id, access_token = user_data[i]
             comment_text = comment_texts[successful_comments % len(comment_texts)]
             
             if not has_commented(post_id, access_token, user_id):
@@ -77,8 +76,7 @@ def comment_exactly(post_id, user_ids, access_tokens, comment_texts, num_comment
         console.print(f"Target achieved: {successful_comments}/{num_comments} comments.", style="bold green")
 
 def main():
-    user_ids = get_ids_tokens('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt')
-    access_tokens = get_ids_tokens('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt')
+    user_data = get_ids_tokens('C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt')
     post_link = input('Enter the Facebook post, video, or reel link: ')
     post_id = linktradio(post_link)
 
@@ -89,7 +87,7 @@ def main():
     num_scripts = int(input('How many different comment scripts do you want to enter? '))
     comment_texts = [input(f'Enter comment script {i + 1}: ') for i in range(num_scripts)]
 
-    comment_exactly(post_id, user_ids, access_tokens, comment_texts, num_comments)
+    comment_exactly(post_id, user_data, comment_texts, num_comments)
 
 if __name__ == '__main__':
     main()
