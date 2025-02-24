@@ -1,477 +1,161 @@
-# CODE BY BRYX
-from requests import api
-import concurrent.futures
-from concurrent.futures import ThreadPoolExecutor as thread
-from requests import models
-from requests import sessions
-from urllib.request import urlopen
-from datetime import datetime
-import sys
-import time
-import urllib
-import base64
+
+import os
+import random
 import string
 import uuid
-import json
-from time import sleep as slp
 import requests
-import re
+import json
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+import requests
+import json
+import sys
 import os
-from bs4 import BeautifulSoup as bs
-import random
-import urllib3
-from mahdix import *
-from time import sleep
-from concurrent.futures import ThreadPoolExecutor
-import threading
-clear()
+import platform
+import re
+purple = "\033[1;35m"
+violet_chu = "\033[1;35m"
+darkblue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+skyblue = "\033[1;36m"
+blue = "\033[1;34m"
+lightblue = "\033[38;5;81m"
+hotpink = "\033[38;5;197m"
+light_magenta = "\033[38;5;174m"
+white = "\033[1;37m"
+lavender = "\033[38;5;189m"
+rasp = "\033[38;5;22m"
+darkblue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+skyblue = "\033[1;36m"
+blue = "\033[1;34m"
+lightblue = "\033[38;5;81m"
+white = "\033[1;37m"
+def clear_screen():
+    if 'termux' in platform.system().lower():
+        os.system('clear')
+    elif platform.system().lower() == 'windows':
+        os.system('cls')
+    else:
+        os.system('clear')
+import re
+import re
+import requests
 
-def clr():
-    data = os.listdir('/sdcard')
-    if 'Android' in data:
-        print('\x1b[1;91m[!] ALL YOUR FILES WILL BE REMOVED IF YOU TRY AGAIN!')
-        exit()
+def get_combined_data(url):
+    """
+    Fetch the response from the given URL and extract the `actrs` number and `post_id`.
+    Combine these values and return the result.
 
-from requests import api
-x = open(api.__file__, 'r').read()
-if 'print' in x:
-    clr()
-if 'marshal' in x:
-    clr()
-if 'lambda' in x:
-    clr()
-if 'lzma' in x:
-    clr()
-if 'gzip' in x:
-    clr()
-if 'bz2' in x:
-    clr()
-if 'binascii' in x:
-    clr()
-if 'zlib' in x:
-    clr()
-if 'exec' in x:
-    clr()
-if 'base64' in x:
-    clr()
-if 'base32' in x:
-    clr()
-if 'decompress' in x:
-    clr()
-if 'std' in x:
-    clr()
-if 'x =' in x:
-    clr()
-if 'x=' in x:
-    clr()
-if 'console' in x:
-    clr()
-if 'puts' in x:
-    clr()
-if 'fmt' in x:
-    clr()
-if 'disp' in x:
-    clr()
-if 'sys.stdout.write' in x:
-    clr()
-if 'open().write' in x:
-    clr()
-if 'write' in x:
-    clr()
-if 'logging.info' in x:
-    clr()
-if 'logging' in x:
-    clr()
-if 'printf' in x:
-    clr()
-if 'echo' in x:
-    clr()
-if 'os.system' in x:
-    clr()
-if 'system' in x:
-    clr()
-if '(url)' in x:
-    clr()
-if '{url}' in x:
-    clr()
-if '(data)' in x:
-    clr()
-if '{data}' in x:
-    clr()
-if '(headers)' in x:
-    clr()
-if 'DR4X' in x:
-    clr()
-if '{headers}' in x:
-    clr()
-x = open(sessions.__file__, 'r').read()
-if 'print' in x:
-    clr()
-if 'marshal' in x:
-    clr()
-if 'lambda' in x:
-    clr()
-if 'lzma' in x:
-    clr()
-if 'gzip' in x:
-    clr()
-if 'bz2' in x:
-    clr()
-if 'binascii' in x:
-    clr()
-if 'zlib' in x:
-    clr()
-if 'exec' in x:
-    clr()
-if 'base64' in x:
-    clr()
-if 'base32' in x:
-    clr()
-if 'decompress' in x:
-    clr()
-if 'sdcard' in x:
-    clr()
-if "60*'='" in x:
-    clr()
-if "60 * '='" in x:
-    clr()
-if "'='" in x:
-    clr()
-if 'std' in x:
-    clr()
-if 'x =' in x:
-    clr()
-if 'x=' in x:
-    clr()
-if 'console' in x:
-    clr()
-if 'puts' in x:
-    clr()
-if 'fmt' in x:
-    clr()
-if 'sys.stdout.write' in x:
-    clr()
-if 'open().write' in x:
-    clr()
-if 'open' in x:
-    clr()
-if 'write' in x:
-    clr()
-if 'logging.info' in x:
-    clr()
-if 'logging' in x:
-    clr()
-if 'printf' in x:
-    clr()
-if 'open' in x:
-    clr()
-if 'echo' in x:
-    clr()
-if 'str(data)' in x:
-    clr()
-if 'str(headers)' in x:
-    clr()
-if 'str(url)' in x:
-    clr()
-if 'd(url)' in x:
-    clr()
-if 'c(url)' in x:
-    clr()
-if 'b(url)' in x:
-    clr()
-if 'a(url)' in x:
-    clr()
-if 'f(url)' in x:
-    clr()
-if 'j(url)' in x:
-    clr()
-if 'k(url)' in x:
-    clr()
-if 'l(url)' in x:
-    clr()
-if 'm(url)' in x:
-    clr()
-if 'n(url)' in x:
-    clr()
-if 'o(url)' in x:
-    clr()
-if 'p(url)' in x:
-    clr()
-if 'q(url)' in x:
-    clr()
-if 's(url)' in x:
-    clr()
-if 'r(url)' in x:
-    clr()
-if 't(url)' in x:
-    clr()
-if 'u(url)' in x:
-    clr()
-if 'v(url)' in x:
-    clr()
-if 'z(url)' in x:
-    clr()
-if 'y(url)' in x:
-    clr()
-if 'x(url)' in x:
-    clr()
-if 'w(url)' in x:
-    clr()
-if '((url)' in x:
-    clr()
-if '+url' in x:
-    clr()
-if '{url}' in x:
-    clr()
-if '(data)' in x:
-    clr()
-if '{data}' in x:
-    clr()
-if '(headers)' in x:
-    clr()
-if 'DARK' in x:
-    clr()
-if '{headers}' in x:
-    clr()
-x = open(models.__file__, 'r').read()
-if 'print' in x:
-    clr()
-if 'marshal' in x:
-    clr()
-if 'HEX-POGI' in x:
-    clr()
-if 'BRYX' in x:
-    clr()
-if 'if self.url' in x:
-    clr()
-if 'lambda' in x:
-    clr()
-if 'lzma' in x:
-    clr()
-if 'gzip' in x:
-    clr()
-if 'bz2' in x:
-    clr()
-if 'binascii' in x:
-    clr()
-if 'zlib' in x:
-    clr()
-if 'exec' in x:
-    clr()
-if 'base64' in x:
-    clr()
-if 'base32' in x:
-    clr()
-if 'decompress' in x:
-    clr()
-if 'sys.stdout.write' in x:
-    clr()
-if 'blob' in x:
-    clr()
-if '.txt' in x:
-    clr()
-if 'x =' in x:
-    clr()
-if 'x=' in x:
-    clr()
-if 'approvalSheet' in x:
-    clr()
-if 'approval' in x:
-    clr()
-if 'console' in x:
-    clr()
-if 'puts' in x:
-    clr()
-if 'fmt' in x:
-    clr()
-if 'disp' in x:
-    clr()
-if 'open().write' in x:
-    clr()
-if 'write' in x:
-    clr()
-if 'open' in x:
-    clr()
-if 'logging.info' in x:
-    clr()
-if 'printf' in x:
-    clr()
-if 'echo' in x:
-    clr()
-if 'system' in x:
-    clr()
-if 'M4786==' in x:
-    clr()
-if 'M1107==' in x:
-    clr()
-if 'os.system' in x:
-    clr()
-if 'd(url)' in x:
-    clr()
-if 'c(url)' in x:
-    clr()
-if 'b(url)' in x:
-    clr()
-if 'a(url)' in x:
-    clr()
-if 'f(url)' in x:
-    clr()
-if 'j(url)' in x:
-    clr()
-if 'k(url)' in x:
-    clr()
-if 'm(url)' in x:
-    clr()
-if 'o(url)' in x:
-    clr()
-if 'p(url)' in x:
-    clr()
-if 'q(url)' in x:
-    clr()
-if 's(url)' in x:
-    clr()
-if 'e(url)' in x:
-    clr()
-if 'g(url)' in x:
-    clr()
-if 'h(url)' in x:
-    clr()
-if 'i(url)' in x:
-    clr()
-if 't(url)' in x:
-    clr()
-if 'u(url)' in x:
-    clr()
-if 'v(url)' in x:
-    clr()
-if 'z(url)' in x:
-    clr()
-if 'y(url)' in x:
-    clr()
-if 'x(url)' in x:
-    clr()
-if 'w(url)' in x:
-    clr()
-if '((url)' in x:
-    clr()
-if '+url' in x:
-    clr()
-if '{data}' in x:
-    clr()
-if 'str(data)' in x:
-    clr()
-if 'str(headers)' in x:
-    clr()
-if 'DARK' in x:
-    clr()
-if '{headers}' in x:
-    clr()
+    Args:
+        url (str): The URL to fetch data from.
 
-red = '\x1b[1;31m'
-green = '\x1b[1;32m'
-yellow = '\x1b[1;33m'
-blue = '\x1b[1;34m'
-cyan = '\x1b[1;36m'
-white = '\x1b[1;37m'
-black = '\x1b[1;30m'
-magenta = '\x1b[1;35m'
-grey = '\x1b[1;90m'
-orange = '\x1b[1;91m'
-lime = '\x1b[1;92m'
-sky_blue = '\x1b[1;94m'
-purple = '\x1b[1;95m'
-turquoise = '\x1b[1;96m'
-R = '\x1b[1;31m'
-G = '\x1b[1;32m'
-Y = '\x1b[1;33m'
-T = '\x1b[1;96m'
-L = '\x1b[1;92m'
-O = '\x1b[1;91m'
-S = '\x1b[1;94m'
-W = '\x1b[1;37m'
-D = '\033[96;1m'
-LG = "\033[90m"
-LR = "\033[91m"
-LGN = "\033[92m"
-LB = "\033[94m"
-LC = "\033[96m"
-W = '\033[97;1m'
-R = '\033[91;1m'
-G = '\033[92;1m'
-Y = '\033[93;1m'
-B = '\033[94;1m'
-S = '\033[96;1m'
-N = '\x1b[0m'
-M = '\033[90m'
-T = '\033[95m'
-P = '\033[95;1m'
-C = '\033[3m'
-E = '\033[1;35m'
-H = '\033[0;33m'
-V = '\033[1;32m'
-X = '\033[1;34m'
-ses = requests.Session()
+    Returns:
+        str: The combined string of `actrs` number and `post_id`, or an error message.
+    """
+    headers = {
+        'User-Agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        'cache-control': "max-age=0",
+        'dpr': "2",
+        'viewport-width': "980",
+        'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+        'sec-ch-ua-mobile': "?0",
+        'sec-ch-ua-platform': "\"Linux\"",
+        'sec-ch-ua-platform-version': "\"\"",
+        'sec-ch-ua-model': "\"\"",
+        'sec-ch-ua-full-version-list': "\"Google Chrome\";v=\"131.0.6778.104\", \"Chromium\";v=\"131.0.6778.104\", \"Not_A Brand\";v=\"24.0.0.0\"",
+        'sec-ch-prefers-color-scheme': "light",
+        'upgrade-insecure-requests': "1",
+        'sec-fetch-site': "same-origin",
+        'sec-fetch-mode': "navigate",
+        'sec-fetch-user': "?1",
+        'sec-fetch-dest': "document",
+        'accept-language': "en-US,en;q=0.9",
+        'priority': "u=0, i",
+        'Cookie': "sb=fuZTZ8Zyl9dXj5TFodlxDrGD; dpr=2; wd=980x1628; datr=fuZTZxL-gtbBjTkfeBq-VVDZ"
+    }
 
-ugen2=[]
-ugen=[]
-cokbrut=[]
-ses=requests.Session()
-princp=[]
-try:
-	#prox= requests.get('https://github.com/Pro-Max-420/Api/blob/main/prox.txt').text
-	prox= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
-	open('.prox.txt','w').write(prox)
-except Exception as e:
-	print('[[\x1b[1;92m+\x1b[1;97m] [\x1b[1;96mTutul')
-prox=open('.prox.txt','r').read().splitlines()
-for xd in range(10000):
-	a='Mozilla/5.0 (Symbian/3; Series60/'
-	b=random.randrange(1, 9)
-	c=random.randrange(1, 9)
-	d='Nokia'
-	e=random.randrange(100, 9999)
-	f='/110.021.0028; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/535.1 (KHTML, like Gecko) NokiaBrowser/'
-	g=random.randrange(1, 9)
-	h=random.randrange(1, 4)
-	i=random.randrange(1, 4)
-	j=random.randrange(1, 4)
-	k='Mobile Safari/535.1'
-	uaku=(f'{a}{b}.{c} {d}{e}{f}{g}.{h}.{i}.{j} {k}')
-	ugen2.append(uaku)
-#Up- aa='Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-#Op Working: aa='Mozilla/5.0 (X11; OpenBSD amd64; rv:49.0)' Safari/537.36
-	aa='Mozilla/5.0 (Linux; Android 5.1; Power Rage Build/LMY47I; wv)'
-	b=random.choice(['2','3','4','5','6','7','8','9','10','11','12','13','14','15'])
-	c=' en-us; GT-'
-	d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-	e=random.randrange(1, 999)
-	f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-	g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-	h=random.randrange(73,100)
-	i='0'
-	j=random.randrange(4200,4900)
-	k=random.randrange(40,150)
-	l='Mobile Safari/537.36'
-	#Galaxy Z2
-    #Mozilla/5.0 (Linux; Android 5.1; Power Rage Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/46.0.2490.76 Mobile Safari/537.36
-	#Dolfin/
-	#uaku2=f'{aa} {g}{h}.{i}.{j}.{k} {l}'
-	uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-	ugen.append(uaku2)
-def uaku():
-	try:
-		ua=open('bbnew.txt','r').read().splitlines()
-		for ub in ua:
-			ugen.append(ub)
-	except:
-		a=requests.get('https://github.com/Pro-Max-420/ua/blob/main/bbnew.txt').text
-		ua=open('.bbnew.txt','w')
-		aa=re.findall('line">(.*?)<',str(a))
-		for un in aa:
-			ua.write(un+'\n')
-		ua=open('.bbnew.txt','r').read().splitlines()
+    try:
+        response = requests.get(url, headers=headers).text
 
-id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
+        # Extract `actrs` number
+        actrs_match = re.search(r'"actrs\\":\\"(\d+)\\"', response)
+        actrs_number = actrs_match.group(1) if actrs_match else None
+
+        # Extract `post_id`
+        post_id_match = response.split('"post_id":"')[1].split('"')[0] if '"post_id":"' in response else None
+
+        if actrs_number and post_id_match:
+            return f"{actrs_number}_{post_id_match}"
+        elif not actrs_number:
+            return "actrs number not found!"
+        elif not post_id_match:
+            return "post_id not found!"
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+def extract_facebook_video_id(url):
+    # Regular expression pattern to match the user ID and video ID
+    pattern = r'facebook\.com/(\d+)/videos/(\d+)/'
+    
+    # Search for the pattern in the URL
+    match = re.search(pattern, url)
+    
+    if match:
+        # Extract the user ID and video ID
+        user_id, video_id = match.groups()
+        return f"{user_id}_{video_id}"
+    else:
+        return None
+
+# Example usage:
+
+
+def extract_ids(url):
+    group_pattern = r'groups/(\d+)/permalink/(\d+)/'
+    post_pattern = r'(\d+)/posts/(\d+)/'
+    photo_pattern = r'fbid=(\d+)'
+
+    group_match = re.search(group_pattern, url)
+    post_match = re.search(post_pattern, url)
+    photo_match = re.search(photo_pattern, url)
+
+    if group_match:
+        group_id, post_id = group_match.groups()
+        return f"{group_id}_{post_id}"
+    elif post_match:
+        group_id, post_id = post_match.groups()
+        return f"{group_id}_{post_id}"
+    elif photo_match:
+        photo_id = photo_match.group(1)
+        return photo_id
+    else:
+        return None 
+    
+def jovan():
+    adrkz = "\033[34m "
+    
+    
+    print(f"""
+    {green} 
+                
+          ██╗███╗   ██╗███████╗██╗███╗   ██╗██╗████████╗███████╗██████╗  ██████╗  ██████╗ ███████╗████████╗██╗███╗   ██╗ ██████╗ 
+██║████╗  ██║██╔════╝██║████╗  ██║██║╚══██╔══╝██╔════╝██╔══██╗██╔═══██╗██╔═══██╗██╔════╝╚══██╔══╝██║████╗  ██║██╔════╝ 
+██║██╔██╗ ██║█████╗  ██║██╔██╗ ██║██║   ██║   █████╗  ██████╔╝██║   ██║██║   ██║███████╗   ██║   ██║██╔██╗ ██║██║  ███╗
+██║██║╚██╗██║██╔══╝  ██║██║╚██╗██║██║   ██║   ██╔══╝  ██╔══██╗██║   ██║██║   ██║╚════██║   ██║   ██║██║╚██╗██║██║   ██║
+██║██║ ╚████║██║     ██║██║ ╚████║██║   ██║   ███████╗██████╔╝╚██████╔╝╚██████╔╝███████║   ██║   ██║██║ ╚████║╚██████╔╝
+╚═╝╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+                 {white} https://infiniteboosting.com  
+     {green}──────────────────────────────────────────────────────────────────────\033[0m
+     {red}OWNER     {white}: {yellow}ALFIE TEORAMA  
+     {red}FACEBOOK  {white}: {yellow}https://www.facebook.com/AlfieTeorema
+     {green}──────────────────────────────────────────────────────────────────────\033[0m""")
 
 def W_ueragnt():
     chrome_version = random.randint(80, 99)
@@ -485,2361 +169,4094 @@ def W_ueragnt():
         if not 'WOW64;':
             user_agent = f'''Mozilla/5.0 (Windows NT {windows_version}.{''}Win64; x64) AppleWebKit/{webkit_version}.0 (KHTML, like Gecko) Chrome/{chrome_version}.0.0.0 Safari/{safari_version}.0'''
             return user_agent
+import os
+import uuid
+import random
+import requests
+import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import string  # Added for generating random characters in get_ua()
 
-headers = {
-    'user-agent': W_ueragnt(),
-    'viewport-width': '847',
-    'x-asbd-id': '129477',
-    'x-fb-friendly-name': 'GroupCometJoinForumMutation',
-    'x-fb-lsd': 'wGh6ACr3OJ2v2rPBdXy-1o'}
-headersccc = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
-    'viewport-width': '546',
-    'x-asbd-id': '129477',
-    'x-fb-friendly-name': 'CometProfilePlusLikeMutation',
-    'x-fb-lsd': 'KA9qtqSd7hV8150DnYqqmy'}
+import os
 
-def jalan(z):
-    for e in z + '\n':
-        sys.stdout.write(e)
-        sys.stdout.flush()
-        time.sleep(0.01)
-        return None
-
-def logo():
-    print(f"""{G}
-     ██╗░░██╗░█████╗░███████╗██╗░░░██╗███╗░░░███╗███████╗██╗░░░░░
-     ██║░██╔╝██╔══██╗╚════██║██║░░░██║████╗░████║██╔════╝██║░░░░░
-     █████═╝░██║░░██║░░███╔═╝██║░░░██║██╔████╔██║█████╗░░██║░░░░░
-     ██╔═██╗░██║░░██║██╔══╝░░██║░░░██║██║╚██╔╝██║██╔══╝░░██║░░░░░
-     ██║░╚██╗╚█████╔╝███████╗╚██████╔╝██║░╚═╝░██║███████╗███████╗
-     ╚═╝░░╚═╝░╚════╝░╚══════╝░╚═════╝░╚═╝░░░░░╚═╝╚══════╝╚══════╝
-{W}┌────────────────────────{S} TOOLS INFORMATION{W} ───────────────────────────┐
-{W}│  {LR}❯ {R}Uses     : {G}Boosting            {LC}  ➙{W} Lifetime access                │
-{W}│  {R}❯ {R}Status   : {G}Active               {S} ➙ {W}No monthly Fee                 │
-{W}│  {LG}❯ {R}Tools    : {G}Paided/Premium       {R} ➙{W} Fast Process                   │
-{W}│  {G}❯ {R}Network  : {G}All Network           {R}➙ {W}Customizable                   │
-{W}│                                                   {R}    version {G}0.3   {W} │
-{W}└──────────────────────────────────────────────────────────────────────┘
-
- {W}┌──{R}[ {S}AUTHOR/OWNER{R} ]
- {W}╰────── {R}❯{Y}❯{H}❯{W}❯ {S}BRYX
-\x1b[1;37m────────────────────────────────────────────────────────────""")
-
-def clear():
-    os.system('clear')
-
-def linex():
-    print('\x1b[1;37m────────────────────────────────────────────────────────────')
-
-def get_access_token_from_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return file.read().strip().split('\n')
-    except FileNotFoundError:
-        print(f'''{red}  Start the tool first!''')
-        return None
-
-def convert_to_traodoisub(url):
-    try:
-        response = requests.post(
-            'https://id.traodoisub.com/api.php',
-            data={
-                'link': url})
-        response.raise_for_status()
-        return response.json().get('id')
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
-        return None
-
-def extract_uid_from_link(post_link):
-    pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-    match = re.match(pattern, post_link)
-    if match:
-        return match.group(1)
-    print(f'{red}  Invalid post link.')
-
-def store():
-    clear()
-    logo()
-    print(f"{white}  CHOOSE AN OPTION:")
-    print(f"{yellow}  [1] {blue}VIEW STORE PAGES AND ACCOUNT")
-    print(f"{yellow}  [2] {blue}REMOVE SPECIFIC STORE PAGES AND ACCOUNT")
-    linex()
-    choice = input(f"{yellow}  Choose : {green}")
-    linex()
-    if choice == '1':
-        display_file_info()
-        return
-    elif choice == '2':
-        choose_file_and_delete_linex()
-        return
+import requests
+import threading
+from concurrent.futures import ThreadPoolExecutor
+import random
+import time
+import sys
+import os
+import platform
+# Color codes for formatting output
+purple = "\033[1;35m"
+blue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+white = "\033[1;37m"
+import random
+import string
+def clear_screen():
+    if 'termux' in platform.system().lower():
+        os.system('clear')
+    elif platform.system().lower() == 'windows':
+        os.system('cls')
     else:
-        print(f"{red}  Invalid choice!")
-
-def choose_file_and_delete_linex():
-    print(f"{white}  CHOOSE SPECIFIC LINE TO DELETE:")
-    print(f"{yellow}  [1] {blue}VIEW YOUR LIST OF FRA")
-    print(f"{yellow}  [2] {blue}VIEW YOUR LIST OF RPA")
-    print(f"{yellow}  [3] {blue}VIEW YOUR LIST OF FRA PAGES")
-    print(f"{yellow}  [4] {blue}VIEW YOUR LIST OF RPA PAGES")
-    print(f"{red}  [0] {red}RETURN TO MAIN MENU")
-    linex()
-    account_choose = input(f"{yellow}  Choose : {green}")
-    linex()
-    path_file = None
-    check_path = None
-    if account_choose == '1':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'
-    elif account_choose == '2':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'
-    elif account_choose == '3':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'
-    elif account_choose == '4':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt'
-    elif account_choose == '0':
-        print('Returning...')
-        return
-    else:
-        print("Invalid choice")
-        return
-    delete_line(path_file, check_path)
-
-def delete_line(path_file, check_path):
-    display_file_content(check_path)
-    linex()
-    lines_to_delete = input(f'''{yellow}  Enter numbers you want to delete {blue}[Use comma if multiple]{yellow}: {green}''')
-    line_numbers = lines_to_delete.split(',')
-    if not line_numbers:
-        print(f'''{red}  No valid line numbers provided.''')
-        return
-    sed_command_path_file = " ".join([f"-e '{line_number}d'" for line_number in line_numbers])
-    sed_command_check_path = " ".join([f"-e '{line_number}d'" for line_number in line_numbers])
-    os.system(f"sed -i {sed_command_path_file} {path_file}")
-    os.system(f"sed -i {sed_command_check_path} {check_path}")
-    print(f'''{green}  Lines {', '.join(line_numbers)} have been deleted.''')
-
-def display_file_info():
-    print(f'''{white}  CHOOSE FILE TO DISPLAY INFO:''')
-    print(f'''{yellow}  [1] {blue}VIEW YOUR LIST OF FRA''')
-    print(f'''{yellow}  [2] {blue}VIEW YOUR LIST OF RPA''')
-    print(f'''{yellow}  [3] {blue}VIEW YOUR LIST OF FRA PAGES''')
-    print(f'''{yellow}  [4] {blue}VIEW YOUR LIST OF RPA PAGES''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    while True:
-        file_choose = input(f'''{yellow}  Choose : {green}''')
-        linex()
-        if file_choose == '1' or file_choose == '01':
-            file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'
-            display_file_content(file_path)
-            break
-        elif file_choose == '2' or file_choose == '02':
-            file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'
-            display_file_content(file_path)
-            break
-        elif file_choose == '3' or file_choose == '03':
-            file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'
-            display_file_content(file_path)
-            break
-        elif file_choose == '4' or file_choose == '04':
-            file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt'
-            display_file_content(file_path)
-            break
-        elif file_choose == '0' or file_choose == '00':
-            main()
-            break
-        else:
-            print(f'''{red}  Invalid Input!''')
-            sleep(1.5)
-
-def display_file_content(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            content = file.readlines()
-            total_lines = len(content)
-            print(f'''{yellow}  Total : {green}{total_lines}\n''')
-            for index, line in enumerate(content, start=1):
-                print(f'''{yellow}  [{index}] {white}- {green}''' +line.strip())
-    except FileNotFoundError:
-        print(f'''{red}  Please store the file first!''')
-
-def delete_files():
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE TO RESET:''')
-    print(f'''{yellow}  [1] {blue}RESET YOUR LIST OF FRA''')
-    print(f'''{yellow}  [2] {blue}RESET YOUR LIST OF RPA''')
-    print(f'''{yellow}  [3] {blue}RESET YOUR LIST OF FRA PAGES''')
-    print(f'''{yellow}  [4] {blue}RESET YOUR LIST OF RPA PAGES''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    while True:
-        account_choose = input(f'''{yellow}  Choose : {green}''')
-        linex()
-        if account_choose == '1' or account_choose == '01':
-            file_paths = [
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt',
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt']
-            all_deleted = True
-            for file_path in file_paths:
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-                else:
-                    all_deleted = False
-            if all_deleted:
-                print(f'''{green}\n  Tool Successfully Reset!''')
-                break
-            else:
-                print(f'''{red}\n  Use the tool first!''')
-                break
-        elif account_choose == '2' or account_choose == '02':
-            file_paths = [
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt',
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt']
-            all_deleted = True
-            for file_path in file_paths:
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-                else:
-                    all_deleted = False
-            if all_deleted:
-                print(f'''{green}\n  Tool Successfully Reset!''')
-                break
-            else:
-                print(f'''{red}\n  Use the tool first!''')
-                break
-        elif account_choose == '3' or account_choose == '03':
-            file_paths = [
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt',
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt']
-            all_deleted = True
-            for file_path in file_paths:
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-                else:
-                    all_deleted = False
-            if all_deleted:
-                print(f'''{green}\n  Tool Successfully Reset!''')
-                break
-            else:
-                print(f'''{red}\n  Use the tool first!''')
-                break
-        elif account_choose == '4' or account_choose == '04':
-            file_paths = [
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt',
-                'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt']
-            all_deleted = True
-            for file_path in file_paths:
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-                else:
-                    all_deleted = False
-            if all_deleted:
-                print(f'''{green}\n  Tool Successfully Reset!''')
-                break
-            else:
-                print(f'''{red}\n  Use the tool first!''')
-                break
-        elif account_choose == '0' or account_choose == '00':
-            main()
-            break
-        else:
-            print(f'''{red}  Invalid Input!''')
-            sleep(1.5)
-
-def extract_and_save_facebook_pages():
-    linex()
-    print(f'''{white}  CHOOSE WHERE TO SAVE:''')
-    print(f'''{yellow}  [1] {blue}ON YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}ON YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}ON YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}ON YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    paths = {
-        '1': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'],
-        '2': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'],
-        '3': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'],
-        '4': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt']
-    }
-    if account_choose in paths:
-        for file in paths[account_choose]:
-            with open(file, 'a') as f:
-                pass
-        path_file, check_path = paths[account_choose]
-        get_facebook_pages(path_file, check_path)
-        return None
-    elif account_choose == '0':
-        start_tool()
-        return None
-    else:
-        print(f'''{red}  Invalid choice!''')
-        return None
-
-def get_facebook_pages_with_token(poo):
-    url = 'https://graph.facebook.com/v18.0/me/accounts'
-    headers = {
-        'Authorization': f'''Bearer {poo}'''
-    }
-    print(f'''{white}  CHOOSE WHERE TO SAVE:''')
-    print(f'''{yellow}  [1] {blue}ON YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}ON YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}ON YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}ON YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    paths = {
-        '1': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'],
-        '2': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'],
-        '3': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'],
-        '4': ['C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt']
-    }
-    if account_choose in paths:
-        path_file, check_path = paths[account_choose]
-    elif account_choose == '0':
-        start_tool()
-        return None
-    else:
-        print(f'''{red}  Invalid choice!''')
-        return None
-    response = requests.get(url, headers=headers)
-    if response.status_code != 200:
-        print(f'''  {red}Error: {response.text}''')
-        linex()
-        return None
-    data = response.json()
-    pages_data = data['data']
-    total_pages = 0
-    new_pages = 0
-    print(f'''{yellow}  Total pages in account: {green}{len(pages_data)}''')
-    linex()
-    try:
-        with open(check_path, 'r') as file:
-            existing_pages = file.readlines()
-            existing_pages = {line.strip().split('|')[0]: line.strip().split('|')[1] for line in existing_pages}
-    except FileNotFoundError:
-        existing_pages = {}
-    for page in pages_data:
-        page_id = page['id']
-        page_name = page['name']
-        page_access_token = page['access_token']
-        if page_id in existing_pages and existing_pages[page_id] == page_name:
-            print(f'''{red}  Page already exists: {yellow}{page_id} | {page_name}''')
-        else:
-            print(f'''{white}  ID: {yellow}{page_id} {white}---> {green}Successfully Extracted!''')
-            new_pages += 1
-            total_pages += 1
-            with open(check_path, 'a') as file:
-                file.write(f'''{page_id}|{page_name}\n''')
-            with open(path_file, 'a') as file:
-                file.write(f'''{page_access_token}\n''')
-    print(f'''{yellow}  New pages extracted: {green}{new_pages}''')
-    linex()
-    return pages_data
-
-def get_facebook_pages():
-    clear()
-    logo()
-    print(f'''{green}  METHOD 1 {white}---> {yellow}EXTRACT NORMAL ACCOUNT PAGES''')
-    linex()
-    ids = input(f'''{yellow}  Enter Facebook ID: {green}''')
-    linex()
-    pas = input(f'''{yellow}  Enter Facebook Password: {green}''')
-    linex()
-    fbav = f'''{
-        random.randint(
-            111,
-            999)}.0.0.{
-        random.randint(
-            11,
-            99)}.{
-        random.randint(
-            111,
-            999)}'''
+        os.system('clear')
+def generate_user_agent():
+    fbav = f"{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}"
     fbbv = str(random.randint(111111111, 999999999))
     fbrv = '0'
     random_seed = random.Random()
     adid = ''.join(random_seed.choices(string.hexdigits, k=16))
-    ua_bgraph = f'''[FBAN/FB4A;FBAV/{
-        random.randint(
-            49,
-            66)}.0.0.{
-        random.randint(
-            20,
-            49)}.{
-        random.randint(
-            11,
-            99)};FBBV/{fbbv};FBCR/CLARO BR;FBMF/Xiaomi;FBDV/M1908C3JGG;FBSV/11;FBCA/arm64-v8a:null;FBDM/density=2.75,width=1080,height=2216;FB_FW/1;FBRV/470765339;] FBBK/1'''
-    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
+
+    # Randomly vary the Android OS version, device, and app version for realism
+    device = random.choice(["HUAWEI MAR-LX1M", "Samsung SM-G960F", "OnePlus GM1913"])
+    fbav_version = str(random.randint(49, 150))  # Updated range for FBAV versions
+    fbbv_version = str(random.randint(11111111, 77777777))
+    carrier = random.choice(["Ooredoo TN", "Orange", "Vodafone", "T-Mobile"])
+
+    ua_bgraph = f'[FBAN/FB4A;FBAV/{fbav_version}.0.0.{random.randrange(20, 49)}.{random.randint(11, 99)};FBBV/{fbbv_version};' \
+                f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1080,height=2107}};FBLC/fr_FR;' \
+                f'FBRV/{fbrv};FBCR/{carrier};FBMF/{device.split(" ")[0]};FBBD/{device.split(" ")[0]};' \
+                f'FBPN/com.facebook.katana;FBDV/{device};FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+    
+    return ua_bgraph
+
+ua_bgraph = generate_user_agent()
+
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+# Random FB version generation
+fbav = f'{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+# User agent string
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def bgraph(uid, pw, path_file, extract_type, success_count, existing_uids):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+
     data = {
-        'adid': f'{uuid.uuid4()}',
-        'format': 'json',
-        'device_id': f'{uuid.uuid4()}',
-        'cpl': 'true',
-        'family_device_id': f'{uuid.uuid4()}',
-        'credentials_type': 'device_based_login_password',
-        'error_detail_type': 'button_with_disabled',
-        'source': 'device_based_login',
-        'email': ids,
-        'password': pas,
-        'access_token': accessToken,
-        'generate_session_cookies': '1',
-        'meta_inf_fbmeta': '',
-        'advertiser_id': f'{uuid.uuid4()}',
-        'currently_logged_in_userid': '0',
-        'locale': 'en_US',
-        'client_country_code': 'US',
         'method': 'auth.login',
         'fb_api_req_friendly_name': 'authenticate',
         'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
         'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-    }
-    headers = {
-        'User-Agent': ua_bgraph,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Host': 'graph.facebook.com',
-        'X-FB-Net-HNI': str(random.randint(10000, 99999)),
-        'X-FB-SIM-HNI': str(random.randint(10000, 99999)),
-        'X-FB-Connection-Type': 'MOBILE.LTE',
-        'X-Tigon-Is-Retry': 'False',
-        'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-device-group': str(random.randint(1000, 9999)),
-        'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-        'X-FB-Request-Analytics-Tags': 'graphservice',
-        'X-FB-HTTP-Engine': 'Liger',
-        'X-FB-Client-IP': 'True',
-        'X-FB-Connection-Bandwidth': str(random.randint(20000000, 30000000)),
-        'X-FB-Server-Cluster': 'True',
-        'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32'
-    }
-    url = 'https://graph.facebook.com/auth/login'
-    try:
-        time.sleep(1)
-        response = requests.post(url, data=data, headers=headers)
-        po = response.json()
-        if 'session_key' in po:
-            token = po.get('access_token', '')
-            cookie = po.get('session_cookies', {})
-            print(f'''  {white}ID : {yellow}{uid} {white}---> {green}Successfully Extract!''')
-            return get_facebook_pages_with_token(token)
-        else:
-            print(f'''  {red}ID : {red}{uid} {white}---> {red}Failed to Extract!''')
-            return None
-    except Exception as e:
-        pass
-
-def get_facebook_account():
-    clear()
-    logo()
-    print(f'''{green}  METHOD 2 {white}---> {yellow}EXTRACT SINGLE NORMAL ACCOUNT''')
-    linex()
-    print(f'''{white}  CHOOSE WHERE TO SAVE:''')
-    print(f'''{yellow}  [1] {blue}ON YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}ON YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}ON YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}ON YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    if account_choose == '1':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'
-    elif account_choose == '2':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'
-    elif account_choose == '3':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'
-    elif account_choose == '4':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt'
-    elif account_choose == '0':
-        start_tool()
-        return None
-    else:
-        print(f'''{red}Invalid choice!''')
-        return None
-    uid = input(f'''{yellow}  Enter Facebook ID: {green}''')
-    linex()
-    pas = input(f'''{yellow}  Enter Facebook Password: {green}''')
-    linex()
-    fbav = f'''{
-        random.randint(
-            111,
-            999)}.0.0.{
-        random.randint(
-            11,
-            99)}.{
-        random.randint(
-            111,
-            999)}'''
-    fbbv = str(random.randint(111111111, 999999999))
-    fbrv = '0'
-    random_seed = random.Random()
-    adid = ''.join(random_seed.choices(string.hexdigits, k=16))
-    ua_bgraph = f'''[FBAN/FB4A;FBAV/{
-        random.randint(
-            49,
-            66)}.0.0.{
-        random.randint(
-            20,
-            49)}.{
-        random.randint(
-            11,
-            99)};FBBV/{fbbv};FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBCA/arm64-v8a:;FBOP/1]'''
-    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
-    data = {
-        'adid': f'{uuid.uuid4()}',
-        'format': 'json',
-        'device_id': f'{uuid.uuid4()}',
-        'cpl': 'true',
-        'family_device_id': f'{uuid.uuid4()}',
-        'credentials_type': 'device_based_login_password',
-        'error_detail_type': 'button_with_disabled',
-        'source': 'device_based_login',
-        'email': uid,
-        'password': pas,
-        'access_token': accessToken,
-        'generate_session_cookies': '1',
-        'meta_inf_fbmeta': '',
-        'advertiser_id': f'{uuid.uuid4()}',
-        'currently_logged_in_userid': '0',
-        'locale': 'en_US',
-        'client_country_code': 'US',
-        'method': 'auth.login',
-        'fb_api_req_friendly_name': 'authenticate',
-        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-    }
-    headers = {
-        'User-Agent': ua_bgraph,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Host': 'graph.facebook.com',
-        'X-FB-Net-HNI': str(random.randint(10000, 99999)),
-        'X-FB-SIM-HNI': str(random.randint(10000, 99999)),
-        'X-FB-Connection-Type': 'MOBILE.LTE',
-        'X-Tigon-Is-Retry': 'False',
-        'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-device-group': str(random.randint(1000, 9999)),
-        'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-        'X-FB-Request-Analytics-Tags': 'graphservice',
-        'X-FB-HTTP-Engine': 'Liger',
-        'X-FB-Client-IP': 'True',
-        'X-FB-Connection-Bandwidth': str(random.randint(20000000, 30000000)),
-        'X-FB-Server-Cluster': 'True',
-        'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32'
-    }
-    url = 'https://graph.facebook.com/auth/login'
-    try:
-        response = requests.post(url, data=data, headers=headers)
-        po = response.json()
-        if 'session_key' in po:
-            cookie = '; '.join([f"{i['name']}={i['value']}" for i in po.get('session_cookies', [])])
-            token = po.get('access_token', '')
-            open('C:\\Users\\Beam\\Documents\\.EXTRACT-COOKIE-ACCOUNT-NAME-ID.txt','a').write(f'{cookie}\n')
-            print(f'''  {white}ID : {yellow}{ids} {white}---> {green}Successfully Extracted!''')
-            open(check_path, 'a').write(f'{ids}\n')
-            open(path_file, 'a').write(f'{token}\n')
-        else:
-            print(f'''  {red}ID : {red}{ids} {white}---> {red}Failed to Extract!''')
-    except Exception as e:
-        pass
-
-ok = []
-cp = []
-loop = 0
-
-def bgraph_bulk_account():
-    clear()
-    logo()
-    print(f'''{green}  METHOD 3 {white}---> {yellow}EXTRACT BULK NORMAL ACCOUNTS M1''')
-    print(f'''{red}  File Format : {green}uid|password''')
-    linex()
-    print(f'''{white}  CHOOSE WHERE TO SAVE:''')
-    print(f'''{yellow}  [1] {blue}ON YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}ON YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}ON YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}ON YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    if account_choose == '1':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'
-    elif account_choose == '2':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'
-    elif account_choose == '3':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'
-    elif account_choose == '4':
-        path_file = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-        check_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt'
-    elif account_choose == '0':
-        start_tool()
-        return None
-    else:
-        print(f'''{red}Invalid choice!''')
-        return None
-    filee = input(f'''{yellow}  Input File Path : {green}''')
-    linex()
-    try:
-        with open(filee, 'r') as file:
-            fo = file.read().splitlines()
-    except FileNotFoundError:
-        print(f'''{red}  File Not Found''')
-        slp(5)
-        main()
-        return None
-    with ThreadPoolExecutor(max_workers=30) as executor:
-        for i in fo:
-            uid, pw = i.split('|')
-            executor.submit(graph, uid, pw, path_file, check_path)
-
-def graph(uid, pw, path_file, check_path):
-    global oks, loop
-    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
-    data = {
-        'adid': f'{uuid.uuid4()}',
-        'format': 'json',
-        'device_id': f'{uuid.uuid4()}',
-        'cpl': 'true',
-        'family_device_id': f'{uuid.uuid4()}',
-        'credentials_type': 'device_based_login_password',
-        'error_detail_type': 'button_with_disabled',
-        'source': 'device_based_login',
         'email': uid,
         'password': pw,
-        'access_token': accessToken,
-        'generate_session_cookies': '1',
-        'meta_inf_fbmeta': '',
-        'advertiser_id': f'{uuid.uuid4()}',
-        'currently_logged_in_userid': '0',
-        'locale': 'en_US',
-        'client_country_code': 'US',
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        
+        if uid in existing_uids:
+            print(f"     {yellow}[INFO] {red}ACCOUNT --> {white}{uid} {red}already exists.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            return
+
+        response = requests.post(url, data=data).json()
+        
+        print(response)
+        if 'access_token' in response:
+            token = response['access_token']
+
+            with open(path_file, 'a') as f:
+                f.write(f"{uid}|{token}\n")
+
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[32m[SUCCESS]\033[0m: Extracted Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            success_count.append(uid)
+        else:
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[31m[FAILED]\033[0m: TO EXTRACT Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except Exception as e:
+        print(f"     \033[1;31m[ERROR]\033[0m Error extracting account: {uid}. Reason: {str(e)}\033[0m\n")
+
+
+def proz(accounts_file, token_output_path, extract_type):
+    """Process the accounts and extract tokens concurrently."""
+    success_count = []
+
+    # Load existing uids from the output file to avoid duplicates
+    existing_uids = set()
+    if os.path.exists(token_output_path):
+        with open(token_output_path, 'r') as f:
+            existing_uids = {line.split('|')[0] for line in f.readlines()}
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph, uid, pw, token_output_path, extract_type, success_count, existing_uids)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+        return
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+fbav = f'''{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'''
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def load_existing_tokens(path_file):
+    """Load existing accounts or pages from the output file."""
+    if os.path.exists(path_file):
+        with open(path_file, 'r') as f:
+            return {line.split('|')[0] for line in f.readlines()}  # Set of existing uids or page ids
+    return set()
+
+def bgraph_page(uid, pw, path_file, extract_type, success_count, existing_tokens):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+    
+    if uid in existing_tokens:
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     {white}ACCOUNT ─────> {red}{uid} {green}ALREADY EXISTS")
+        return
+
+    data = {
         'method': 'auth.login',
         'fb_api_req_friendly_name': 'authenticate',
         'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
         'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
     }
-    simm3 = random.choice(['GLOBE', 'SMART'])
-    headers = {
-        'User-Agent': "Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/en_US;FBBV/135374479;FBCR/SMART;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]",
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Host': 'graph.facebook.com',
-        'X-FB-Net-HNI': str(random.randint(10000, 99999)),
-        'X-FB-SIM-HNI': str(random.randint(10000, 99999)),
-        'X-FB-Connection-Type': 'MOBILE.LTE',
-        'X-Tigon-Is-Retry': 'False',
-        'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-device-group': str(random.randint(1000, 9999)),
-        'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-        'X-FB-Request-Analytics-Tags': 'graphservice',
-        'X-FB-HTTP-Engine': 'Liger',
-        'X-FB-Client-IP': 'True',
-        'X-FB-Connection-Bandwidth': str(random.randint(20000000, 30000000)),
-        'X-FB-Server-Cluster': 'True',
-        'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32'
-    }
-    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
-    try:
-        response = requests.post(url, data=data, headers=headers)
-        po = response.json()
-        if 'session_key' in po:
-            cookies = po.get('session_cookies', [])
-            cookie_str = '; '.join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
-            access_token = po.get('access_token', '')
-            with open(check_path, 'r') as check_file:
-                if uid in check_file.read():
-                    print(f'''  {red}Account Already Exist in Tool {yellow}---> {red}{uid}''')
-                    linex()
-                    return
-            print(f'''  {white}ID : {yellow}{uid} {white}---> {green}Successfully Extract!''')
-            linex()
-            with open(check_path, 'a') as check_file:
-                check_file.write(uid + '\n')
-            with open(path_file, 'a') as path_file_obj:
-                path_file_obj.write(f'{access_token}\n')
-            ok.append(uid)
-        else:
-            print(f'''  {red}ID : {red}{uid} {white}---> {red}Failed to Extract!''')
-            linex()
-            cp.append(uid)
-    except Exception as e:
-        pass
-    loop += 1
 
-def get_facebook_pages_with_token3(uid, poo, path_file, check_path):
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        response = requests.post(url, data=data).json()
+        
+        if 'access_token' in response:
+            token = response['access_token']
+
+            # Extract Facebook Pages associated with the account token
+            pages = extract_fb_pages(token)
+            if pages:
+                for page in pages:
+                    page_id = page['id']
+                    if page_id not in existing_tokens:
+                        with open(path_file, 'a') as f:
+                            f.write(f"{page_id}|{page['accessToken']}\n")
+                        print(f"{white}{uid}  ─────> {green}Page ID: {red}{page_id} {yellow}EXTRACTED SUCCESSFULLY")
+                        existing_tokens.add(page_id)
+                    else:
+                        print(f"{white}ID:  {page_id} ─────> {green}ALREADY EXISTS ! ")
+
+            else:
+                print(f"{white}{uid} ─────> {red}DOESN'T HAVE PAGES !")
+            
+            success_count.append(uid)
+        else:
+            print(f"{white}{uid}  ─────> {red}FAILED TO EXTRACT ! ")
+
+    except Exception as e:
+        print(f"[ERROR] Error extracting account: {uid}. Reason: {str(e)}")
+
+def extract_fb_pages(token):
     url = 'https://graph.facebook.com/v18.0/me/accounts'
     headers = {
-        'Authorization': f'Bearer {poo}'
+        'Authorization': f'Bearer {token}'
     }
+    
+    pages_data = []
+    
+    while url:
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code != 200:
+            print(f'Error: {response.text}')
+            return None
+        
+        data = response.json()
+        for page in data.get('data', []):
+            pages_data.append({
+                'id': page.get('id'),
+                'accessToken': page.get('access_token')
+            })
+        
+        url = data.get('paging', {}).get('next')  # Update the URL for the next request
+
+    return pages_data
+
+def prozc(accounts_file, token_output_path, extract_type):
+    success_count = []
+    existing_tokens = load_existing_tokens(token_output_path)
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph_page, uid, pw, token_output_path, extract_type, success_count, existing_tokens)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+def extraction():
+
+    clear_screen()
+    jovan()
+    print(f"     {white}[1] {yellow}EXTRACT {red}ACCOUNT")
+    print(f"     {white}[2] {yellow}EXTRACT {red}PAGES")
+    print("     \033[1;34m───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {green}CHOICE: ").strip() 
+    if choice == '1':
+        axl1()
+    elif choice == '2':
+        axl2()
+    else:
+        print(f"     {red}INVALID CHOICE")
+def axl2():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"  
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    prozc(file_path, account_file, extract_type)
+def axl1():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    token_output_path = account_file
+
+    proz(file_path, token_output_path, extract_type)
+
+
+
+
+    
+folder_name = "C:\\Users\\Beam\\Documents\\"
+file_names = ["FRAACCOUNT.txt", "FRAPAGES.txt", "RPWACCOUNT.txt", "RPWPAGES.txt","generated_code.txt"]
+
+
+
+if not os.path.exists(folder_name):
+
+
+    try:
+          os.makedirs(folder_name)
+    except Exception:
+              pass
+              
+
+
+    for file_name in file_names:
+        file_path = os.path.join(folder_name, file_name)
+
+        if not os.path.exists(file_path):
+
+            try:
+
+                with open(file_path, 'w') as file:
+
+                    pass  
+            except Exception:
+
+                pass  
+
+
+def count_tokens(accounts_file, pages_file):
+    """Count the number of accounts and pages stored in the respective files."""
+    total_accounts = 0
+    total_pages = 0
+
+    try:
+        with open(accounts_file, 'r') as af:
+            total_accounts = sum(1 for line in af if line.strip())  # Count non-empty lines
+    except FileNotFoundError:
+        print(f"Account file not found: {accounts_file}")
+
+    try:
+        with open(pages_file, 'r') as pf:
+            total_pages = sum(1 for line in pf if line.strip())  # Count non-empty lines
+    except FileNotFoundError:
+        print(f"Page file not found: {pages_file}")
+
+    return total_accounts, total_pages
+import os
+import requests
+import random
+import string
+import uuid
+import random
+def user_agint():
+   
+
+    
+    fbcr_values = [
+        "AT&T", "Orange France", "Telia Sweden","Vodafone Italy", "Sky Mobile","Proximus Belgium", "Movistar Spain", "Tele2 Netherlands", "Vodafone Spain", "Telekom Deutschland","Eir Ireland", "KPN Netherlands", "Three Ireland", "Telekom Austria", "Telia Sweden","Vodafone Italy", "Sky Mobile", "Proximus Belgium", "Movistar Spain", "Tele2 Netherlands","Vodafone Spain", "Telekom Deutschland", "Eir Ireland", "KPN Netherlands", "Three Ireland","Telekom Austria", "Telia Sweden", "Vodafone Italy", "Sky Mobile", "Proximus Belgium","Movistar Spain", "Tele2 Netherlands","Vodafone Spain", "Telekom Deutschland", "Eir Ireland","KPN Netherlands", "Three Ireland", "Telekom Austria", "China Mobile", "NTT Docomo", "KT Corporation", "Singtel","AIS Thailand", "Viettel", "Smart Communications", "PTCL Pakistan", "Grameenphone Bangladesh","Nepal Telecom", "MTN Nigeria", "T-Mobile USA", "Verizon Wireless", "Rogers Canada","O2 United Kingdom", "Telstra Australia", "TIM Brazil", "Vivo India", "Telenor Norway","Mobilink Pakistan", "Bell Canada", "Etisalat UAE", "Claro Mexico", "Orange Spain","Vodafone Portugal", "Telkomsel Indonesia","Beeline Russia", "MTS Russia", "Optus Australia","SK Telecom South Korea", "Entel Chile", "MTNL India", "Tigo Ghana", "Idea India","DTAC Thailand", "Zong Pakistan", "Orange Romania", "EE United Kingdom", "Digi Malaysia","Koodo Canada", "Yoigo Spain", "Airtel Nigeria", "Airtel Kenya", "Telekom Malaysia","Cosmote Greece", "Digicel Jamaica", "LIME Caribbean", "Telus Canada", "Sprint USA","Movistar Mexico", "Vodafone Germany", "Optus Australia","Vivo Brazil", "Singtel Singapore", "Airtel India", "Ncell Nepal", "Telenor Sweden","MEO Portugal", "Claro Argentina", "EE Estonia", "Telkom South Africa", "Telenor Norway","Yoigo Spain", "Giffgaff United Kingdom", "Lycamobile France", "A1 Telekom Austria", "Telenor Hungary","Vodafone Greece", "Cosmote Romania", "Telenor Serbia", "Vodafone New Zealand", "Telekom Croatia","Orange Belgium", "Telkomsel Indonesia", "Vivacom Bulgaria", "Orange Poland", "Rogers Canada","Telkom South Africa", "Lycamobile Germany", "M1 Singapore", "DT Mobile Austria", "Claro Colombia","Telkomsel Indonesia", "Tele2 Norway", "Telia Estonia", "Telenor Denmark","Rakuten Mobile Japan","Ooredoo Qatar","Movistar Argentina", "T-Mobile Netherlands", "Telekom Hungary", "Vodafone Romania","NOS Portugal", "Digicel Haiti", "Three Hong Kong", "Airtel Bangladesh", "Telcel Mexico","Orange Moldova", "Telkomsel Indonesia", "Telenor Bulgaria","Vodafone Ukraine", "Cosmote Greece","T-Mobile Czech Republic", "NetOne Zimbabwe", "Glo Nigeria", "MTS Belarus", "Cell C South Africa","Maxis Malaysia", "Fido Canada", "Zain Saudi Arabia", "Telenor Serbia", "Beeline Uzbekistan","A1 Telekom Austria", "Zong Pakistan", "Jazz Pakistan", "Vodafone Portugal", "Telstra Australia","Vodafone Ireland", "Orange Slovakia", "Claro Peru", "Vivo Brazil", "Vodafone Czech Republic","Telenor Montenegro", "Digi Malaysia", "Etisalat Egypt", "Tigo Rwanda", "Robi Bangladesh","MTC Namibia", "AIS Thailand", "Vodafone Greece", "Orange Romania", "T-Mobile Poland","Telenor Hungary", "Telia Latvia", "Ooredoo Oman", "Optus Australia", "Orange Belgium","Telenor Norway", "Lycamobile France", "EE Estonia", "Yoigo Spain", "Giffgaff United Kingdom","Sprint USA", "Telus Canada", "Vodafone Germany", "Movistar Mexico", "Telkomsel Indonesia","Vivo India", "Airtel India", "Ncell Nepal", "Telenor Sweden", "MEO Portugal","Claro Argentina", "Telekom Croatia", "Cosmote Romania", "Orange Poland", "Telenor Serbia","Vodafone New Zealand", "Vivacom Bulgaria", "Telenor Denmark", "T-Mobile Netherlands", "NOS Portugal","Telkomsel Indonesia", "Tele2 Norway", "Telia Estonia", "Telenor Denmark", "Rakuten Mobile Japan","Ooredoo Qatar", "Movistar Argentina", "T-Mobile Netherlands", "Telekom Hungary", "Vodafone Romania","Digicel Haiti", "Three Hong Kong", "Airtel Bangladesh", "Telcel Mexico", "Orange Moldova","Telkomsel Indonesia", "O2 Germany", "Airtel Nigeria", "Orange Kenya","Digicel Jamaica","Unitel Angola", "MobiFone Vietnam", "TMN Portugal", "Grameenphone Bangladesh", "Movitel Mozambique","Telkom South Africa", "Globacom Nigeria", "Nawras Oman", "Vodafone Ghana", "Telenor Pakistan","Yoigo Spain", "SFR France", "Tigo Colombia", "Vodafone Qatar", "Etisalat UAE","Telenor Norway", "Telia Finland", "LIME Caribbean", "EE United Kingdom", "Koodo Canada","TIM Italy", "Telekom Romania", "Jio India", "Ooredoo Kuwait", "Orange Switzerland","Bouygues Telecom France", "Entel Bolivia", "A1 Telekom Austria", "MTN South Africa", "Vodafone Hungary","Zain Jordan", "Ncell Nepal", "Zain Kuwait", "Djezzy Algeria", "Smart Philippines","Telenor Bulgaria", "Cosmote Greece", "Vodafone Portugal", "Telstra Australia", "Three Ireland","Rogers Canada", "Safaricom Kenya", "Orange Luxembourg", "Elisa Finland", "Vodafone Netherlands","KPN Netherlands", "Telia Lithuania", "Vodafone Iceland", "Tigo Ghana", "Idea India","Tata Docomo India", "Aircel India", "Claro Chile", "Movistar Peru", "T-Mobile Croatia","Telkomsel Indonesia", "O2 Czech Republic", "Smartfren Indonesia", "Axiata Malaysia", "Digicel Caribbean","Beeline Kazakhstan", "Moldcell Moldova", "Djezzy Algeria", "Tigo Rwanda", "Vodafone Egypt","COSMOTE Cyprus", "Bell Mobility Canada", "Telenor Sweden", "3 Sweden", "DNA Finland","Zain Bahrain", "Ooredoo Tunisia", "Orange Morocco", "Vivacom Bulgaria", "VIPnet Croatia","Vodafone Greece", "Orange Romania", "T-Mobile Poland", "Telenor Hungary", "AIS Thailand","TrueMove Thailand", "Vodafone Czech Republic", "Digi Malaysia", "XL Axiata Indonesia", "Dialog Sri Lanka","MTN Uganda", "Airtel Bangladesh", "Viva Kuwait", "Wind Italy", "LMT Latvia","Yoigo Spain", "Maroc Telecom Morocco", "Orange Ivory Coast", "Airtel Malawi", "Airtel Zambia", "DITO", "Globe", "GOMO", "TNT", "TM"]
+   
+
+    fbmf_fbdv_dict = {
+
+    "asus": ["ZenFone 8", "ROG Phone 5", "ZenFone 7", "ROG Phone 3", "ZenFone 6", "ROG Phone II", "ZenFone 5Z", "ZenFone 5", "ZenFone 4 Pro", "ZenFone 4", "ZenFone 3 Deluxe", "ZenFone 3", "ZenFone 2 Laser", "ZenFone 2", "ZenFone", "ZenFone 6Z", "ZenFone Max Pro (M2)", "ZenFone Max Pro (M1)", "ZenFone 6Z", "ZenFone Max Plus (M2)", "ZenFone Max (M2)", "ZenFone Max (M1)", "ZenFone Live", "ZenFone Zoom", "ZenFone Selfie", "ASUS_Z01RD", "ASUS_Z01QD", "ASUS_I01WD", "ASUS_I01BD", "ASUS_I01HDA"],
+    
+    "lenovo": ["Legion Phone Duel 2", "Legion Phone Duel", "K12 Note", "K10 Note", "Z6 Pro", "Z5 Pro", "Lenovo Z6 Pro", "Lenovo Z6 Youth", "Lenovo Z5s", "Lenovo Z5 Pro GT", "Lenovo Z5 Pro", "Lenovo Z5", "Lenovo K9", "Lenovo A5", "Lenovo K320t", "Lenovo K8 Note", "Lenovo K6 Note", "Lenovo Vibe K5 Note", "Lenovo Vibe K5", "Lenovo Vibe P1", "Lenovo Vibe X3", "Lenovo Vibe Z2 Pro", "Lenovo Vibe Z2", "Lenovo Vibe Z","A6000", "A6000 Plus", "A7000", "A7000 Turbo", "A2010", "A2010-a", "K3 Note", "Vibe K4 Note", "Vibe K5 Note", "Vibe K5 Plus", "Vibe K5", "Vibe K5 Lite", "Vibe K5 Power", "Vibe K5 S", "Vibe X2", "Vibe X3", "Vibe Z2 Pro", "K6 Power", "K6 Note", "K6", "K6 Plus", "K6 Turbo", "Vibe C", "Vibe C2", "Vibe C2 Power", "Vibe C2 K10a40", "Vibe C2 K10a40C", "Vibe B", "Vibe B A2016a40", "Vibe B A2016b30", "Vibe B A2016b31", "Vibe B A2016b31C", "Vibe B A2016b30A", "Vibe B A2016b30B", "Vibe B A2016b30C", "Vibe B A2016b30D", "Vibe B A2016b30E", "Vibe B A2016b30G", "Vibe B A2016b30J", "Vibe B A2016b30K", "Vibe B A2016b30L", "Vibe B A2016b30M", "Vibe B A2016b30N", "Vibe B A2016b30O", "Vibe B A2016b30Q", "Vibe B A2016b30R", "Vibe B A2016b30T", "Vibe B A2016b30W", "Vibe B A2016b30Y", "Vibe B A2016b31A", "Vibe B A2016b31B", "Vibe B A2016b31C", "Vibe B A2016b31E", "Vibe B A2016b31F", "Vibe B A2016b31G", "Vibe B A2016b31H", "Vibe B A2016b31K", "Vibe B A2016b31L", "Vibe B A2016b31M", "Vibe B A2016b31N", "Vibe B A2016b31O", "Vibe B A2016b31P", "Vibe B A2016b31Q", "Vibe B A2016b31R", "Vibe B A2016b31S", "Vibe B A2016b31T", "Vibe B A2016b31U", "Vibe B A2016b31V", "Vibe B A2016b31W", "Vibe B A2016b31X", "Vibe B A2016b31Y", "Vibe B A2016b31Z", "Vibe B A2016b31AA", "Vibe B A2016b31AB", "Vibe B A2016b31AC", "Vibe B A2016b31AD", "Vibe B A2016b31AE", "Vibe B A2016b31AF", "Vibe B A2016b31AG", "Vibe B A2016b31AH", "Vibe B A2016b31AI", "Vibe B A2016b31AJ", "Vibe B A2016b31AK", "Vibe B A2016b31AL", "Vibe B A2016b31AM", "Vibe B A2016b31AN", "Vibe B A2016b31AO", "Vibe B A2016b31AP", "Vibe B A2016b31AQ", "Vibe B A2016b31AR", "Vibe B A2016b31AS", "Vibe B A2016b31AT", "Vibe B A2016b31AU", "Vibe B A2016b31AV", "Vibe B A2016b31AW", "Vibe B A2016b31AX", "Vibe B A2016b31AY", "Vibe B A2016b31AZ", "Vibe B A2016b31BA", "Vibe B A2016b31BB", "Vibe B A2016b31BC", "Vibe B A2016b31BD", "Vibe B A2016b31BE", "Vibe B A2016b31BF", "Vibe B A2016b31BG", "Vibe B A2016b31BH", "Vibe B A2016b31BI", "Vibe B A2016b31BJ", "Vibe B A2016b31BK", "Vibe B A2016b31BL", "Vibe B A2016b31BM", "Vibe B A2016b31BN", "Vibe B A2016b31BO", "Vibe B A2016b31BP", "Vibe B A2016b31BQ", "Vibe B A2016b31BR", "Vibe B A2016b31BS"],
+    
+    "sony": ["Xperia 5 III", "Xperia 10 II", "Xperia 1 II", "Xperia 10 Plus", "Xperia 1", "Xperia XZ3", "Xperia 1 III", "Xperia 1 II", "Xperia 1", "Xperia 5 III", "Xperia 5 II", "Xperia 5", "Xperia 10 III", "Xperia 10 II", "Xperia 10", "Xperia Pro", "Xperia L4", "Xperia L3", "Xperia XZ3", "Xperia XZ2 Premium", "Xperia XZ2", "Xperia XZ1 Compact", "Xperia XZ1", "Xperia XZ Premium", "Xperia XZ", "Xperia XA2 Ultra", "Xperia XA2", "Xperia XA1 Ultra", "Xperia XA1 Plus", "Xperia XA1", "Xperia X Compact","C6603", "D6503", "F5121", "F8331", "G3116", "H3113", "J9210", "XQ-AS52", "XQ-AD52", "XQ-BT52", "XQ-BS52", "XQ-AT51", "XQ-AT52", "XQ-AD52", "XQ-AT52", "XQ-AT42", "XQ-AT41", "XQ-AD51", "XQ-BT51", "XQ-BS41", "XQ-BS52", "XQ-BT52", "XQ-AD51", "XQ-BT51", "XQ-BS41", "XQ-AT41", "XQ-BS52", "XQ-BT52", "XQ-AS42", "XQ-BS42", "XQ-AT42", "XQ-BS41", "XQ-AT51", "XQ-AD51", "XQ-AD42", "XQ-AS41", "XQ-BT41", "XQ-BT51", "XQ-BS51", "XQ-BS42", "XQ-AS52", "XQ-AS41", "XQ-BS42", "XQ-BT41", "XQ-AS42", "XQ-AT42", "XQ-AD42", "XQ-BS41", "XQ-AT41", "XQ-BS51", "XQ-BT51", "XQ-AT51", "XQ-AD51", "F8131", "F8132", "G3121", "G3112", "G3123", "G3125", "G8141", "G8142", "G8341", "G8342", "H8216", "H8266", "H8296", "H8416", "H9436", "H9461", "H9436", "H9461", "H9436", "H9493", "H8541", "H8526", "H8116", "H8166", "I4213", "I4293", "I4293", "I4312", "I4332", "I4332", "I4113", "I4193", "I4213", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4312", "I4332", "I4293", "I4293", "I4213", "I4312", "I4332", "I4293", "I4293", "I4213"],
+    
+    "htc": ["Wildfire E3", "Desire 21 Pro", "U20 5G", "Desire 20 Pro", "Desire 19+", "U12 Life","HTC U20", "HTC U12+", "HTC U11", "HTC U12+", "HTC U12 Life", "HTC U11+", "HTC U11 Life", "HTC U11", "HTC U Ultra", "HTC 10", "HTC One M9", "HTC One M8", "HTC One (M7)", "HTC Desire 820", "HTC Desire 816", "HTC Desire 610", "HTC Desire 510", "HTC Butterfly S", "HTC One Max", "HTC One Mini", "HTC Desire 600", "HTC First", "HTC One X+","HTC One M8", "HTC One M9", "HTC 10", "HTC U11", "HTC U12+", "HTC U Ultra", "HTC U Play", "HTC Desire 626", "HTC Desire 816", "HTC Desire 610", "HTC Desire 510", "HTC Desire 820", "HTC Desire 626G+", "HTC One X", "HTC One X+", "HTC One S", "HTC One V", "HTC One Mini", "HTC One Mini 2", "HTC One Max", "HTC One E8", "HTC One E9", "HTC One A9", "HTC One E9+", "HTC One M8s", "HTC Desire Eye", "HTC Desire 820s", "HTC Desire 816G", "HTC Desire 626s", "HTC Desire 530", "HTC Desire 828", "HTC 10 Lifestyle", "HTC U11 Life", "HTC U11 Eyes", "HTC U11+"],
+    
+    "apple": ["iPhone 13 Pro", "iPhone 13", "iPhone 13 mini", "iPhone 12 Pro", "iPhone 12", "iPhone SE (3rd Gen)", "iPhone 13 Pro Max", "iPhone 13 Pro", "iPhone 13", "iPhone 13 mini", "iPhone 12 Pro Max", "iPhone 12 Pro", "iPhone 12", "iPhone 12 mini", "iPhone SE (2nd generation)", "iPhone 11 Pro Max", "iPhone 11 Pro", "iPhone 11", "iPhone XR", "iPhone XS Max", "iPhone XS", "iPhone X", "iPhone 8 Plus", "iPhone 8", "iPhone 7 Plus", "iPhone 7", "iPhone SE (1st generation)", "iPhone 6s Plus", "iPhone 6s", "iPhone 6 Plus", "iPhone 6", "iPhone 5s", "iPhone 5c", "iPhone 5", "iPhone 4s", "iPhone 4", "iPhone 3GS", "iPhone 3G", "iPhone","A1549", "A1522", "A1586", "A1633", "A1688", "A1699", "A1700", "A1660", "A1778", "A1661", "A1784", "A1863", "A1901", "A1865", "A1902", "A1920", "A1921", "A2101", "A2102", "A2104", "A1984", "A2103", "A1920", "A1921", "A2160", "A2161", "A2215", "A2217", "A2218", "A2220", "A2221", "A2223", "A2111", "A2229", "A2112", "A2131", "A2106", "A2107", "A2108", "A2162", "A2047", "A2048", "A2049", "A2105", "A2014", "A2015", "A2016", "A1867", "A1868", "A1897", "A1898", "A1899", "A1900", "A1903", "A1923", "A2212", "A2200", "A2202", "A2201", "A2301", "A2223", "A2215", "A1866", "A1993", "A1990", "A2013", "A2012", "A1983", "A1954", "A1953", "A2100", "A2005", "A2114", "A2116", "A2110", "A1920", "A1921", "A1985", "A2115", "A2117", "A2118", "A2003", "A2004", "A2160", "A2161", "A2202", "A2298", "A2299", "A2162", "A2270", "A2271", "A2229", "A2272", "A2273", "A2301", "A2304", "A2324", "A2325", "A2340", "A2341", "A2342", "A2375", "A2376", "A2377", "A2378", "A2406", "A2407", "A2408", "A2451", "A2452", "A2453", "A2600", "A2594", "A2503", "A2571", "A2570", "A2410", "A2402", "A2412", "A2399", "A2400", "A2466", "A2478", "A2479", "A2480", "A2522", "A2523", "A2524", "A2602", "A2604", "A2610", "A2612", "A2626", "A2628", "A2633", "A2634", "A2616", "A2617", "A2630", "A2631", "A2632", "A2624", "A2649", "A2646", "A2647", "A2653", "A2656", "A2654", "A2655", "A2657", "A2658", "A2398", "A2399", "A2403", "A2404", "A2405", "A2406", "A2399", "A2407", "A2408", "A2400", "A2466", "A2478", "A2479", "A2480", "A2522", "A2523", "A2524", "A2602", "A2604", "A2610", "A2612", "A2626", "A2628", "A2633", "A2634", "A2616", "A2617", "A2630", "A2631", "A2632", "A2624", "A2649", "A2646", "A2647", "A2653", "A2656", "A2654", "A2655", "A2657", "A2658", "A2398", "A2399", "A2403", "A2404", "A2405", "A2406", "A2399", "A2407", "A2408", "A2400", "A2466", "A2478", "A2479", "A2480", "A2522", "A2523", "A2524", "A2602", "A2604", "A2610", "A2612", "A2626", "A2628", "A2633", "A2634", "A2616", "A2617", "A2630", "A2631", "A2632", "A2624", "A2649", "A2646", "A2647", "A2653", "A2656", "A2654", "A2655", "A2657", "A2658", "A2398", "A2399", "A2403", "A2404", "A2405", "A2406", "A2399", "A2407", "A2408", "A2400", "A2466", "A2478", "A2479", "A2480", "A2522", "A2523", "A2524", "A2602", "A2604", "A2610", "A2612", "A2626", "A2628", "A2633", "A2634", "A2616", "A2617", "A2630", "A2631", "A2632", "A2624", "A2649", "A2646", "A2647", "A2653", "A2656", "A2654", "A2655", "A2657", "A2658", "A2398", "A2399", "A2403", "A2404", "A2405", "A2406", "A2399", "A2407", "A2408", "A2400", "A2466", "A2478", "A2479", "A2480", "A2522", "A2523", "A2524", "A2602"],
+    
+    "oppo": ["Reno 7 Pro", "Reno 7", "Reno 6 Pro+", "A95", "A96", "A93", "Oppo Find X3 Pro", "Oppo Find X2 Pro", "Oppo Find X2", "Oppo Reno 6 Pro+", "Oppo Reno 6 Pro", "Oppo Reno 6", "Oppo Reno 5 Pro+", "Oppo Reno 5 Pro", "Oppo Reno 5", "Oppo A94", "Oppo A74", "Oppo F19 Pro+", "Oppo F19 Pro", "Oppo F19", "Oppo A93", "Oppo A53", "Oppo A33", "Oppo A32", "Oppo A72", "Oppo A52", "Oppo A92", "Oppo A12", "Oppo Reno 3 Pro", "Oppo Reno 3", "Oppo Reno 2", "Oppo Reno", "Oppo K7x", "Oppo K7", "Oppo A9 (2020)", "Oppo A5 (2020)", "CPH1903", "CPH1803", "CPH1859", "CPH1969", "CPH1989", "CPH1919", "CPH1941", "CPH1983", "CPH1963", "CPH1879", "CPH1831", "CPH2035", "CPH2069", "CPH1987", "CPH2071", "CPH2083", "CPH2015", "CPH2019", "CPH2173", "CPH2089", "CPH2067", "CPH2017", "CPH2087", "CPH2205", "CPH2251", "CPH2197", "CPH2235", "CPH2347", "CPH2295", "CPH2249", "CPH2243", "CPH2349", "CPH2359", "CPH2383", "CPH2381", "CPH2239", "CPH2213", "CPH2129", "CPH2195", "CPH2227", "CPH2316", "CPH2353", "CPH2261", "CPH2225", "CPH2269", "CPH2073", "CPH2185", "CPH1877", "CPH2013", "CPH2061", "CPH1955", "CPH1871", "CPH1801", "CPH1873", "CPH1901", "CPH1809", "CPH1853", "CPH1923", "CPH1981", "CPH1833", "CPH1917", "CPH1967", "CPH1937", "CPH1893", "CPH1931", "CPH1921", "CPH1823", "CPH2023", "CPH2021", "CPH2103", "CPH2220", "CPH2127", "CPH2059", "CPH2139", "CPH2253", "CPH2267", "CPH2263", "CPH2247", "CPH2241", "CPH2297", "CPH2357", "CPH2255", "CPH2345", "CPH2329", "CPH2209", "CPH2191", "CPH2199", "CPH2289", "CPH2319", "CPH2343", "CPH2363", "CPH2161", "CPH2163", "CPH1979", "CPH1977", "CPH1973", "CPH1965", "CPH1959", "CPH1951", "CPH1913", "CPH1909", "CPH1905", "CPH1861", "CPH1863", "CPH1967", "CPH1933", "CPH1937", "CPH1921", "CPH1923", "CPH1987", "CPH1919", "CPH1897", "CPH1875", "CPH1874", "CPH1872", "CPH1865", "CPH1863", "CPH1862", "CPH1853", "CPH1852", "CPH1851", "CPH1843", "CPH1841", "CPH1835", "CPH1833", "CPH1832", "CPH1831", "CPH1825", "CPH1823", "CPH1821", "CPH1819", "CPH1813", "CPH1812", "CPH1811", "CPH1809", "CPH1808", "CPH1807", "CPH1805", "CPH1803", "CPH1801"],
+    
+    "realme": ["Realme GT Master Edition", "Realme 8i", "Realme 8s", "Narzo 30", "Narzo 20", "Realme 7i", "Realme 8", "Realme 7 Pro", "Realme X50 Pro","Realme GT Master Explorer Edition", "Realme GT Master Edition", "Realme GT", "Realme 8 Pro", "Realme 8", "Realme Narzo 30 Pro", "Realme Narzo 30A", "Realme X7 Pro", "Realme X7", "Realme 7 Pro", "Realme 7", "Realme C21", "Realme C20", "Realme C15", "Realme C12", "Realme C11", "Realme 6 Pro", "Realme 6", "Realme X2 Pro", "Realme XT", "Realme 5 Pro", "Realme 5", "Realme 3 Pro", "Realme 3", "Realme 2 Pro", "Realme 2", "Realme 1","RMX2111", "RMX3092", "RMX3161", "RMX3142", "RMX3185", "RMX3186", "RMX3281", "RMX3274", "RMX3361", "RMX3165", "RMX3243", "RMX3242", "RMX3294", "RMX3162", "RMX3241", "RMX3290", "RMX3289", "RMX3270", "RMX3267", "RMX3266", "RMX3263", "RMX3260", "RMX3240", "RMX3280", "RMX3276", "RMX3244", "RMX3121", "RMX3063", "RMX3061", "RMX3090", "RMX3091", "RMX3080", "RMX3211", "RMX3334", "RMX3221", "RMX3295", "RMX3292", "RMX3331", "RMX3383", "RMX3350", "RMX3332", "RMX3300", "RMX3310", "RMX3311", "RMX3385", "RMX3336", "RMX3337", "RMX3338", "RMX3235", "RMX3225", "RMX3124", "RMX3065", "RMX3143", "RMX3201", "RMX3070", "RMX3250", "RMX3246", "RMX3261", "RMX3071", "RMX3150", "RMX3164", "RMX3141", "RMX3063", "RMX3060", "RMX3357", "RMX3223", "RMX3330", "RMX3284", "RMX3362", "RMX3236", "RMX3193", "RMX3191", "RMX3358", "RMX3384", "RMX3262", "RMX3248", "RMX3339", "RMX3283", "RMX3195", "RMX3093", "RMX3098", "RMX3245", "RMX3095", "RMX3064", "RMX3341", "RMX3340", "RMX3365", "RMX3363", "RMX3364", "RMX3366", "RMX3367", "RMX3368", "RMX3369", "RMX3370", "RMX3371", "RMX3372", "RMX3373", "RMX3374", "RMX3375", "RMX3376", "RMX3377", "RMX3378", "RMX3379", "RMX3380", "RMX3381", "RMX3382", "RMX3312", "RMX3249", "RMX3094", "RMX3116", "RMX3187", "RMX3096", "RMX3097", "RMX3171", "RMX3152", "RMX3115", "RMX3081", "RMX3272", "RMX3273", "RMX3264", "RMX3265", "RMX3269", "RMX3268", "RMX3082", "RMX3083", "RMX3084", "RMX3085", "RMX3086", "RMX3087", "RMX3088", "RMX3089", "RMX3099", "RMX309A", "RMX309B", "RMX309C", "RMX309D", "RMX309E", "RMX309F", "RMX309G", "RMX309H", "RMX309I", "RMX309J", "RMX309K", "RMX309L", "RMX309M", "RMX309N", "RMX309O", "RMX309P", "RMX309Q", "RMX309R", "RMX309S", "RMX309T", "RMX309U", "RMX309V", "RMX309W", "RMX309X", "RMX309Y", "RMX309Z", "RMX31ZM", "RMX31ZN", "RMX31ZS", "RMX31ZT", "RMX31ZW", "RMX31ZV", "RMX31ZR", "RMX31ZQ", "RMX31ZP", "RMX31ZO", "RMX31ZN", "RMX31ZM", "RMX31ZL", "RMX31ZK", "RMX31ZJ", "RMX31ZI", "RMX31ZH", "RMX31ZG", "RMX31ZF", "RMX31ZE", "RMX31ZD", "RMX31ZC"],
+    
+    "motorola": ["Moto G100", "Moto G60", "Moto G40 Fusion", "Moto G30", "Moto G9 Power", "Moto G8", "Moto G Power 2022", "Moto G7", "Moto G Stylus 2022", "Motorola Edge 20 Pro", "Motorola Edge 20", "Motorola Edge 20 Lite", "Motorola Moto G Stylus (2021)", "Motorola Moto G Power (2021)", "Motorola Moto G Play (2021)", "Motorola Moto G9 Plus", "Motorola Moto G9", "Motorola Moto G8 Plus", "Motorola Moto G8 Power", "Motorola Moto G8", "Motorola Moto G7 Plus", "Motorola Moto G7 Power", "Motorola Moto G7 Play", "Motorola Moto G7", "Motorola Moto G6 Plus", "Motorola Moto G6", "Motorola Moto G5S Plus", "Motorola Moto G5 Plus", "Motorola Moto G5", "Motorola Moto G4 Plus", "Motorola Moto G4", "Motorola Moto X4", "Motorola Moto X (2nd Gen)", "Motorola Moto X", "Motorola Moto Z3 Play", "Motorola Moto Z2 Play", "Motorola Moto Z", "Motorola Moto E7 Plus", "Motorola Moto E6 Plus", "Motorola Moto E5 Plus", "Motorola Moto E4 Plus", "Motorola Moto E (2nd Gen)", "Motorola Moto E", "XT2127-2", "XT2127-4", "XT2127-5", "XT2127-6", "XT2127-7", "XT2127-8", "XT2127-10", "XT2127-11", "XT2127-12", "XT2127-13", "XT2127-14", "XT2127-15", "XT2127-16", "XT2127-17", "XT2127-18", "XT2127-19", "XT2127-20", "XT2127-21", "XT2127-22", "XT2127-23", "XT2127-24", "XT2127-25", "XT2127-26", "XT2127-27", "XT2127-28", "XT2127-29", "XT2127-30", "XT2127-31", "XT2127-32", "XT2127-33", "XT2127-34", "XT2127-35", "XT2127-36", "XT2127-37", "XT2127-38", "XT2127-39", "XT2127-40", "XT2127-41", "XT2127-42", "XT2127-43", "XT2127-44", "XT2127-45", "XT2127-46", "XT2127-47", "XT2127-48", "XT2127-49", "XT2127-50", "XT2127-51", "XT2127-52", "XT2127-53", "XT2127-54", "XT2127-55", "XT2127-56", "XT2127-57", "XT2127-58", "XT2127-59", "XT2127-60", "XT2127-61", "XT2127-62", "XT2127-63", "XT2127-64", "XT2127-65", "XT2127-66", "XT2127-67", "XT2127-68", "XT2127-69", "XT2127-70", "XT2127-71", "XT2127-72", "XT2127-73", "XT2127-74", "XT2127-75", "XT2127-76", "XT2127-77", "XT2127-78", "XT2127-79", "XT2127-80", "XT2127-81", "XT2127-82", "XT2127-83", "XT2127-84", "XT2127-85", "XT2127-86", "XT2127-87", "XT2127-88", "XT2127-89", "XT2127-90", "XT2127-91", "XT2127-92", "XT2127-93", "XT2127-94", "XT2127-95", "XT2127-96", "XT2127-97", "XT2127-98", "XT2127-99", "XT2127-100", "XT2127-101", "XT2127-102", "XT2127-103", "XT2127-104", "XT2127-105", "XT2127-106", "XT2127-107", "XT2127-108", "XT2127-109", "XT2127-110", "XT2127-111", "XT2127-112", "XT2127-113", "XT2127-114", "XT2127-115", "XT2127-116", "XT2127-117", "XT2127-118", "XT2127-119", "XT2127-120", "XT2127-121", "XT2127-122", "XT2127-123", "XT2127-124", "XT2127-125", "XT2127-126", "XT2127-127", "XT2127-128", "XT2127-129", "XT2127-130", "XT2127-131", "XT2127-132", "XT2127-133", "XT2127-134", "XT2127-135", "XT2127-136", "XT2127-137", "XT2127-138", "XT2127-139", "XT2127-140", "XT2127-141", "XT2127-142", "XT2127-143", "XT2127-144", "XT2127-145", "XT2127-146", "XT2127-147", "XT2127-148", "XT2127-149", "XT2127-150", "XT2127-151", "XT2127-152", "XT2127-153"],
+    
+    "nokia": ["Nokia X20", "Nokia X10", "Nokia G20", "Nokia G10", "Nokia 8.3 5G", "Nokia 5.4", "Nokia 3.4", "Nokia 2.4", "Nokia 8.1", "Nokia 7.2", "Nokia 6.2", "Nokia 4.2", "Nokia 3.2", "Nokia 2.2", "Nokia 9 PureView", "Nokia 8 Sirocco", "Nokia 8", "Nokia 7 Plus", "Nokia 7.1", "Nokia 6.1 Plus", "Nokia 6.1", "Nokia 5.1 Plus", "Nokia 5.1", "Nokia 4.1", "Nokia 3.1 Plus", "Nokia 3.1", "Nokia 2.1", "Nokia 1", "TA-1337", "TA-1380", "TA-1395", "TA-1208", "TA-1208", "TA-1334", "TA-1336", "TA-1230", "TA-1239", "TA-1283", "TA-1335", "TA-1234", "TA-1347", "TA-1353", "TA-1340", "TA-1233", "TA-1338", "TA-1386", "TA-1307", "TA-1296", "TA-1281", "TA-1333", "TA-1244", "TA-1235", "TA-1357", "TA-1236", "TA-1339", "TA-1316", "TA-1329", "TA-1343", "TA-1354", "TA-1300", "TA-1303", "TA-1289", "TA-1315", "TA-1287", "TA-1342", "TA-1351", "TA-1331", "TA-1325", "TA-1295", "TA-1240", "TA-1286", "TA-1328", "TA-1284", "TA-1293", "TA-1341", "TA-1292", "TA-1327", "TA-1298", "TA-1323", "TA-1238", "TA-1291", "TA-1345", "TA-1309", "TA-1344", "TA-1324", "TA-1346", "TA-1326", "TA-1304", "TA-1320", "TA-1348", "TA-1318", "TA-1330", "TA-1280", "TA-1246", "TA-1248", "TA-1317", "TA-1299", "TA-1310", "TA-1350", "TA-1332", "TA-1242", "TA-1206", "TA-1294", "TA-1313", "TA-1249", "TA-1241", "TA-1216", "TA-1297", "TA-1285", "TA-1319", "TA-1243", "TA-1356"],
+    
+    "xiaomi": ["Mi 11", "Mi 10 Pro", "Mi 9T","M2101K7AG","M2003J15SC","M2004J19C","M2006C3LG","M2007J20CG","M2010J19CG","M2011K2C","M2012K11AG","M2101K7BG","M2101K9G","M2102J20SG","M2102K1G","M2012K11C","Redmi 6A","M2003J15SC","MI MAX 2","AT&amp;amp-T","Redmi Note 4","Redmi Note 5", "Redmi 4X","Redmi Note 8","Redmi Note 8 Pro","Xiaomi Mi 11 Ultra", "Xiaomi Mi 11 Pro", "Xiaomi Mi 11", "Xiaomi Mi 10 Ultra", "Xiaomi Mi 10 Pro", "Xiaomi Mi 10", "Xiaomi Mi 10T Pro", "Xiaomi Mi 10T", "Xiaomi Mi 9T Pro", "Xiaomi Mi 9T", "Xiaomi Mi 9 Pro 5G", "Xiaomi Mi 9", "Xiaomi Mi 8 Pro", "Xiaomi Mi 8", "Xiaomi Mi 8 Lite", "Xiaomi Mi 8 SE", "Xiaomi Mi Mix 3", "Xiaomi Mi Mix 2S", "Xiaomi Mi Mix 2", "Xiaomi Mi Mix", "Xiaomi Redmi Note 11 Pro+", "Xiaomi Redmi Note 11 Pro", "Xiaomi Redmi Note 11", "Xiaomi Redmi Note 10 Pro", "Xiaomi Redmi Note 10", "Xiaomi Redmi Note 9 Pro", "Xiaomi Redmi Note 9", "Xiaomi Redmi Note 8 Pro", "Xiaomi Redmi Note 8", "Xiaomi Redmi Note 7 Pro", "Xiaomi Redmi Note 7", "Xiaomi Redmi K40 Pro", "Xiaomi Redmi K40", "Xiaomi Redmi K30 Pro", "Xiaomi Redmi K30", "Xiaomi Redmi K20 Pro", "Xiaomi Redmi K20", "Xiaomi Poco X3 Pro", "Xiaomi Poco X3", "Xiaomi Poco X2", "Xiaomi Poco F3", "Xiaomi Poco F2 Pro", "Xiaomi Poco F1"],
+    
+    "samsung": ["Galaxy S21", "Galaxy A52", "Galaxy S20","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935F","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820","SPH-L720","SM-S906E", "Samsung Galaxy S21 Ultra", "Samsung Galaxy S21+", "Samsung Galaxy S21", "Samsung Galaxy Note 20 Ultra", "Samsung Galaxy Note 20", "Samsung Galaxy S20 Ultra", "Samsung Galaxy S20+", "Samsung Galaxy S20", "Samsung Galaxy Note 10+", "Samsung Galaxy Note 10", "Samsung Galaxy S10+", "Samsung Galaxy S10", "Samsung Galaxy Note 9", "Samsung Galaxy S9+", "Samsung Galaxy S9", "Samsung Galaxy Note 8", "Samsung Galaxy S8+", "Samsung Galaxy S8", "Samsung Galaxy Note 7", "Samsung Galaxy S7 Edge", "Samsung Galaxy S7", "Samsung Galaxy Note 5", "Samsung Galaxy S6 Edge+", "Samsung Galaxy S6 Edge", "Samsung Galaxy S6", "Samsung Galaxy Note 4", "Samsung Galaxy S5", "Samsung Galaxy S4", "Samsung Galaxy S3", "Samsung Galaxy Note 3", "SM-G991", "SM-G981", "SM-G973", "SM-G960", "SM-G950", "SM-G930", "SM-G920", "SM-G900", "GT-I9500", "GT-I9300", "GT-I9100", "GT-I9000", "SM-N981", "SM-N970", "SM-N960", "SM-N950", "SM-N920", "SM-N910", "SM-N900", "GT-N7100", "GT-N7000", "SM-G991", "SM-G981", "SM-G973", "SM-G960", "SM-G950", "SM-G930", "SM-G920", "SM-G900", "GT-I9500", "GT-I9300", "GT-I9100", "GT-I9000", "SM-N981", "SM-N970", "SM-N960", "SM-N950", "SM-N920", "SM-N910", "SM-N900", "GT-N7100", "GT-N7000", "SM-A526B", "SM-A516B", "SM-A516N", "SM-A526U", "SM-A716U", "SM-A716V", "SM-A5260", "SM-A526W", "SM-A126U", "SM-A126V", "SM-A016G", "SM-A016B", "SM-A016M", "SM-A025M", "SM-A025F", "SM-A217F", "SM-A217M", "SM-A207F", "SM-A207M", "SM-A102U", "SM-A102U1", "SM-A102W", "SM-A102N", "SM-A1020", "SM-A105F", "SM-A105G", "SM-A105M", "SM-A202F", "SM-A202G", "SM-A202M", "SM-A125U", "SM-A125V", "SM-A022G", "SM-A022M", "SM-A027G", "SM-A027M", "SM-A2170", "SM-A115M", "SM-A107M", "SM-A107F", "SM-A107M", "SM-A0220", "SM-A115F", "SM-A102F", "SM-A1050"],
+    
+    "vivo": ["Vivo_X60_Pro", "Vivo_X50_Pro", "Vivo_X30_Pro", "Vivo_X27", "Vivo_X23", "Vivo_X21", "Vivo_V21", "Vivo_V17", "Vivo_V15", "Vivo_V11", "Vivo_V9", "Vivo_Y95", "Vivo_Y91", "Vivo_Y81", "Vivo_Y71", "Vivo_S1", "V2056", "V2112A", "V2112", "V2122A", "V2120A", "V2120", "V2116A", "V2114A", "V2112A", "V2010A", "V2019A", "V2010", "V2003A", "V2002A", "V2002", "V1932A", "V1932T", "V1932", "V1929A", "V1928A", "V1928T", "V1928", "V1927A", "V1926A", "V1925A", "V1925", "V1924A", "V1922A", "V1921A", "V1921", "V1920A", "V1919A", "V1916A", "V1916", "V1912A", "V1911A", "V1910A", "V1910", "V1909A", "V1907A", "V1905", "V1903A", "V1901A", "V1901T", "V1901", "V1836", "V1824A", "V1824T", "V1824", "V1818A", "V1818T", "V1813A", "V1813T", "V1813", "V1812A", "V1811A", "V1811T", "V1811", "V1808A", "V1808T", "V1808", "V1801A", "V1801T", "V1801", "V1730T", "V1730F", "V1730A", "V1730", "V1724A", "V1723A", "V1723", "V1721A", "V1720A", "V1720T", "V1720", "V1716A", "V1715A", "V1715", "V1713A", "V1713", "V1712A", "V1712", "V1711T", "V1711A", "V1711", "V1709A", "V1709T", "V1709", "V1708A", "V1708T", "V1707A", "V1707T", "V1706T", "V1706", "V1703A", "V1701A", "V1701", "V1624A", "V1623A", "V1622A", "V1622", "V1621A", "V1619", "V1618A", "V1617A", "V1616", "V1615T", "V1614T", "V1613", "V1611T", "V1611", "V1608A", "V1609", "V1605", "V1604", "V1603", "V1601", "V1570", "V1562", "V1561", "V1550", "V1548", "V1546", "V1543", "V1542", "V1540", "V1530", "V1520", "V1510", "V1500", "V1420", "V1400", "V1310", "V1320"],
+    
+    "zte": ["ZTE_Axon_10_Pro", "ZTE_Axon_9", "ZTE_Axon_7", "ZTE_Axon_7_Mini", "ZTE_Blade_20", "ZTE_Blade_10", "ZTE_Blade_V10", "ZTE_Blade_V9", "ZTE_Blade_X", "ZTE_Blade_A7", "ZTE_Nubia_Red_Magic", "ZTE_Nubia_Z20", "ZTE_Nubia_X", "ZTE_Nubia_Z18", "ZTE_Nubia_Z17","Axon_10_Pro", "Axon_9", "Axon_7", "Axon_7_Mini", "Blade_20", "Blade_10", "Blade_V10", "Blade_V9", "Blade_X", "Blade_A7", "Nubia_Red_Magic", "Nubia_Z20", "Nubia_X", "Nubia_Z18", "Nubia_Z17"],
+    
+    "lg": ["LG_G8", "LG_V50", "LG_V40", "LG_G7", "LG_V30", "LG_G6", "LG_V20", "LG_G5", "LG_V10", "LG_G4", "LG_G3", "LG_G2", "LG_G_Flex"],
+    
+    "huawei": ["Huawei_P40", "Huawei_P30", "Huawei_P20", "Huawei_Mate_30", "Huawei_Mate_20", "Huawei_Mate_10", "Huawei_Nova_5", "Huawei_Nova_4", "Huawei_Nova_3", "Huawei_P10", "Huawei_P9", "Huawei_Honor_9", "Huawei_Honor_8", "Huawei_Y9", "Huawei_Y8"],
+    
+    "oneplus": ["OnePlus_9_Pro", "OnePlus_9", "OnePlus_8T", "OnePlus_8_Pro", "OnePlus_8", "OnePlus_7T_Pro", "OnePlus_7T", "OnePlus_7_Pro", "OnePlus_7", "OnePlus_6T", "OnePlus_6", "OnePlus_5T", "OnePlus_5", "OnePlus_3T", "OnePlus_3"]}
+
+
+
+
+    fbcr = random.choice(fbcr_values)
+    
+    fbmf = random.choice(list(fbmf_fbdv_dict.keys()))
+    fbdv = random.choice(fbmf_fbdv_dict[fbmf])
+    
+    color = random.choice(['\033[91m','\033[92m','\033[93m','\033[94m','\033[95m','\033[96m','\033[97m'])
+
+    user_agent = f"[FBAN/FB4A;FBAV/"+str(random.randint(199,399))+".0.0."+str(random.randint(1,9))+"."+str(random.randint(99,199))+";FBBV/"+str(random.randint(111111111,999999999))+";FBDM/{density="+str(random.randint(2,3))+"."+str(random.randint(0,5))+",width=1080,height="+str(random.randint(1400,1499))+"};FBLC/en_US;FBRV/"+str(random.randint(199,399))+".0.0."+str(random.randint(1,9))+"."+str(random.randint(99,199))+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbmf+";FBPN/com.facebook.katana;FBDV/"+fbdv+";FBSV/"+str(random.randint(9,12))+";FBOP/1;FBCA/arm64-v8a:]"
+    return user_agent
+
+
+    
+
+
+
+import random
+import string
+
+def generate_user_agent():
+    fbav = f"{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}"
+    fbbv = str(random.randint(111111111, 999999999))
+    fbrv = '0'
+    random_seed = random.Random()
+    adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+    # Randomly vary the Android OS version, device, and app version for realism
+    device = random.choice(["HUAWEI MAR-LX1M", "Samsung SM-G960F", "OnePlus GM1913"])
+    fbav_version = str(random.randint(49, 150))  # Updated range for FBAV versions
+    fbbv_version = str(random.randint(11111111, 77777777))
+    carrier = random.choice(["Ooredoo TN", "Orange", "Vodafone", "T-Mobile"])
+
+    ua_bgraph = f'[FBAN/FB4A;FBAV/{fbav_version}.0.0.{random.randrange(20, 49)}.{random.randint(11, 99)};FBBV/{fbbv_version};' \
+                f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1080,height=2107}};FBLC/fr_FR;' \
+                f'FBRV/{fbrv};FBCR/{carrier};FBMF/{device.split(" ")[0]};FBBD/{device.split(" ")[0]};' \
+                f'FBPN/com.facebook.katana;FBDV/{device};FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+    
+    return ua_bgraph
+
+ua_bgraph = generate_user_agent()
+
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+# Random FB version generation
+fbav = f'{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+# User agent string
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def bgraph(uid, pw, path_file, extract_type, success_count, existing_uids):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+
+    data = {
+        'method': 'auth.login',
+        'fb_api_req_friendly_name': 'authenticate',
+        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        
+        if uid in existing_uids:
+            print(f"     {yellow}[INFO] {red}ACCOUNT --> {white}{uid} {red}already exists.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            return
+
+        response = requests.post(url, data=data).json()
+        
+        print(response)
+        if 'access_token' in response:
+            token = response['access_token']
+
+            with open(path_file, 'a') as f:
+                f.write(f"{uid}|{token}\n")
+
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[32m[SUCCESS]\033[0m: Extracted Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            success_count.append(uid)
+        else:
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[31m[FAILED]\033[0m: TO EXTRACT Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except Exception as e:
+        print(f"     \033[1;31m[ERROR]\033[0m Error extracting account: {uid}. Reason: {str(e)}\033[0m\n")
+
+
+def proz(accounts_file, token_output_path, extract_type):
+    """Process the accounts and extract tokens concurrently."""
+    success_count = []
+
+    # Load existing uids from the output file to avoid duplicates
+    existing_uids = set()
+    if os.path.exists(token_output_path):
+        with open(token_output_path, 'r') as f:
+            existing_uids = {line.split('|')[0] for line in f.readlines()}
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph, uid, pw, token_output_path, extract_type, success_count, existing_uids)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+        return
+
+
+def axl1():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    token_output_path = account_file
+
+    proz(file_path, token_output_path, extract_type)
+
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+fbav = f'''{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'''
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def load_existing_tokens(path_file):
+    """Load existing accounts or pages from the output file."""
+    if os.path.exists(path_file):
+        with open(path_file, 'r') as f:
+            return {line.split('|')[0] for line in f.readlines()}  # Set of existing uids or page ids
+    return set()
+
+def bgraph_page(uid, pw, path_file, extract_type, success_count, existing_tokens):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+    
+    if uid in existing_tokens:
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     {white}ACCOUNT ─────> {red}{uid} {green}ALREADY EXISTS")
+        return
+
+    data = {
+        'method': 'auth.login',
+        'fb_api_req_friendly_name': 'authenticate',
+        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        response = requests.post(url, data=data).json()
+        
+        if 'access_token' in response:
+            token = response['access_token']
+
+            # Extract Facebook Pages associated with the account token
+            pages = extract_fb_pages(token)
+            if pages:
+                for page in pages:
+                    page_id = page['id']
+                    if page_id not in existing_tokens:
+                        with open(path_file, 'a') as f:
+                            f.write(f"{page_id}|{page['accessToken']}\n")
+                        print(f"{white}{uid}  ─────> {green}Page ID: {red}{page_id} {yellow}EXTRACTED SUCCESSFULLY")
+                        existing_tokens.add(page_id)
+                    else:
+                        print(f"{white}ID:  {page_id} ─────> {green}ALREADY EXISTS ! ")
+
+            else:
+                print(f"{white}{uid} ─────> {red}DOESN'T HAVE PAGES !")
+            
+            success_count.append(uid)
+        else:
+            print(f"{white}{uid}  ─────> {red}FAILED TO EXTRACT ! ")
+
+    except Exception as e:
+        print(f"[ERROR] Error extracting account: {uid}. Reason: {str(e)}")
+
+def extract_fb_pages(token):
+    url = 'https://graph.facebook.com/v18.0/me/accounts'
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+    
+    pages_data = []
+    
+    while url:
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code != 200:
+            print(f'Error: {response.text}')
+            return None
+        
+        data = response.json()
+        for page in data.get('data', []):
+            pages_data.append({
+                'id': page.get('id'),
+                'accessToken': page.get('access_token')
+            })
+        
+        url = data.get('paging', {}).get('next')  # Update the URL for the next request
+
+    return pages_data
+
+def prozc(accounts_file, token_output_path, extract_type):
+    success_count = []
+    existing_tokens = load_existing_tokens(token_output_path)
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph_page, uid, pw, token_output_path, extract_type, success_count, existing_tokens)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+
+def axl2():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"  
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    prozc(file_path, account_file, extract_type)
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    
+def remove_duplicates():
+    clear_screen()
+    jovan()
+    file_paths = {
+        "1": "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        "2": "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        "3": "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        "4": "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    
+    print(f"     {red}Choose which file to remove duplicates from:")
+    print(f"     {yellow}[1]  {blue}FRA ACCOUNT")
+    print(f"     {yellow}[2]  {blue}FRA PAGES")
+    print(f"     {yellow}[3]  {blue}RPW ACCOUNT")
+    print(f"     {yellow}[4]  {blue}RPW PAGES")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {white}Enter your choice: ").strip()
+    
+    if choice not in file_paths:
+        print("Invalid choice. Please try again.")
+        return
+    
+    file_path = file_paths[choice]
+    
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+        
+        seen_uids = set()  # To store unique uids
+        unique_lines = []
+
+        for line in lines:
+            # Split the line into 'uid' and 'password'
+            if '|' in line:
+                uid, password = line.split('|', 1)  # Split only at the first '|'
+                if uid not in seen_uids:
+                    unique_lines.append(line)  # Keep the line if 'uid' is unique
+                    seen_uids.add(uid)  # Add the 'uid' to the set
+        
+        # Write the unique lines back to the file
+        with open(file_path, 'w') as file:
+            file.writelines(unique_lines)
+        
+        print(f"     {green}Successfully removed duplicates from: {file_path}")
+    
+    except Exception as e:
+        print(f"Error processing {file_path}: {str(e)}")
+
+
+# Call the function to start the process
+
+
+# REACT  
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def perform_reaction_vid(token, uid_url, reaction_type, reactions_count):
+    """
+    Send a reaction using the provided access token.
+    
+    Parameters:
+    - token: User's token (in the format email|access_token)
+    - uid_url: The post ID or URL for the reaction
+    - reaction_type: Type of reaction (LIKE, LOVE, etc.)
+    - reactions_count: The number of reactions performed so far
+    
+    Returns:
+    - access_token: The access token used for the request
+    - status_code: HTTP status code returned by the request
+    - response_text: Response content from Facebook
+    """
+    access_token = token.split('|')[1]  # Extract the access token (assuming the format is email|access_token)
+    auto_react_url = f'https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'
+    
+    try:
+        # Send POST request to Facebook's API to add the reaction
+        response = requests.post(auto_react_url)
+        return access_token, response.status_code, response.text  # Return results for further processing
+    except requests.exceptions.RequestException as e:
+        # Handle any exceptions that occur during the request (e.g., network issues)
+        return access_token, None, str(e)
+
+def clear_text_files():
+    """
+    Clear the contents of specified text files based on user choice.
+    """
+    clear_screen()  # Assuming clear_screen is defined elsewhere
+    jovan()         # Assuming jovan is defined elsewhere
+
+    # Dictionary of file paths for resetting
+    file_paths = {
+        "1": "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        "2": "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        "3": "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        "4": "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+
+    print(f"     {blue}Choose File To Reset:")
+    print(f"     {yellow}[01]  {blue}FRA ACCOUNT")
+    print(f"     {yellow}[02]  {blue}FRA PAGES")
+    print(f"     {yellow}[03]  {blue}RPW ACCOUNT")
+    print(f"     {yellow}[04]  {blue}RPW PAGES")
+    print(f"     {yellow}[05]  {blue}All files")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    user_choice = input(f"    {red}Enter your choice: ").strip()
+
+    # Clear all files if option 5 is selected
+    if user_choice == '5':
+        for file_path in file_paths.values():
+            try:
+                with open(file_path, 'w') as file:
+                    file.truncate(0)  # Clear the file content
+                print(f"Successfully cleared: {file_path}")
+            except Exception as e:
+                print(f"Error clearing {file_path}: {str(e)}")
+        return
+
+    # Handle clearing a single file based on the user's choice
+    selected_file = file_paths.get(user_choice)
+    if selected_file:
+        try:
+            with open(selected_file, 'w') as file:
+                file.truncate(0)  # Clear the file content
+            print(f"Successfully cleared: {selected_file}")
+        except Exception as e:
+            print(f"Error clearing {selected_file}: {str(e)}")
+    else:
+        print("Invalid choice. Please enter a valid number.")
+
+def perform_reaction_fast_vid():
+    """
+    Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions.
+    """
+    # Define available file paths
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()  # Assuming clear_screen is defined elsewhere
+    jovan()         # Assuming jovan is defined elsewhere
+
+    # Display options to the user
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[01] {green}FRA ACCOUNT 
+     {blue}[02] {green}FRA PAGES
+     {blue}[03] {green}RPW ACCOUNT
+     {blue}[04] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  
+
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Load tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Filter out empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+    
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    # Prompt for starting line
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Slice the tokens based on starting line
+    tokens = tokens[start_line - 1:]
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/100078043222260/videos/539673715119122/?mibextid=rS40aB7S9Ucbxw6v")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    post_link = input(f"   {green}Enter the post link or ID: ")
+    uid_url = extract_facebook_video_id(post_link)  # Assuming Video_Extractid is defined elsewhere
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Get number of reactions
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+    except ValueError:
+        print(f"Please enter a valid number for reactions.")
+        return
+
+    # Check if requested reactions exceed available tokens
+    if num_reactions > len(tokens):
+        print(f"{red}ENTER AGAIN NOT exceeding {len(tokens)}")
+        return
+
+    reactions_count = 0
+    max_workers = 15  # Set maximum number of threads
+
+    while reactions_count < num_reactions and tokens:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # Submit reactions for the current available tokens
+            future_to_token = {executor.submit(perform_reaction_vid, token, uid_url, reaction_type): token for token in tokens}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        print(f"   {green}[SUCCESS] SUCCESSFULLY REACTED TO {white}───────> {red}{uid_url}")
+                        # Check if we've reached the success limit
+                        if reactions_count >= num_reactions:
+                            break  # Exit the loop if the desired number of successful reactions is reached
+                    else:
+                        print(f"   {green}[FAILED] FAILED TO SEND REACTION  {white}───────> {red}{uid_url}")
+                except Exception as e:
+                    print(f"Error processing token {token}: {str(e)}")
+
+        # Remove the tokens that were attempted in this round
+        tokens = tokens[len(future_to_token):]  # Use tokens for the next round if needed
+
+    print(f"Reactions complete! {reactions_count} reactions were successfully sent.")
+    print(f"Total reactions sent: {reactions_count} out of {num_reactions}")
+
+
+# Run the reaction function (this would be called in your program)
+
+
+
+
+
+import requests
+
+def fetch_account_info(file_options):
+    clear_screen()
+    jovan()
+    print(f"     {yellow}CHOOSE WHICH FILE YOU WANT TO CHECK:")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    for key, value in file_options.items():
+        print(f"     {red}[{key}] {yellow}{value.split('/')[-1]}")  # Display only the filename
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    file_choice = int(input(f"  {red}Choose: "))
+    accounts_file = file_options.get(file_choice)
+
+    if accounts_file is None:
+        print("Invalid choice. Exiting.")
+        return
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        for account in accounts:
+            uid, token = account.strip().split('|')
+
+            # Fetching account info using the token
+            account_info = get_account_info(token)
+            if account_info:
+                account_name = account_info.get('name', 'No name available')
+                print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                print(f"     {yellow}ACCOUNT NAME {red}: {green}{account_name}")
+
+                # Optionally, you can also fetch pages associated with the account
+                pages = extract_fb_pages(token)
+                if pages:
+                    print()
+                    print(f"          {yellow}PAGES ASSOCIATED WITH {white}: {red}{account_name}")
+                    for page in pages:
+                        print()
+                        print(f"       👉 {yellow}{page['name']} {white}= {green}PAGE ID: {red}{page['id']}")
+                        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                else:
+                    print(f"     {red}NO PAGES ASSOCIATED WITH THIS ACCOUNT ! .")
+            else:
+                print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                print(f"     {yellow}FAILED TO FETCH ACCOUNT INFORMATION ! {white}= {red}{uid}")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+    except Exception as e:
+        print(f"[ERROR] {str(e)}")
+
+def get_account_info(token):
+    url = 'https://graph.facebook.com/v18.0/me'
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+
     try:
         response = requests.get(url, headers=headers)
-        response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        print(f'''  {red}ACCOUNT : {red}{uid} {white}---> {red}Failed! Error: {e}''')
-        linex()
-        return None
-    try:
-        data = response.json()
-        pages_data = data.get('data', [])
-    except ValueError:
-        print(f'''  {red}ACCOUNT : {red}{uid} {white}---> {red}Failed! Invalid JSON Response.''')
-        linex()
-        return None
-    total_accounts = 0
-    new_accounts = 0
-    print(f'''  {white}ACCOUNT : {yellow}{uid}{white} ---> Total pages extracted: ''',end=' ')
-    try:
-        with open(check_path, 'r') as file:
-            existing_pages = file.readlines()
-        existing_page_ids = {line.strip().split('|')[0] for line in existing_pages}
-    except FileNotFoundError:
-        existing_page_ids = set()
-    for page in pages_data:
-        pages_access_token = page.get('access_token', '')
-        pages_name = page.get('name', 'Unknown')
-        pages_id = page.get('id', '')
-        if not pages_id:
-            continue
-        if pages_id in existing_page_ids:
-            print(f'''\n{red}  Page Already Exists in Tool {yellow}---> {red}{pages_id} | {pages_name}''')
-            continue
-        new_accounts += 1
-        total_accounts += 1
-        try:
-            with open(check_path, 'a') as file:
-                file.write(f'{pages_id}|{pages_name}\n')
-        except Exception as e:
+        if response.status_code == 200:
+            return response.json()  # Return account info as JSON
+        else:
             pass
-        try:
-            with open(path_file, 'a') as file:
-                file.write(f'{pages_access_token}\n')
-        except Exception as e:
-            pass
-    print(f'''{green}[{total_accounts}]''')
-    linex()
-    return pages_data
+            return None
+    except Exception as e:
+        print(f"[ERROR] Error fetching account info: {str(e)}")
+        return None
 
-def bgraph_bulk_pages():
-    clear()
-    logo()
-    print(f'''{green}  METHOD 5 {white}---> {yellow}EXTRACT BULK ACCOUNTS PAGES''')
-    print(f'''{red}  File Format : {green}uid|password''')
-    linex()
-    print(f'''{white}  CHOOSE WHERE TO SAVE:''')
-    print(f'''{yellow}  [1] {blue}ON YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}ON YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}ON YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}ON YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    paths = {
-        '1': ('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt'),
-        '2': ('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt'),
-        '3': ('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt'),
-        '4': ('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt', 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt')
+def extract_fb_pages(token):
+    url = 'https://graph.facebook.com/v18.0/me/accounts'
+    headers = {
+        'Authorization': f'Bearer {token}'
     }
-    if account_choose == '0':
-        start_tool()
-        return
-    if account_choose not in paths:
-        print(f"{red} Invalid choice!")
-        return
-    path_file, check_path = paths[account_choose]
+
+    pages_data = []
+    
     try:
-        open(path_file, 'a').close()
-        open(check_path, 'a').close()
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            for page in data.get('data', []):
+                pages_data.append({
+                    'id': page.get('id'),
+                    'name': page.get('name'),
+                    'accessToken': page.get('access_token')
+                })
+            return pages_data
+        else:
+            print(f"Failed to fetch pages: {response.text}")
+            return None
+    except Exception as e:
+        print(f"[ERROR] Error fetching pages: {str(e)}")
+        return None
+
+# File options mapping
+file_options = {
+    1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+    2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+    3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+    4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+}
+
+# Run the account info fetch
+
+
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def perform_reaction(token, uid_url, reaction_type):
+    """Send a reaction using the provided access token."""
+    access_token = token.split('|')[1]  # Assuming format is email|access_token
+    
+    auto_react = f'https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'
+    headers_ = {
+        'User-Agent': W_ueragnt()  # Use the randomly selected user agent
+    }
+    
+    try:
+        response = requests.post(auto_react, headers=headers_)
+        return access_token, response.status_code, response.text  # Return the results for further processing
+    except requests.exceptions.RequestException as e:
+        return access_token, None, str(e)  # Handle request exceptions
+
+def perform_reaction_fast():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+       
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the selected line
+    
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/100078043222260/posts/110105688267538/?mibextid=rS40aB7S9Ucbxw6v")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    z = input(f"   {green}Enter the post link or ID: ")
+    post_id = extract_ids(z)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    uid_url = post_id  
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    max_workers = 15  # Set a limit for the number of concurrent threads
+    reactions_count = 0  # Counter for successful reactions
+    total_successful_reactions = 0
+    results = []  # Store results for further processing
+
+    tokens_used = 0  # Track the total number of tokens used
+    
+    # Keep processing tokens until we reach the successful reaction limit
+    while total_successful_reactions < num_reactions and tokens_used < available_tokens:
+        remaining_tokens = tokens[tokens_used:]  # Get the remaining tokens
+        tokens_batch = remaining_tokens[:num_reactions - total_successful_reactions]  # Get only the needed tokens
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in tokens_batch}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        total_successful_reactions += 1
+                        
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED!")
+                        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                    else:
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {red}FAILED TO REACT!")
+                        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+        
+        tokens_used += len(tokens_batch)  # Update the total tokens used
+        
+        # Break if we run out of tokens
+        if tokens_used >= available_tokens:
+            print("No more tokens available.")
+            break
+
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL SUCCESSFUL REACTIONS: {total_successful_reactions}")
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def perform_reaction(token, uid_url, reaction_type):
+    """Send a reaction using the provided access token."""
+    access_token = token.split('|')[1]  # Assuming format is email|access_token
+    auto_react = f'https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'
+    headers_ = {
+        'User-Agent': W_ueragnt()  # Use the randomly selected user agent
+    }
+    
+    try:
+        response = requests.post(auto_react, headers=headers_)
+        return access_token, response.status_code, response.text  # Return the results for further processing
+    except requests.exceptions.RequestException as e:
+        return access_token, None, str(e)  # Handle request exceptions
+def live_react():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+       
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the selected line
+    
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/100078043222260/video/110105688267538/")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    z = input(f"   {green}Enter the post link or ID: ")
+    post_id = get_combined_data(z)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    uid_url = post_id  
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    max_workers = 10  # Set a limit for the number of concurrent threads
+    reactions_count = 0  # Counter for successful reactions
+    total_successful_reactions = 0
+    results = []  # Store results for further processing
+
+    tokens_used = 0  # Track the total number of tokens used
+    
+    # Keep processing tokens until we reach the successful reaction limit
+    while total_successful_reactions < num_reactions and tokens_used < available_tokens:
+        remaining_tokens = tokens[tokens_used:]  # Get the remaining tokens
+        tokens_batch = remaining_tokens[:num_reactions - total_successful_reactions]  # Get only the needed tokens
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in tokens_batch}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        total_successful_reactions += 1
+                        
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED!")
+                    else:
+                        pass
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+        
+        tokens_used += len(tokens_batch)  # Update the total tokens used
+        
+        # Break if we run out of tokens
+        if tokens_used >= available_tokens:
+            print("No more tokens available.")
+            break
+
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL SUCCESSFUL REACTIONS: {total_successful_reactions}")
+def vid():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+       
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the selected line
+    
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/100078043222260/video/110105688267538/?mibextid=rS40aB7S9Ucbxw6v")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    z = input(f"   {green}Enter the post link or ID: ")
+    post_id = get_combined_data(z)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    uid_url = post_id  
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    max_workers = 10  # Set a limit for the number of concurrent threads
+    reactions_count = 0  # Counter for successful reactions
+    total_successful_reactions = 0
+    results = []  # Store results for further processing
+
+    tokens_used = 0  # Track the total number of tokens used
+    
+    # Keep processing tokens until we reach the successful reaction limit
+    while total_successful_reactions < num_reactions and tokens_used < available_tokens:
+        remaining_tokens = tokens[tokens_used:]  # Get the remaining tokens
+        tokens_batch = remaining_tokens[:num_reactions - total_successful_reactions]  # Get only the needed tokens
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in tokens_batch}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        total_successful_reactions += 1
+                        
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED!")
+                    else:
+                        pass
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+        
+        tokens_used += len(tokens_batch)  # Update the total tokens used
+        
+        # Break if we run out of tokens
+        if tokens_used >= available_tokens:
+            print("No more tokens available.")
+            break
+
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL SUCCESSFUL REACTIONS: {total_successful_reactions}")
+
+import requests
+import json
+import time
+import uuid
+import base64
+import re
+
+def AutoReact():
+    def Reaction(actor_id: str, post_id: str, react: str, token: str):
+        rui = requests.Session()
+        feedback_id = str(base64.b64encode(('feedback:{}'.format(post_id)).encode('utf-8')).decode('utf-8'))
+        var = {
+            "input": {
+                "feedback_referrer": "native_newsfeed",
+                "tracking": [None],
+                "feedback_id": feedback_id,
+                "client_mutation_id": str(uuid.uuid4()),
+                "nectar_module": "newsfeed_ufi",
+                "feedback_source": "native_newsfeed",
+                "feedback_reaction_id": react,
+                "actor_id": actor_id,
+                "action_timestamp": str(time.time())[:10]
+            }
+        }
+        data = {
+            'access_token': token,
+            'method': 'post',
+            'pretty': False,
+            'format': 'json',
+            'server_timestamps': True,
+            'locale': 'id_ID',
+            'fb_api_req_friendly_name': 'ViewerReactionsMutation',
+            'fb_api_caller_class': 'graphservice',
+            'client_doc_id': '2857784093518205785115255697',
+            'variables': json.dumps(var),
+            'fb_api_analytics_tags': ["GraphServices"],
+            'client_trace_id': str(uuid.uuid4())
+        }
+
+        pos = rui.post('https://graph.facebook.com/graphql', data=data).json()
+        try:
+            if react == '0':
+                print(f"{green}「Success」» {red}Removed reaction from {actor_id} on {post_id}")
+                return True
+            elif react in str(pos):
+                print(f"{green}「Success」» {red} Reacted with » {actor_id} to {post_id}")
+                return True
+            else:
+                print(f"{red}「Failed」» Reacted with » {actor_id} to {post_id}")
+                return False
+        except Exception:
+            print('Reaction failed due to an error.')
+            return False
+
+    def linktradio(post_link: str) -> str:
+        # Extract post ID from various Facebook URLs
+        patterns = [
+            r'/posts/(\w+)',          # Regular post
+            r'/videos/(\w+)',         # Video post
+            r'/groups/(\d+)/permalink/(\d+)',  # Group permalink post
+            r'/reels/(\w+)',          # Reels
+            r'/live/(\w+)',           # Live videos
+            r'/photos/(\w+)',         # Photo posts
+            r'/permalink/(\w+)',      # Permalink posts
+            r'story_fbid=(\w+)',      # Story posts
+            r'fbid=(\d+)'             # Photo post (new pattern for photo links)
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, post_link)
+            if match:
+                # Return the group ID and post ID for group permalink posts
+                if pattern == r'/groups/(\d+)/permalink/(\d+)':
+                    return match.group(2)
+                return match.group(1)
+        
+        print("Invalid post link or format")
+        return None
+
+    def get_ids_tokens(file_path):
+        with open(file_path, 'r') as file:
+            data = [line.strip().split('|') for line in file]
+        return data
+
+    def choose_reaction():
+        
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}HAHA
+     {blue}[4] {green}WOW
+     {blue}[5] {green}CARE
+     {blue}[6] {green}SAD
+     {blue}[7] {green}ANGRY
+     {red}[8] {red}REMOVE REACTION
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+        
+        rec = input(f' {yellow}Choose a reaction: ')
+        reaction_ids = {
+            '1': '1635855486666999',  # Like
+            '2': '1678524932434102',  # Love
+            '3': '115940658764963',   # Haha
+            '4': '478547315650144',   # Wow
+            '5': '613557422527858',   # Care
+            '6': '908563459236466',   # Sad
+            '7': '444813342392137',   # Angry
+            '8': '0'                  # Remove Reaction
+        }
+        return reaction_ids.get(rec)
+
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    
+    
+    file_choice = int(input(f"    {yellow}Choose: "))
+    file_path = file_options.get(file_choice)
+
+    # Step 2: Count tokens in the selected file
+    tokens_data = get_ids_tokens(file_path)
+    total_tokens = len(tokens_data)
+    # Step 3: Ask for starting line
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    start_line = int(input("   \033[38;5;81mEnter the starting line (You currently have {}): ".format(total_tokens)))
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    post_link = input(f'   {yellow}Enter Link: ')
+    post_id = get_combined_data(post_link)
+
+    if not post_id:
+        return
+    
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    react_count = int(input(f"     {yellow}Enter Limit(up to {total_tokens - (start_line - 1)}): "))
+    
+    # Step 6: Choose reaction type
+    react = choose_reaction()
+    
+    if react == '0':  # Unreact
+        remove_count = min(react_count, total_tokens - (start_line - 1))
+        reactions_removed = 0
+        for actor_id, token in tokens_data[start_line - 1:start_line - 1 + remove_count]:
+            success = Reaction(actor_id=actor_id, post_id=post_id, react='0', token=token)
+            if success:
+                reactions_removed += 1
+        print(f"All {reactions_removed} reactions have been successfully removed! You're awesome!")
+    elif react:  # React
+        send_count = min(react_count, total_tokens - (start_line - 1))
+        reactions_sent = 0
+        for actor_id, token in tokens_data[start_line - 1:start_line - 1 + send_count]:
+            success = Reaction(actor_id=actor_id, post_id=post_id, react=react, token=token)
+            if success:
+                reactions_sent += 1
+        print(f"All {reactions_sent} reactions have been successfully sent! You're awesome!")
+    else:
+        print('Invalid reaction option.')
+
+# Call AutoReact to run the program
+
+
+# Call AutoReact to run the program
+
+
+
+# To run the AutoReact function:
+
+
+
+# Run the AutoReact script
+
+
+
+
+
+
+
+import re
+
+def extract_reel_id(link):
+    """
+    Extract the reel ID from the provided Facebook reel link.
+    Example: https://www.facebook.com/reel/1020864812286112?mibextid=rS40aB7S9Ucbxw6v
+    should return '1020864812286112'
+    """
+    # Define the regular expression pattern to match the reel ID
+    pattern = r'/reel/(\d+)'  # Looks for '/reel/' followed by digits
+    
+    # Search for the pattern in the link
+    match = re.search(pattern, link)
+    
+    if match:
+        # If the pattern matches, return the reel ID (the digits after '/reel/')
+        return match.group(1)
+    else:
+        # Return None if no match found
+        return None
+
+# Example usage:
+def react_comment(token, uid_url, reaction_type, reactions_count):
+    """
+    Send a reaction using the provided access token and return the results for further processing.
+    
+    Parameters:
+    - token (str): The token in the format 'email|access_token'.
+    - uid_url (str): The post ID or user ID where the reaction is sent.
+    - reaction_type (str): The type of reaction (e.g., 'LIKE', 'LOVE').
+    - reactions_count (int): Number of reactions to send.
+    
+    Returns:
+    - tuple: access_token, status_code, response_text or error message.
+    """
+    access_token = token.split('|')[1]
+    url = f'https://graph.facebook.com/v18.0/{uid_url}/reactions'
+    
+    params = {
+        'access_token': access_token,
+        'type': reaction_type
+    }
+    
+    headers_ = {
+        'User-Agent': W_ueragnt()  # Your custom user agent function
+    }
+
+    try:
+        response = requests.post(url, params=params, headers=headers_)
+        return access_token, response.status_code, response.text  # Return access_token and response
+    except requests.exceptions.RequestException as e:
+        return access_token, None, str(e)
+
+
+def comment_react():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]
+
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/100078043222260/posts/541319968479439/?mibextid=rS40aB7S9Ucbxw6v")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    post_id = input(f"   {green}POST ID: ")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    comment_id = input(f"   {green}COMMENT ID: ")
+
+    uid_url = f"{post_id}_{comment_id}"
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    if num_reactions > len(tokens):
+        print(f"{red}ENTER AGAIN NOT exceeding {len(tokens)}")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        return
+
+    reactions_count = 0
+    failed_reactions = 0
+    target_reactions = num_reactions  # Target number of successful reactions
+    remaining_tokens = tokens[:num_reactions]  # Limit the tokens to the number requested
+
+    max_workers = 20
+    results = []
+
+    while reactions_count < target_reactions and remaining_tokens:
+        # Perform reactions using multithreading
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_token = {executor.submit(react_comment, token, uid_url, reaction_type, reactions_count): token for token in remaining_tokens}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED TO COMMENT!")
+                        print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+                    else:
+                        failed_reactions += 1
+                        pass
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+
+        # Remove tokens that failed
+        remaining_tokens = [token for token in remaining_tokens if token not in future_to_token]
+
+        if failed_reactions > 0:
+            print(f"{red}Retrying failed reactions...{blue}")
+
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL: {reactions_count} successfully reacted")
+
+        
+
+
+
+#REACT TO REELS
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def perform_reaction(token, uid_url, reaction_type):
+    """Send a reaction using the provided access token."""
+    access_token = token.split('|')[1]  # Assuming format is email|access_token
+    
+    auto_react = f'https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'
+    headers_ = {
+        'User-Agent': W_ueragnt()  # Use the randomly selected user agent
+    }
+    
+    try:
+        response = requests.post(auto_react, headers=headers_)
+        return access_token, response.status_code, response.text  # Return the results for further processing
+    except requests.exceptions.RequestException as e:
+        return access_token, None, str(e)  # Handle request exceptions
+
+def perform_reaction_fast():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+       
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the selected line
+    
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/100078043222260/posts/110105688267538/?mibextid=rS40aB7S9Ucbxw6v")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    z = input(f"   {green}Enter the post link or ID: ")
+    post_id = get_combined_data(z)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    uid_url = post_id  
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    max_workers = 10  # Set a limit for the number of concurrent threads
+    reactions_count = 0  # Counter for successful reactions
+    total_successful_reactions = 0
+    results = []  # Store results for further processing
+
+    tokens_used = 0  # Track the total number of tokens used
+    
+    # Keep processing tokens until we reach the successful reaction limit
+    while total_successful_reactions < num_reactions and tokens_used < available_tokens:
+        remaining_tokens = tokens[tokens_used:]  # Get the remaining tokens
+        tokens_batch = remaining_tokens[:num_reactions - total_successful_reactions]  # Get only the needed tokens
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in tokens_batch}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        total_successful_reactions += 1
+                        
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED!")
+                        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                    else:
+                        pass
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+        
+        tokens_used += len(tokens_batch)  # Update the total tokens used
+        
+        # Break if we run out of tokens
+        if tokens_used >= available_tokens:
+            print("No more tokens available.")
+            break
+
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL SUCCESSFUL REACTIONS: {total_successful_reactions}")
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def perform_reaction(token, uid_url, reaction_type):
+    """Send a reaction using the provided access token."""
+    access_token = token.split('|')[1]  # Assuming format is email|access_token
+    auto_react = f'https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'
+    headers_ = {
+        'User-Agent': W_ueragnt()  # Use the randomly selected user agent
+    }
+    
+    try:
+        response = requests.post(auto_react, headers=headers_)
+        return access_token, response.status_code, response.text  # Return the results for further processing
+    except requests.exceptions.RequestException as e:
+        return access_token, None, str(e)  # Handle request exceptions
+
+def reels():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+       
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the selected line
+    
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/reel/26674343208847358?mibextid=rS40aB7S9Ucbxw6v")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    z = input(f"   {green}Enter the post link or ID: ")
+    post_id = get_combined_data(z)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    uid_url = post_id  
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    max_workers = 10  # Set a limit for the number of concurrent threads
+    reactions_count = 0  # Counter for successful reactions
+    total_successful_reactions = 0
+    results = []  # Store results for further processing
+
+    tokens_used = 0  # Track the total number of tokens used
+    
+    # Keep processing tokens until we reach the successful reaction limit
+    while total_successful_reactions < num_reactions and tokens_used < available_tokens:
+        remaining_tokens = tokens[tokens_used:]  # Get the remaining tokens
+        tokens_batch = remaining_tokens[:num_reactions - total_successful_reactions]  # Get only the needed tokens
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in tokens_batch}
+
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        total_successful_reactions += 1
+                        
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED!")
+                    else:
+                        pass
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+        
+        tokens_used += len(tokens_batch)  # Update the total tokens used
+        
+        # Break if we run out of tokens
+        if tokens_used >= available_tokens:
+            print("No more tokens available.")
+            break
+
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL SUCCESSFUL REACTIONS: {total_successful_reactions}")
+
+
+# Example call
+# perform_reaction_fast()
+
+
+from concurrent.futures import ThreadPoolExecutor
+import re
+import requests
+
+def extract_user_id_prof(url):
+    """Extract user ID from a Facebook profile URL."""
+    pattern = r'id=(\d+)|profile\.php\?id=(\d+)'
+    match = re.search(pattern, url)
+    if match:
+        return match.group(1) or match.group(2)  # Return the captured group
+    return None  # Return None if no match is found
+
+def follow_account(page_access_token, account_id):
+    """Follow an account using a specific page access token."""
+    headers_ = {
+        'User-Agent': W_ueragnt()  # Assuming W_ueragnt() function provides user agents
+    }
+    headers = {
+        'Authorization': f'Bearer {page_access_token}',
+        **headers_  # Merging both headers
+    }
+    try:
+        response = requests.post(
+            f'https://graph.facebook.com/v18.0/{account_id}/subscribers',
+            headers=headers
+        )
+        return response.status_code == 200
+    except requests.exceptions.RequestException as e:
+        print(f"Request failed for token {page_access_token}: {e}")
+        return False
+
+def auto_follow_fast():
+    """Automatically follow a target account using tokens and pages."""
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+
+    # Display file options for user to select
+    file_choice = int(input(f"    {green}Choose the type of followers : "))
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    file_path = file_options.get(file_choice)
+    if not file_path:
+        print("Invalid choice.")
+        return
+
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]
+    except FileNotFoundError:
+        print("File not found.")
+        return
+
+    if len(tokens) == 0:
+        print("No tokens found in the selected file.")
+        return
+    
+    start_line = int(input(f"    {yellow}Enter the starting line (1 to {len(tokens)}): "))
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    tokens = tokens[start_line - 1:]
+    
+    account_id = extract_user_id_prof(input(f"   {yellow}Enter the target account URL: "))
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    if not account_id:
+        print(f"Invalid account ID.")
+        return
+
+    try:
+        
+        follow_limit = int(input(f'    {red}LIMIT: '))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print("Invalid number for follow limit.")
+        return
+
+    follow_count = 0
+    failed_count = 0  # Track failed follows
+    current_index = 0  # Start from the beginning of the tokens list
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        while follow_count < follow_limit and current_index < len(tokens):
+            token = tokens[current_index]
+            page_access_token = token.split('|')[1]
+            uid = token.split('|')[0]
+
+            future = executor.submit(follow_account, page_access_token, account_id)
+            success = future.result()
+
+            if success:
+                follow_count += 1
+                print("   {blue}───────────────────────────────────────────────────────────────\033[0m")
+                print(f"     {green}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY FOLLOWED!")
+            else:
+                failed_count += 1
+                print("   {blue}───────────────────────────────────────────────────────────────\033[0m")
+                print(f"   {red}[REACTOR] {yellow}{uid}  {blue}───────> {red}FAILED TO FOLLOW!")
+                
+
+            current_index += 1  # Move to the next token after each attempt
+
+            if current_index >= len(tokens) and follow_count < follow_limit:
+                pass
+                current_index = 0  # Reset index to reuse tokens if needed
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f'     {green}SUCCESS: {follow_count}')
+    print(f'     {red}FAILED: {failed_count}')
+
+# Run the function
+
+
+
+
+
+
+
+
+
+import re
+
+def extract_fbid_dp(url):
+    """Extract Facebook ID from a Facebook photo URL."""
+    pattern = r'fbid=(\d+)'
+    match = re.search(pattern, url)
+    
+    if match:
+        return match.group(1)  # Return the captured group
+    return None  # Return None if no match is found
+
+
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def perform_reaction(token, uid_url, reaction_type):
+    """Send a reaction using the provided access token."""
+    access_token = token.split('|')[1]  # Assuming format is email|access_token
+    auto_react = f'https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'
+    
+    try:
+        response = requests.post(auto_react)
+        return access_token, response.status_code, response.text  # Return the results for further processing
+    except requests.exceptions.RequestException as e:
+        return access_token, None, str(e)  # Handle request exceptions
+
+def perform_reaction_fast_dp():
+    """Perform reactions based on user input for file choice, starting line, post link, reaction type, and number of reactions."""
+       
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")  # Display only the filename
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  
+    print(f"    {green}FORMAT {yellow}: {red}https://www.facebook.com/photo.php?fbid=541361691808600")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    z = input(f"   {green}Enter the post link or ID: ")
+    post_id = get_combined_data(z)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    uid_url = post_id  
+
+    print(f"""    {yellow}Choose the reaction type:
+     {blue}[1] {green}LIKE
+     {blue}[2] {green}LOVE
+     {blue}[3] {green}WOW
+     {blue}[4] {green}SAD
+     {blue}[5] {green}ANGRY
+     {blue}[6] {green}HAHA
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        reaction_choice = int(input(f"     {green}Choose: "))
+        reaction_map = {
+            1: "LIKE",
+            2: "LOVE",
+            3: "WOW",
+            4: "SAD",
+            5: "ANGRY",
+            6: "HAHA"
+        }
+        reaction_type = reaction_map.get(reaction_choice, None)
+        if reaction_type is None:
+            print("Invalid reaction choice.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    try:
+        num_reactions = int(input(f"     {yellow}Enter the number of reactions: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print("Please enter a valid number for reactions.")
+        return
+
+    # Step 5: Check if the requested number of reactions exceeds the available tokens
+    if num_reactions > len(tokens):
+        print(f"{red}ENTER AGAIN NOT exceeding {len(tokens)}")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        return
+
+    # Step 6: Perform reactions using multithreading
+    reactions_count = 0
+    max_workers = 10  # Set maximum number of threads
+    results = []  
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        # Submit reactions for each token
+        future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in tokens[:num_reactions]}
+
+        # Process the reactions
+        while reactions_count < num_reactions:
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                uid = token.split('|')[0]
+                try:
+                    access_token, status_code, response_text = future.result()
+                    if status_code == 200:
+                        reactions_count += 1
+                        print(f"     {red}[REACTOR] {yellow}{uid}  {blue}───────> {green}SUCCESSFULLY REACTED!")
+                        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                    else:
+                        pass
+                
+                    # If the desired number of successful reactions is achieved, break the loop
+                    if reactions_count >= num_reactions:
+                        print(f"\n{green}Successfully reached {reactions_count} reactions! Exiting...")
+                        return  # Exit the function after reaching the desired count
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+            
+            # If there are still remaining reactions to perform, submit more tasks from the remaining tokens
+            remaining_tokens = tokens[num_reactions: num_reactions + 5]  # Submit 5 more tasks at a time if needed
+            if remaining_tokens:
+                future_to_token = {executor.submit(perform_reaction, token, uid_url, reaction_type): token for token in remaining_tokens}
+    print(f"{blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"{green}TOTAL: {reactions_count}")
+
+
+
+import random
+import requests
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def rep(post_id, comment, access_token):
+    """Comment on a Facebook post using the provided access token."""
+    
+    # Split the token in case it includes 'uid|access_token' format
+    if '|' in access_token:
+        _, access_token = access_token.split('|', 1)
+    
+    # Now check if the token starts with 'EA' or 'EAA'
+    if not access_token.startswith(("EA", "EAA")):
+        return f"Invalid token: {access_token}"
+    
+    try:
+        converted_link = post_id
+        auto_comment_url = f'https://graph.facebook.com/v13.0/{converted_link}/comments'
+        params = {
+            'message': comment,
+            'access_token': access_token
+        }
+        time.sleep(1)  # Sleep for 1 second between comments
+        headers = {
+            'user-agent': W_ueragnt()  # Use the random user agent
+        }
+        response = requests.post(auto_comment_url, params=params, headers=headers)
+        
+        # Print status code and response for debugging
+
+        if response.status_code == 200:
+            return f"\033[1;31m[SUCCESS]\033[1;31m \033[1;32mSUCCESSFULLY COMMENTED: {green}{comment}\033[1;32m"
+        else:
+            return f"\033[1;31m[FAILED]\033[1;31m FAILED TO COMMENT: {green}{comment} "
+
+    except requests.exceptions.RequestException as e:
+        return f"Request failed: {str(e)}"
+
+
+def reply():
+    """Perform comments based on user input for file choice, starting line, post link, and number of comments."""
+    
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {yellow}[1] {green}FRA ACCOUNT 
+     {yellow}[2] {green}FRA PAGES
+     {yellow}[3] {green}RPW ACCOUNT
+     {yellow}[4] {green}RPW PAGES
+     {red}[0] {red}EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        file_choice = int(input(f"     {green}Choose: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the given line
+    
+    # Step 4: Ask for the post ID
+    a = input(f"    {green}Enter the post ID: ")
+    b = input(f"    {green}Enter the comment ID: ")
+    result = f"{a}_{b}"
+
+    post_id = result
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    try:
+        num_comments = int(input(f"    {red}Enter the number of comments: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if num_comments <= 0:
+            print("Number of comments must be greater than 0.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    comments_list = []
+    for i in range(num_comments):
+        comment = input(f"    {green}Enter comment {i + 1}: ")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        comments_list.append(comment)
+
+    # Step 6: Ask how many accounts to use for commenting
+    try:
+        num_accounts = int(input(f"   {green}Enter the number of accounts to use for commenting (1 to {len(tokens)}): "))
+        if num_accounts > len(tokens) or num_accounts <= 0:
+            print(f"Please enter a valid number between 1 and {len(tokens)}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 7: Perform comments using multithreading
+    results = []
+    comments_count = 0
+    max_workers = 10  # Set the maximum number of threads
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_token = {}
+        for i, token in enumerate(tokens[:num_accounts]):
+            comment = random.choice(comments_list)  # Randomly pick a comment
+            future = executor.submit(rep, post_id, comment, token)
+            future_to_token[future] = token
+
+        for future in as_completed(future_to_token):
+            try:
+                result = future.result()
+                print(result)  # Print the result of the comment attempt
+                if "SUCCESSFULLY" in result:
+                    comments_count += 1
+            except Exception as e:
+                print(f"Error processing token: {e}")
+
+    print(f"Total comments made: {comments_count}")
+
+def comment_with_token(post_id, comment, access_token):
+    """Comment on a Facebook post using the provided access token."""
+    
+    # Split the token in case it includes 'uid|access_token' format
+    if '|' in access_token:
+        _, access_token = access_token.split('|', 1)
+    
+    # Now check if the token starts with 'EA' or 'EAA'
+    if not access_token.startswith(("EA", "EAA")):
+        return f"Invalid token: {access_token}"
+    
+    try:
+        converted_link = post_id
+        auto_comment_url = f'https://graph.facebook.com/v13.0/{converted_link}/comments'
+        params = {
+            'message': comment,
+            'access_token': access_token
+        }
+        time.sleep(1)  # Sleep for 1 second between comments
+        headers = {
+            'user-agent': W_ueragnt()  # Use the random user agent
+        }
+        response = requests.post(auto_comment_url, params=params, headers=headers)
+        
+        # Print status code and response for debugging
+        pass
+
+        if response.status_code == 200:
+            return f"\033[1;31m[SUCCESS]\033[1;31m \033[1;32mSUCCESSFULLY COMMENTED: {green}{comment}\033[1;32m"
+        else:
+            pass
+
+    except requests.exceptions.RequestException as e:
+        pass
+    
+
+
+def perform_comment_fast():
+    """Perform comments based on user input for file choice, starting line, post link, and number of comments."""
+    
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {yellow}[1] {green}FRA ACCOUNT 
+     {yellow}[2] {green}FRA PAGES
+     {yellow}[3] {green}RPW ACCOUNT
+     {yellow}[4] {green}RPW PAGES
+     {red}[0] {red}EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        file_choice = int(input(f"     {green}Choose: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
     except Exception as e:
         pass
-    filee = input(f'''{yellow}  Input File Path : {green}''')
-    linex()
-    if not os.path.exists(filee):
-        print(f'''{red}  File Not Found''')
-        time.sleep(5)
-        main()
         return
-    try:
-        with open(filee, 'r') as file:
-            fo = file.read().splitlines()
-    except Exception as e:pass
-    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
-        for line in fo:
-            uid, pw = line.split('|')
-            executor.submit(graph2, uid, pw, path_file, check_path)
 
-def graph2(uid, pw, path_file, check_path):
-    global oks, loop
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the given line
+    
+    # Step 4: Ask for the post ID
+    a = input(f"    {green}Enter the post ID: ")
+    post_id = get_combined_data(a)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    # Step 5: Ask how many comments and get the list of comments
+    try:
+        num_comments = int(input(f"    {red}Enter the number of comments: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if num_comments <= 0:
+            print("Number of comments must be greater than 0.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    comments_list = []
+    for i in range(num_comments):
+        comment = input(f"    {green}Enter comment {i + 1}: ")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        comments_list.append(comment)
+
+    # Step 6: Ask how many accounts to use for commenting
+    try:
+        num_accounts = int(input(f"   {green}Enter the number of accounts to successfully comment (1 to {len(tokens)}): "))
+        if num_accounts > len(tokens) or num_accounts <= 0:
+            print(f"Please enter a valid number between 1 and {len(tokens)}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 7: Perform comments, ensuring the required number of successful comments
+    successful_comments = 0
+    max_workers =  2 # Set the maximum number of threads
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        while successful_comments < num_accounts and tokens:
+            token = tokens.pop(0)  # Take the next token
+            comment = random.choice(comments_list)  # Randomly pick a comment
+            future = executor.submit(comment_with_token, post_id, comment, token)
+            
+            try:
+                result = future.result()
+                print(result)  # Print the result of the comment attempt
+                if "SUCCESSFULLY" in result:
+                    successful_comments += 1  # Increment only for successful comments
+                    print(f"{successful_comments}/{num_accounts} comments successful.")
+            except Exception as e:
+                pass
+
+    # Final output
+    if successful_comments == num_accounts:
+        print(f"All {num_accounts} comments were successfully made!")
+    else:
+        print(f"Only {successful_comments}/{num_accounts} comments were successful. No more tokens available.")
+
+def live_comment():
+    """Perform comments based on user input for file choice, starting line, post link, and number of comments."""
+    
+    # Step 1: Ask the user which file to use
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    clear_screen()
+    jovan()
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {yellow}[1] {green}FRA ACCOUNT 
+     {yellow}[2] {green}FRA PAGES
+     {yellow}[3] {green}RPW ACCOUNT
+     {yellow}[4] {green}RPW PAGES
+     {red}[0] {red}EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        file_choice = int(input(f"     {green}Choose: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {available_tokens}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]  # Use tokens starting from the given line
+    
+    # Step 4: Ask for the post ID
+    a = input(f"    {green}Enter the post ID: ")
+    post_id = get_combined_data(a)
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    # Step 5: Ask how many comments and get the list of comments
+    try:
+        num_comments = int(input(f"    {red}Enter the number of comments: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if num_comments <= 0:
+            print("Number of comments must be greater than 0.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    comments_list = []
+    for i in range(num_comments):
+        comment = input(f"    {green}Enter comment {i + 1}: ")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        comments_list.append(comment)
+
+    
+    try:
+        num_accounts = int(input(f"   {green}Enter the number of accounts to use for commenting (1 to {len(tokens)}): "))
+        if num_accounts > len(tokens) or num_accounts <= 0:
+            print(f"Please enter a valid number between 1 and {len(tokens)}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 7: Perform comments using multithreading
+    results = []
+    comments_count = 0
+    max_workers = 2  # Set the maximum number of threads
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_token = {}
+        for i, token in enumerate(tokens[:num_accounts]):
+            comment = random.choice(comments_list)  # Randomly pick a comment
+            future = executor.submit(comment_with_token, post_id, comment, token)
+            future_to_token[future] = token
+
+        for future in as_completed(future_to_token):
+            try:
+                result = future.result()
+                print(result)  # Print the result of the comment attempt
+                if "SUCCESSFULLY" in result:
+                    comments_count += 1
+            except Exception as e:
+                print(f"Error processing token: {e}")
+
+    print(f"Total comments made: {comments_count}")
+# Execute the function
+
+
+# Execute the function
+
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+
+
+def load_tokens(file_path):
+    """Load tokens from the specified file."""
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]
+        return tokens
+    except FileNotFoundError:
+        print("File not found.")
+        return []
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return []
+
+def follow_and_like_facebook_page(uid, access_token):
+    """Follow and like a Facebook page/profile using the given UID and access token."""
+    follow_url = f"https://graph.facebook.com/v20.0/{uid}/subscribers"
+    headers = {'Authorization': f'Bearer {access_token}'}
+    
+    # Perform the follow action
+    follow_response = make_http_request('POST', follow_url, headers=headers)
+    if follow_response and 'error' in follow_response:
+        print(f"Error following page with UID {uid}: {follow_response['error']['message']}")
+    elif follow_response:
+        print(f"\033[1;32m[SUCCESSFULLY] FOLLOWED the page/profile with UID {uid}\033[0m")
+
+    # Perform the like action
+    like_url = f"https://graph.facebook.com/v20.0/{uid}/likes"
+    like_response = make_http_request('POST', like_url, headers=headers)
+    if like_response and 'error' in like_response:
+        print(f"Error liking page with UID {uid}: {like_response['error']['message']}")
+    else:
+        print(f"\033[1;32m[SUCCESSFULLY] LIKED the page/profile with UID {uid}\033[0m")
+
+def make_http_request(method, url, headers=None, data=None):
+    """Make an HTTP request."""
+    try:
+        if method.upper() == 'POST':
+            response = requests.post(url, headers=headers, data=data)
+        elif method.upper() == 'GET':
+            response = requests.get(url, headers=headers)
+        else:
+            print(f"Unsupported HTTP method: {method}")
+            return None
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"HTTP request failed with status code: {response.status_code}")
+            return response.json()
+    except Exception as e:
+        print(f"An error occurred during the HTTP request: {str(e)}")
+        return None
+
+def perform_actions_from_file():
+    """Main function to manage the follow and like actions based on user input."""
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    
+    clear_screen()
+    jovan()
+    
+    print(f"""     {white}CHOOSE TYPE OF REACTORS: 
+     {blue}[1] {green}FRA ACCOUNT 
+     {blue}[2] {green}FRA PAGES
+     {blue}[3] {green}RPW ACCOUNT
+     {blue}[4] {green}RPW PAGES
+     {red}[0]  {red} EXIT 
+    {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    
+    try:
+        file_choice = int(input(f"    {green}Choose:  "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 1: Load tokens and display the total
+    tokens = load_tokens(file_path)
+    total_tokens = len(tokens)
+    
+    if total_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    
+
+    # Step 2: Ask for the starting line
+    try:
+        start_line = int(input(f"    {green}Enter the starting line {red}(1 to {total_tokens}{red}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > total_tokens:
+            print(f"Please enter a valid line number between 1 and {total_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Adjust the tokens based on the starting line
+    tokens = tokens[start_line - 1:]
+
+    # Step 3: Get the page ID
+    uid = input(f"    {green}Enter the Page/Profile UID: ").strip()
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    if not uid.isdigit():
+        print("Invalid UID. Please ensure you entered a correct numeric UID.")
+        return
+
+    # Step 4: Get the number of actions
+    try:
+        num_actions = int(input(f"    {green}LIMIT {red}(not exceeding {total_tokens}): ").strip())
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if num_actions > total_tokens:
+            print(f"It exceeds the limit of {total_tokens}.")
+            return
+    except ValueError:
+        print("Invalid input. Please enter a valid number for the actions.")
+        return
+
+    # Step 5: Perform actions using multithreading
+    action_count = 0
+    tasks = []
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        for token in tokens[:num_actions]:  # Limit the tokens to the number of actions requested
+            future = executor.submit(follow_and_like_facebook_page, uid, token.split('|')[1])  # Assuming token format is email|access_token
+            tasks.append(future)
+            action_count += 1
+
+        # Wait for all tasks to complete
+        for task in as_completed(tasks):
+            y = token.split('|')[0]
+            try:
+                task.result()  # To raise any exceptions if occurred during execution
+            except Exception as e:
+                print(f"An error occurred during execution: {str(e)}")
+
+    print(f"     {red}ID {white}: {blue}{y} | {green}\nSUCCESSFULLY FOLLOWED AND LIKED | ID:", uid)
+    print(f"Completed {action_count} requested actions.")
+
+# Call the method to execute the functionality
+import requests
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor
+
+gome_token = []
+
+def tokz(input_cookies):
+    for cookie in input_cookies:
+        header_ = {
+            'authority': 'business.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+            'cache-control': 'max-age=0',
+            'cookie': cookie,
+            'referer': 'https://www.facebook.com/',
+            'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+        }
+        try:
+            home_business = requests.get('https://business.facebook.com/content_management', headers=header_).text
+            token = home_business.split('EAAG')[1].split('","')[0]
+            cookie_token = f'{cookie}|EAAG{token}'
+            gome_token.append(cookie_token)
+        except:
+            pass
+    return gome_token
+
+def share(tach, id_share):
+    cookie = tach.split('|')[0]
+    token = tach.split('|')[1]
+    he = {
+        'accept': '*/*',
+        'accept-encoding': 'gzip, deflate',
+        'connection': 'keep-alive',
+        'content-length': '0',
+        'cookie': cookie,
+        'host': 'graph.facebook.com'
+    }
+    try:
+        requests.post(f'https://graph.facebook.com/me/feed?link=https://m.facebook.com/{id_share}&published=0&access_token={token}', headers=he).json()
+    except:
+        pass
+
+def shar():
+    clear_screen()
+    jovan()
+    input_cookies = input(f"     {green}Enter Cookie:  \x1b[38;2;233;233;233m").split(',')
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    id_share = input(f"     {green}Enter Post ID: \x1b[38;2;233;233;233m")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    total_share = int(input(f"    {green}How Many Share: \x1b[38;2;233;233;233m"))
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    delay = int(input(f"    {green} Delay Share: \x1b[38;2;233;233;233m"))
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print('\x1b[38;2;173;255;47m[*] \x1b[38;2;233;233;233mwaiting...', end='\r')
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    all = tokz(input_cookies)
+    total_live = len(all)
+    print(f'\x1b[38;2;173;255;47mLive: \x1b[38;2;233;233;233m{total_live} \x1b[38;2;173;255;47mCookies')
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    
+    if total_live == 0:
+        sys.exit()
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    stt = 0
+
+    with ThreadPoolExecutor(max_workers=2000) as executor:
+        futures = []
+        while True:
+            for tach in all:
+                if stt >= total_share:
+                    break
+                futures.append(executor.submit(share, tach, id_share))
+                stt += 1
+                print(f'\x1b[38;2;173;255;47mShare: + \x1b[38;2;233;233;233m{stt}', end='\r')
+                time.sleep(delay)
+            if stt >= total_share:
+                break
+
+    gome_token.clear()
+    input('\x1b[38;2;173;255;47m[*] \x1b[38;2;233;233;233mEnter^^\033[0m')
+
+import os
+import requests
+import uuid
+import random
+from requests import post as pt
+from rich import print as rp
+from rich.panel import Panel as pan
+
+
+
+import os
+import requests
+import uuid
+import random
+from requests import post as pt
+from rich import print as rp
+from rich.panel import Panel as pan
+import platform
+import os
+import random
+import uuid
+darkblue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+skyblue = "\033[1;36m"
+blue = "\033[1;34m"
+lightblue = "\033[38;5;81m"
+white = "\033[1;37m"
+R = "\033[31m"  # Red
+G = "\033[32m"  # Green
+Y = "\033[33m"  # Yellow
+B = "\033[34m"  # Blue
+M = "\033[35m"  # Magenta
+P = "\033[36m"  # Cyan
+C = "\033[37m"  # White
+def clear_screen():
+    if 'termux' in platform.system().lower():
+        os.system('clear')
+    elif platform.system().lower() == 'windows':
+        os.system('cls')
+    else:
+        os.system('clear')
+
+def randc():
+    return random.choice([R, G, Y, B, M, P, C])
+
+def logo():
+    rp(pan(f"""{randc()}
+ ██████╗ ██████╗ 
+██╔════╝██╔════╝ 
+██║     ██║  ███╗
+██║     ██║   ██║
+╚██████╗╚██████╔╝
+ ╚═════╝ ╚═════╝ 
+                  """,
+           title=f"{Y}COOKIE GETTER", subtitle=f"{R}DEVELOP BY MR S0SY4L", border_style="bold purple"))
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def get_file_path():
+    clear_screen()
+    jovan()
+    return input(f"     {green}{C}(Enter path to file with email and password):~ ")
+print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+def get_cookie_storage_path():
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    return input(f"     {yellow}{C}(Enter path to store cookies):~ ")
+print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+def read_credentials(file_path):
+    credentials = []
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+
+        for line in lines:
+            line = line.strip()
+            if '|' in line:
+                uid, password = line.split('|', 1)
+                credentials.append((uid.strip(), password.strip()))
+            elif line:
+                print(f"Warning: Skipping invalid line format: {line}")
+                
+    except FileNotFoundError as e:
+        print(f"Error: File not found {file_path}: {str(e)}")
+    
+   
+    return credentials
+
+
+def cuser(user, passw):
     accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
     data = {
-        'adid': f'{uuid.uuid4()}',
+        'adid': str(uuid.uuid4()),
         'format': 'json',
-        'device_id': f'{uuid.uuid4()}',
+        'device_id': str(uuid.uuid4()),
         'cpl': 'true',
-        'family_device_id': f'{uuid.uuid4()}',
+        'family_device_id': str(uuid.uuid4()),
         'credentials_type': 'device_based_login_password',
-        'error_detail_type': 'button_with_disabled',
-        'source': 'device_based_login',
-        'email': uid,
-        'password': pw,
+        'email': user,
+        'password': passw,
         'access_token': accessToken,
         'generate_session_cookies': '1',
-        'meta_inf_fbmeta': '',
-        'advertiser_id': f'{uuid.uuid4()}',
-        'currently_logged_in_userid': '0',
-        'locale': 'en_US',
-        'client_country_code': 'US',
         'method': 'auth.login',
-        'fb_api_req_friendly_name': 'authenticate',
-        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
     }
-    simm3 = random.choice(['GLOBE', 'SMART'])
     headers = {
         'User-Agent': "Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/en_US;FBBV/135374479;FBCR/SMART;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]",
         'Content-Type': 'application/x-www-form-urlencoded',
         'Host': 'graph.facebook.com',
-        'X-FB-Net-HNI': str(random.randint(10000, 99999)),
-        'X-FB-SIM-HNI': str(random.randint(10000, 99999)),
-        'X-FB-Connection-Type': 'MOBILE.LTE',
-        'X-Tigon-Is-Retry': 'False',
-        'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-device-group': str(random.randint(1000, 9999)),
-        'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-        'X-FB-Request-Analytics-Tags': 'graphservice',
-        'X-FB-HTTP-Engine': 'Liger',
-        'X-FB-Client-IP': 'True',
-        'X-FB-Connection-Bandwidth': str(random.randint(20000000, 30000000)),
-        'X-FB-Server-Cluster': 'True',
-        'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32'
     }
-    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
-    try:
-        response = requests.post(url, data=data, headers=headers)
-        po = response.json()
-        if 'session_key' in po:
-            cookies = po.get('session_cookies', [])
-            cookie_str = '; '.join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
-            access_token = po.get('access_token', '')
-            with open(check_path, 'r') as check_file:
-                if uid in check_file.read():
-                    print(f'''{red}  Account Already Exist in Tool {yellow}---> {red}{uid}''')
-                    linex()
-                    return
-            print(f'''{white}ID : {yellow}{uid} {white}---> {green}Successfully Extract!''')
-            linex()
-            with open(check_path, 'a') as check_file:
-                check_file.write(uid + '\n')
-            with open(path_file, 'a') as path_file_obj:
-                path_file_obj.write(f'{access_token}\n')
-            ok.append(uid)
-        print(f'''{red}ID : {red}{uid} {white}---> {red}Failed to Extract!''')
-        linex()
-        cp.append(uid)
-    except Exception as e:
-        pass
-    loop += 1
+    response = pt("https://b-graph.facebook.com/auth/login", headers=headers, data=data, allow_redirects=False)
+    return response.json()
 
-def crack(uid, pw, path_file, check_path):
-	global loop,ok,cp
-	ua2 = random.choice(ugen2)
-	ses = requests.Session()
-	for pw in pw:
-		try:
-			nip=random.choice(prox)
-			proxs= {'http': 'socks4://'+nip}
-			ses.headers.update({"Host":'m.facebook.com',"upgrade-insecure-requests":"1","user-agent":ua2,"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.9","dnt":"1","x-requested-with":"mark.via.gp","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-user":"empty","sec-fetch-dest":"document","referer":"https://m.facebook.com/","accept-encoding":"gzip, deflate br","accept-language":"en-GB,en-US;q=0.9,en;q=0.8"})
-			p = ses.get('https://free.facebook.com/login/device-based/password/?uid='+idf+'&flow=login_no_pin&refsrc=deprecated&_rdr')
-			dataa ={"lsd":re.search('name="lsd" value="(.*?)"', str(p.text)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(p.text)).group(1),"uid":uid,"next":"https://x.facebook.com/login/save-device/","flow":"login_no_pin","pass":pw,}
-			koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
-			koki+=' m_pixel_ratio=2.625; wd=412x756'
-			heade={"Host":'m.facebook.com',"cache-control":"max-age=0","upgrade-insecure-requests":"1","origin":"https://m.facebook.com","content-type":"application/x-www-form-urlencoded","user-agent":ua,"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.9","x-requested-with":"mark.via.gp","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-user":"empty","sec-fetch-dest":"document","referer":"https://m.facebook.com/index.php?next=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fdebug%2Faccesstoken%2F","accept-encoding":"gzip, deflate br","accept-language":"en-GB,en-US;q=0.9,en;q=0.8"}
-			po = ses.post('https://free.facebook.com/login/device-based/validate-password/?shbl=0',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False,proxies=proxs)
-			if "checkpoint" in po.cookies.get_dict().keys():
-				print(f'''{red}ID : {red}{uid} {white}---> {red}Failed to Extract!''')
-				cp+=1
-				break
-			elif "c_user" in ses.cookies.get_dict().keys():
-				ok+=1
-				coki=po.cookies.get_dict()
-				kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-				print(f'''{white}ID : {yellow}{uid} {white}---> {green}Successfully Extract!''')
-				linex()
-				with open(check_path, 'a') as check_file:
-					check_file.write(uid + '\n')
-				break				
-			else:
-				continue
-		except requests.exceptions.ConnectionError:
-			time.sleep(31)
-	loop+=1
+def runing():
+    clear_screen()
+    jovan()
+    file_path = get_file_path()
+    storage_path = get_cookie_storage_path()  # Get path for storing cookies
+    credentials = read_credentials(file_path)
 
-ids = []
-OK = []
-CP = []
-loop = 0
-
-def get_ua():
-    return f'''Mozilla/5.0 (SAMSUNG; SAMSUNG-GT-S{random.randrange(100, 9999)}/{random.randrange(100, 9999)}{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}{random.choice(string.ascii_uppercase)}{random.randrange(1, 9)}; U; Bada/1.2; en-us) AppleWebKit/533.1 (KHTML, like Gecko) Dolfin/{random.randrange(1, 9)}.{random.randrange(1, 9)} Mobile WVGA SMM-MMS/1.2.0 OPN-B'''
-
-def datr():
-    global ok, loop
-    ids.clear()
-    OK.clear()
-    CP.clear()
-    loop = 0
-    clear()
-    logo()
-    print(f'''{green}  METHOD 4 {white}---> {yellow}EXTRACT BULK NORMAL ACCOUNTS M2''')
-    linex()
-    file_name = input(f'''{yellow}  Put file path : {green}''')
-    linex()
-    try:
-        with open(file_name, 'r') as file:
-            ids.extend(file.read().splitlines())
-    except Exception as e:
-        pass
-        sleep(0.8)
-        main()
+    if not credentials:
+        print(f"{R}No credentials found in the file.")
         return
-    with ThreadPoolExecutor(max_workers=30) as checker:
-        for id in ids:
-            checker.submit(_Cookies, id)
-    exit()
+     
+    print(f"      {red}FOUND {len(credentials)} {green}CREDENTIALS !...")
 
-def getCookies(uid, psw):
-    session = requests.Session()
-    _ua = get_ua()
-    _fb = session.get('https://m.facebook.com').text
-    _data = {
-        'lsd': re.search('name="lsd" value="(.*?)"', _fb).group(1),
-        'jazoest': re.search('name="jazoest" value="(.*?)"', _fb).group(1),
-        'm_ts': re.search('name="m_ts" value="(.*?)"', _fb).group(1),
-        'li': re.search('name="li" value="(.*?)"', _fb).group(1),
-        'try_number': '0',
-        'unrecognized_tries': '0',
-        'email': uid,
-        'pass': psw,
-        'login': 'Log In'
-    }
-    _header = {
-        'authority': 'm.facebook.com',
-        'upgrade-insecure-requests': '1',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'accept-language': 'en-PK,en-GB,en-US;q=0.9,en;q=0.8,en;q=0.7',
-        'dnt': '1',
-        'x-requested-with': 'mark.via.gp',
-        'sec-fetch-site': 'none',
-        'sec-fetch-mode': 'navigate',
-        'sec-fetch-user': '?1',
-        'sec-fetch-dest': 'document',
-        'accept-encoding': 'gzip, deflate, br',
-        'cache-control': 'max-age=0',
-        'user-agent': _ua
-    }
-    _res = session.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=_data,headers=_header).text
-    cookies_dict = session.cookies.get_dict()
-    cookies = "; ".join([f"{key}={value}" for key, value in cookies_dict.items()])
-    return cookies
+    for user, passw in credentials:
+        response = cuser(user, passw)
 
-def _Cookies(id):
-    global oks, loop
-    uid, psw = id.split('|')
-    _cookies = getCookies(uid, psw)
-    if 'c_user' in _cookies:
-        print(f'''  {white}ID : {yellow}{uid} {white}---> {green}Successfully Extract!''')
-        linex()
-        with open('C:\\Users\\Beam\\Documents\\.EXTRACT-COOKIE-ACCOUNT.txt', 'a') as f:
-            f.write(_cookies + '\n')
-    elif 'checkpoint' in _cookies:
-        print(f'''  {red}ID : {red}{uid} {white}---> {red}Failed!''')
-        linex()
-    loop += 1
-    return None
+        if "session_key" in response:
+            clear()
+            cookie_str = '; '.join(f'{i["name"]}={i["value"]}' for i in response.get('session_cookies', []))
+            clear_screen()
+            jovan()
+            print(f"     {red}COOKIE {yellow}: {white}{C}{cookie_str}")
+            
+            with open(storage_path, 'a') as f:  # Use the user-defined path for storing cookies
+                f.write(cookie_str + '\n')
+        else:
+            print(f"{R}INVALID/CHECKPOINT for USER ID: {C}{user}")
 
-def p_like():
-    clear()
-    logo()
-    ses = requests.Session()
-    cokix = input(f'''{yellow}  Cookie : {green}''')
-    linex()
-    ids_coki = input(f'''{yellow}  Input File Path :{green} ''')
-    page_id = []
-    try:
-        with open(ids_coki, 'r') as file:
-            page_id = file.read().splitlines()
-    except FileNotFoundError:
-        print("  File not found")
-        sleep(3)
-        return
-    page_ids = input(f'''{yellow}  Input Target Page ID : {green}''')
-    linex()
-    limitx = int(input(f'''{yellow}  Quantity : {green}'''))
-    headersccc['user-agent'] = W_ueragnt()
-    mbasic_url = 'https://mbasic.facebook.com/' + page_ids
-    reqx = bs(ses.get(mbasic_url,headers=headersccc,cookies={'cookie': cokix}).content,'html.parser')
-    reqxx = reqx.find_all('a', string='Message')
-    match = re.search(r'href="/messages/thread/(\d+)', str(reqxx))
-    if match:
-    	d_pa_id = match.group(1)
+    print(f"{G}Processing complete. All credentials have been processed.")
+
+# Run main() only when script is executed directly
+def bitz():
+    clear_screen()
+    jovan()
+    print(f"     {yellow}[1] {green}GET COOKIE")
+    print(f"     {yellow}[2] {green}AUTO CREATE PAGE")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    num_reactions = int(input(f'     {red}Enter Option: '))
+
+    if num_reactions == 1:
+        runing()
+    elif num_reactions == 2:
+        hackezr() # Placeholder for further implementation
     else:
-    	d_pa_id = None
-    if reqxx:
-    	match = re.search(r'href="/messages/thread/(\d+)', reqxx[0].text)
-    else:
-    	reqxx = soup.find(...)
-    clear()
-    logo()
-    print(f'''{yellow}  Total Page : {green}{len(page_id)}''')
-    print(f'''{yellow}  Target     : {green}{page_ids}''')
-    linex()
-    for i in range(min(len(page_id), limitx)):
-        pageid = page_id[i]
-        page_uidz = 'i_user=' + pageid
-        cookies_page = {'cookie': cokix + page_uidz}
-        mylove = ThreadPoolExecutor(max_workers=30)
-        mylove.submit(likepage, cookies_page, pageid, page_ids, d_pa_id)
-        linex()
-        linex()
-        print(f'{red}  FAILED')
-        print(cokix)
-        print(linex())
-        with open('failed.txt', 'a', encoding='utf8') as f:
-            f.write(f'''{cokix}\n''')
-        return
-    return None
+        print(f"{R}Invalid option selected.")
+import random
+import requests
+from colorama import init, Fore, Style
+import os
 
-def likepage(cookies_page, pageid, page_ids, d_pa_id, ses, headers):
-    headers['user-agent'] = W_ueragnt()
-    web_url = f'https://www.facebook.com/profile.php?id={page_ids}'
-    try:
-        req = bs(ses.get(web_url,headers=headers,cookies=cookies_page).content,'html.parser')
-        uidx = re.search('__user=(.*?)&', str(req))
-        if uidx:
-            uidx = uidx.group(1)
-        else:
-            print(f"{red}  Failed to find user ID for page {pageid}")
-            return None
-        dpr = re.search('"pr":(.*?),', str(req))
-        fb_dtsg = re.search('"DTSGInitialData",\\[\\],{"token":"(.*?)"}',str(req))
-        jazoest = re.search('&jazoest=(.*?)"', str(req))
-        lsd = re.search('"LSD",\\[\\],{"token":"(.*?)"}', str(req))
-        if not all([dpr, fb_dtsg, jazoest, lsd]):
-            print(f"{red}  Missing necessary data for page {pageid}")
-            return None
-        data_post = {
-            'av': uidx,
-            'dpr': dpr.group(1),
-            'fb_dtsg': fb_dtsg.group(1),
-            'jazoest': jazoest.group(1),
-            'lsd': lsd.group(1),
-            'fb_api_caller_class': 'RelayModern',
-            'fb_api_req_friendly_name': 'CometProfilePlusLikeMutation',
-            'variables': f'''{{"input":{{"is_tracking_encrypted":false,"page_id":{d_pa_id!s},"source":null,"tracking":null,"actor_id":{uidx!s},"client_mutation_id":"1"}},"scale":1}}''',
-            'server_timestamps': 'true',
-            'doc_id': '6716077648448761'
-        }
-        response = ses.post(
-            'https://www.facebook.com/api/graphql/',
-            cookies=cookies_page,headers=headers,data=data_post)
-        if response.status_code == 200:
-            data = response.json()
-            subscribe_status = data['data']['page_like']['page']['subscribe_status']
-            done.append(pageid)
-            print(f'''{white}  [{len(done)}] {green}Page Like and Follow Done :{white} {pageid} ''')
-        else:
-            print(f"{red}  Failed to like page {pageid} with status code {response.status_code}")
-    except Exception as e:
-        print(f"{red}An error occurred while processing page {pageid}: {str(e)}")
-    return None
+# Initialize colorama
+init()
 
-done = []
-
-def g_join():
-    clear()
-    logo()
-    cokix = input(f'''{yellow}  Cookie : {green}''')
-    linex()
-    try:
-        ids_coki = input(f'''{yellow}  Input File Path : {green} ''')
-        page_id = open(ids_coki).read().splitlines()
-    except FileNotFoundError:
-        print('  File not found')
-        sleep(3)
-        return
-    linex()
-    group_ids = input(f'''{yellow}  Input Group ID : {green}''')
-    linex()
-    limitx = int(input(f'''{yellow}  Quantity : {green}'''))
-    clear()
-    logo()
-    print(f'''{yellow}  Total Pages: {green}{len(page_id)}''')
-    print(f'''{green}  Target Group: {green}{group_ids}''')
-    linex()
-    with ThreadPoolExecutor(max_workers=30) as executor:
-        for i in range(min(len(page_id), limitx)):
-            pageid = page_id[i]
-            page_uidz = f'i_user={pageid}'
-            cookies_page = {'cookie': cokix + page_uidz}
-            executor.submit(g_joining, cookies_page, pageid, group_ids)
-    print(f"Joining process completed for {len(done)} pages.")
-    return None
-
-def g_joining(cookies_page, pageid, group_ids):
-    secx = requests.Session()
-    use_link = f'https://www.facebook.com/groups/{group_ids}'
-    headers = {'user-agent': W_ueragnt()}
-    req = bs(secx.get(use_link,headers=headers,cookies=cookies_page).content,'html.parser')
-    try:
-        av = re.search('__user=(.*?)&', str(req)).group(1)
-        dpr = re.search('"pr":(.*?),', str(req)).group(1)
-        fb_dtsg = re.search(
-            '"DTSGInitialData",\\[\\],{"token":"(.*?)"}',
-            str(req)).group(1)
-        jazoest = re.search('&jazoest=(.*?)"', str(req)).group(1)
-        lsd = re.search('"LSD",\\[\\],{"token":"(.*?)"}', str(req)).group(1)
-    except AttributeError:
-        print(f"{red}Error extracting necessary data for page {pageid}")
-        return None
-    data = {
-        'av': av,
-        'dpr': dpr,
-        'fb_dtsg': fb_dtsg,
-        'jazoest': jazoest,
-        'lsd': lsd,
-        'qpl_active_flow_ids': '431626709',
-        'fb_api_caller_class': 'RelayModern',
-        'fb_api_req_friendly_name': 'GroupCometJoinForumMutation',
-        'variables': f'''{{"feedType":"DISCUSSION","groupID":{group_ids!s},"imageMediaType":"image/x-auto","input":{{"action_source":"GROUP_MALL","attribution_id_v2":"CometGroupDiscussionRoot.react,comet.group,via_cold_start,1697077069058,802502,2361831622,","group_id":{group_ids!s},"group_share_tracking_params":{{"app_id":"2220391788200892","exp_id":"null","is_from_share":false}},"actor_id":{av!s},"client_mutation_id":"1"}},"inviteShortLinkKey":null,"isChainingRecommendationUnit":false,"isEntityMenu":true,"scale":1,"source":"GROUP_MALL","renderLocation":"group_mall","__relay_internal__pv__GroupsCometEntityMenuChannelsrelayprovider":true,"__relay_internal__pv__GroupsCometGroupChatLazyLoadLastMessageSnippetrelayprovider":true}}''',
-        'server_timestamps': 'true',
-        'doc_id': '24830959139836152',
-        'fb_api_analytics_tags': '["qpl_active_flow_ids=431626709"]'
-    }
-    response = secx.post(
-        'https://www.facebook.com/api/graphql/',
-        cookies=cookies_page,
-        headers=headers,
-        data=data)
-    if response.status_code == 200:
-        done.append(pageid)
-        print(
-            f'''{white}  [{len(done)}] {green}Group Joining Done: {white}{pageid}''')
-    else:
-        print(f"{red}Error: Failed to join group {pageid}")
-    return None
-
-done = []
-
-def g_join():
-    clear()
-    logo()
-    cokix = input(f'''{yellow}  Cookies : {green}''')
-    linex()
-    try:
-        ids_coki = input(f'''{yellow}  Input File Path : {green} ''')
-        with open(ids_coki, 'r') as file:
-            page_id = file.read().splitlines()
-    except FileNotFoundError:
-        print('  File not found')
-        sleep(2)
-        return
-    linex()
-    group_ids = input(f'''{yellow}  Input Group ID : {green}''')
-    linex()
-    limitx = int(input(f'''{yellow}  Quantity : {green}'''))
-    clear()
-    logo()
-    print(f'''{green}  Total Pages: {yellow}{len(page_id)}''')
-    print(f'''{green}  Target Group: {yellow}{group_ids}''')
-    linex()
-    with ThreadPoolExecutor(max_workers=30) as executor:
-        for i in range(min(len(page_id), limitx)):
-            pageid = page_id[i]
-            page_uidz = f'i_user={pageid}'
-            cookies_page = {'cookie': cokix + page_uidz}
-            executor.submit(g_joining, cookies_page, pageid, group_ids)
-    print(f"Joining process completed for {len(done)} pages.")
-    return None
-
-def g_joining(cookies_page, pageid, group_ids):
-    secx = requests.Session()
-    use_link = f'https://www.facebook.com/groups/{group_ids}'
-    headers = {'user-agent': W_ueragnt()}
-    req = bs(secx.get(use_link,headers=headers,cookies=cookies_page).content,'html.parser')
-    try:
-        av = re.search('__user=(.*?)&', str(req)).group(1)
-        dpr = re.search('"pr":(.*?),', str(req)).group(1)
-        fb_dtsg = re.search('"DTSGInitialData",\\[\\],{"token":"(.*?)"}',str(req)).group(1)
-        jazoest = re.search('&jazoest=(.*?)"', str(req)).group(1)
-        lsd = re.search('"LSD",\\[\\],{"token":"(.*?)"}', str(req)).group(1)
-    except AttributeError:
-        print(f"{red}Error extracting necessary data for page {pageid}")
-        return None
-    data = {
-        'av': av,
-        'dpr': dpr,
-        'fb_dtsg': fb_dtsg,
-        'jazoest': jazoest,
-        'lsd': lsd,
-        'qpl_active_flow_ids': '431626709',
-        'fb_api_caller_class': 'RelayModern',
-        'fb_api_req_friendly_name': 'GroupCometJoinForumMutation',
-        'variables': f'''{{"feedType":"DISCUSSION","groupID":{group_ids!s},"imageMediaType":"image/x-auto","input":{{"action_source":"GROUP_MALL","attribution_id_v2":"CometGroupDiscussionRoot.react,comet.group,via_cold_start,1697077069058,802502,2361831622,","group_id":{group_ids!s},"group_share_tracking_params":{{"app_id":"2220391788200892","exp_id":"null","is_from_share":false}},"actor_id":{av!s},"client_mutation_id":"1"}},"inviteShortLinkKey":null,"isChainingRecommendationUnit":false,"isEntityMenu":true,"scale":1,"source":"GROUP_MALL","renderLocation":"group_mall","__relay_internal__pv__GroupsCometEntityMenuChannelsrelayprovider":true,"__relay_internal__pv__GroupsCometGroupChatLazyLoadLastMessageSnippetrelayprovider":true}}''',
-        'server_timestamps': 'true',
-        'doc_id': '24830959139836152',
-        'fb_api_analytics_tags': '["qpl_active_flow_ids=431626709"]'
-    }
-    response = secx.post('https://www.facebook.com/api/graphql/',cookies=cookies_page,headers=headers,data=data)
-    if response.status_code == 200:
-        done.append(pageid)
-        print(f'''{white}  [{len(done)}] {green}Group Joining Done: {white}{pageid}''')
-    else:
-        print(f"{red}Error: Failed to join group {pageid}")
-    return None
-
-def react():
-    ses = requests.Session()
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f"{red}  An error occurred: {e}")
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f"{red}  Invalid post link.")
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f"{red}  Start the tool first!")
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO REACT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_path = None
-    if account_choose == '1' or account_choose == '01':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-    elif account_choose == '2' or account_choose == '02':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-    elif account_choose == '3' or account_choose == '03':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-    elif account_choose == '4' or account_choose == '04':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    elif account_choose == '0' or account_choose == '00':
-        main()
-        return
-    if file_path is None:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        react()
-        return
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    post_link = input(f'''{yellow}  Enter post link: {green}''')
-    target_uid = extract_uid_from_link(post_link)
-    if not target_uid:
-        print(f'''{red}  UID extraction failed. Please provide a valid post link. Copy link on Facebook Lite!''')
-        return None
-    print(f'''{white}  CHOOSE REACTION: ''')
-    print(f'''{yellow}  [1] {blue}LIKE''')
-    print(f'''{yellow}  [2] {blue}LOVE''')
-    print(f'''{yellow}  [3] {blue}HAHA''')
-    print(f'''{yellow}  [4] {blue}WOW''')
-    print(f'''{yellow}  [5] {blue}ANGRY''')
-    print(f'''{yellow}  [6] {blue}SAD''')
-    linex()
-    react_choice = input(f'''{yellow}  Choose : {green}''')
-    reaction_types = {
-        '1': 'LIKE',
-        '2': 'LOVE',
-        '3': 'HAHA',
-        '4': 'WOW',
-        '5': 'ANGRY',
-        '6': 'SAD'
-    }
-    reaction_type = reaction_types.get(react_choice)
-    if not reaction_type:
-        print(f'''{red}  Invalid reaction choice.''')
-        return None
-    converted_link = convert_to_traodoisub(post_link)
-    if not converted_link:
-        print(f"{red}  Failed to convert the link.")
-        return None
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Input quantity of reactions, limit is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(
-            f'''{red}  Error: The specified limit exceeds the number of available reactors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        uid_url = f'''{target_uid}_{converted_link}'''
-        auto_react = f'''https://graph.facebook.com/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'''
-        headers_ = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_react, headers=headers_)
-        if response.ok:
-            print(f'''{green}  REACTOR {i + 1} ---> Successfully Reacted! ''')
-            success_count += 1
-        else:
-            print(f'''{red}  REACTOR {i + 1} ---> Failed to React!''')
-            failure_count += 1
-    linex()
-    print(f'''{yellow}  TOTAL : ''')
-    print(f'''{green}  Completed : {white}{success_count}''')
-    print(f'''{red}  Failed : {white}{failure_count}''')
-
-def react_to_story():
-    ses = requests.Session()
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f"{red}  An error occurred: {e}")
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f"{red}  Invalid post link.")
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f"{red}  Start the tool first!")
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO REACT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_path = None
-    if account_choose == '1' or account_choose == '01':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-    elif account_choose == '2' or account_choose == '02':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-    elif account_choose == '3' or account_choose == '03':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-    elif account_choose == '4' or account_choose == '04':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    elif account_choose == '0' or account_choose == '00':
-        main()
-        return
-    if file_path is None:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        react_cover()
-        return
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    print(f'''{white}  CHOOSE REACTION: ''')
-    print(f'''{yellow}  [1] {blue}LIKE''')
-    print(f'''{yellow}  [2] {blue}LOVE''')
-    print(f'''{yellow}  [3] {blue}HAHA''')
-    print(f'''{yellow}  [4] {blue}WOW''')
-    print(f'''{yellow}  [5] {blue}ANGRY''')
-    print(f'''{yellow}  [6] {blue}SAD''')
-    linex()
-    react_choice = input(f'''{yellow}  Choose : {green}''')
-    reaction_types = {
-        '1': 'LIKE',
-        '2': 'LOVE',
-        '3': 'HAHA',
-        '4': 'WOW',
-        '5': 'ANGRY',
-        '6': 'SAD'
-    }
-    reaction_type = reaction_types.get(react_choice)
-    if not reaction_type:
-        print(f'''{red}  Invalid reaction choice.''')
-        return None
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Input quantity of reactions, limit is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available reactors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        target_uid = '100023826018132'
-        uid_url = '959545101516348'
-        auto_react = f'''https://graph.facebook.com/100023826018132_959545101516348/reactions?type={reaction_type}&access_token={access_token}'''
-        time.sleep(1)
-        headers_ = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_react, headers=headers_)
-        if response.ok:
-            print(f'''{green}  REACTOR {i + 1} ---> Successfully Reacted! ''')
-            success_count += 1
-        else:
-            print(f'''{red}  REACTOR {i + 1} ---> Failed to React!''')
-            failure_count += 1
-    linex()
-    print(f'''{yellow}  TOTAL : ''')
-    print(f'''{green}  Completed : {white}{success_count}''')
-    print(f'''{red}  Failed : {white}{failure_count}''')
-
-def react_dp_cover():
-    ses = requests.Session()
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f"{red}  An error occurred: {e}")
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f"{red}  Invalid post link.")
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f"{red}  Start the tool first!")
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO REACT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_path = None
-    if account_choose == '1' or account_choose == '01':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-    elif account_choose == '2' or account_choose == '02':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-    elif account_choose == '3' or account_choose == '03':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-    elif account_choose == '4' or account_choose == '04':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    elif account_choose == '0' or account_choose == '00':
-        main()
-        return
-    if file_path is None:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        react_cover()
-        return
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    substory_index = input(f'''{yellow}  Input DP/Cover FB ID: {green}''')
-    linex()
-    print(f'''{white}  CHOOSE REACTION: ''')
-    print(f'''{yellow}  [1] {blue}LIKE''')
-    print(f'''{yellow}  [2] {blue}LOVE''')
-    print(f'''{yellow}  [3] {blue}HAHA''')
-    print(f'''{yellow}  [4] {blue}WOW''')
-    print(f'''{yellow}  [5] {blue}ANGRY''')
-    print(f'''{yellow}  [6] {blue}SAD''')
-    linex()
-    react_choice = input(f'''{yellow}  Choose : {green}''')
-    reaction_types = {
-        '1': 'LIKE',
-        '2': 'LOVE',
-        '3': 'HAHA',
-        '4': 'WOW',
-        '5': 'ANGRY',
-        '6': 'SAD'
-    }
-    reaction_type = reaction_types.get(react_choice)
-    if not reaction_type:
-        print(f'''{red}  Invalid reaction choice.''')
-        return None
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Input quantity of reactions, limit is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available reactors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        auto_react = f'''https://graph.facebook.com/v18.0/{substory_index}/reactions?type={reaction_type}&access_token={access_token}'''
-        time.sleep(1)
-        headers_ = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_react, headers=headers_)
-        if response.ok:
-            print(f'''{green}  REACTOR {i + 1} ---> Successfully Reacted! ''')
-            success_count += 1
-        else:
-            print(f'''{red}  REACTOR {i + 1} ---> Failed to React!''')
-            failure_count += 1
-    linex()
-    print(f'''{yellow}  TOTAL : ''')
-    print(f'''{green}  Completed : {white}{success_count}''')
-    print(f'''{red}  Failed : {white}{failure_count}''')
-
-headers_fb_lite = {
-    'user-agent': 'Mozilla/5.0 (Linux; Android 13; Infinix X6711 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5735.60 Mobile Safari/537.36[FBAN/EMA;FBLC/en_GB;FBAV/380.0.0.14.112;]',
-    'viewport-width': '707'}
-
-def react_with_care():
-    clear()
-    logo()
-    coki_file_name = 'C:\\Users\\Beam\\Documents\\.EXTRACT-COOKIE-ACCOUNT.txt'
-    try:
-        with open(coki_file_name, 'r', encoding='utf-8') as file:
-            coki_file = file.read().splitlines()
-    except FileNotFoundError:
-        print(f'''{red}  Start the tool first!''')
-        return None
-    inpt_link = input(f'''{yellow}  Post Link : {green}''')
-    uid = convert_to_traodoisub(inpt_link)
-    if not uid:
-        print(f'''{red}  Unable to extract UID from the provided link.''')
-        return None
-    post_link = f'''https://mbasic.facebook.com/reactions/picker/?ft_id={uid}&origin_uri='''
-    print(f'''{white}  CHOOSE REACTION: ''')
-    print(f'''{yellow}  [1] {blue}LIKE''')
-    print(f'''{yellow}  [2] {blue}LOVE''')
-    print(f'''{yellow}  [3] {blue}CARE''')
-    print(f'''{yellow}  [4] {blue}HAHA''')
-    print(f'''{yellow}  [5] {blue}WOW''')
-    print(f'''{yellow}  [6] {blue}ANGRY''')
-    print(f'''{yellow}  [7] {blue}SAD''')
-    linex()
-    inx = input(f'''{yellow}  Choose : {green}''')
-    reaction_ids = {
-        '1': '1635855486666999',
-        '2': '1678524932434102',
-        '3': '613557422527858',
-        '4': '115940658764963',
-        '5': '478547315650144',
-        '6': '444813342392137',
-        '7': '908563459236466'
-    }
-    if inx not in reaction_ids:
-        print(f'''{red} Invalid option selected.''')
-        return None
-    r_id = reaction_ids[inx]
-    linex()
-    try:
-        limite = int(input(f'''{yellow}  Input limit less than {green}{len(coki_file)} {yellow}: {green}'''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limite > len(coki_file):
-        print(f'''{red}  Error: The specified limit exceeds the number of available cookies.''')
-        return None
-    clear()
-    logo()
-    print(f'''{yellow}  Target    : {green}{uid}''')
-    print(f'''{yellow}  Limit     : {green}{limite}''')
-    linex()
-    executor = ThreadPoolExecutor(max_workers=30)
-    for i in range(min(len(coki_file), limite)):
-        coki = coki_file[i]
-        executor.submit(sending, coki, post_link, r_id)
-
-def sending(coki, post_link, r_id):
-    headers_fb_lite = {
-        'user-agent': W_ueragnt(),
-        'cookie': coki
-    }
-    try:
-        getdata = html_req(post_link,headers=headers_fb_lite,cookies={'cookie': coki})
-        all_links = getdata.find_all('a')
-        for link in all_links:
-            url = 'https://mbasic.facebook.com' + link['href']
-            if r_id in url:
-                response = requests.get(url, headers=headers_fb_lite, cookies={'cookie': coki})
-                pageid = str(coki).split('c_user=')[1].split(';')[0]
-                if pageid in response.text:
-                    print(f'''{yellow}  Successfully Reacted! {white}---> {green}{pageid}''')
-    except Exception as e:
-        print(f'''{red}  An error occurred: {e}''')
-
-def react_comment():
-    ses = requests.Session()
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f'''{red}  Start the tool first!''')
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO REACT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    if account_choose == '1' or account_choose == '01':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-    elif account_choose == '2' or account_choose == '02':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-    elif account_choose == '3' or account_choose == '03':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-    elif account_choose == '4' or account_choose == '04':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    elif account_choose == '0' or account_choose == '00':
-        main()
-        return
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    comment_uid = input(f'''{yellow}  Enter Comment UID: {green}''')
-    linex()
-    print(f'''{white}  CHOOSE REACTION: ''')
-    print(f'''{yellow}  [1] {blue}LIKE''')
-    print(f'''{yellow}  [2] {blue}LOVE''')
-    print(f'''{yellow}  [3] {blue}HAHA''')
-    print(f'''{yellow}  [4] {blue}WOW''')
-    print(f'''{yellow}  [5] {blue}ANGRY''')
-    print(f'''{yellow}  [6] {blue}SAD''')
-    linex()
-    react_choice = input(f'''{yellow}  Choose : {green}''')
-    reaction_types = {
-        '1': 'LIKE',
-        '2': 'LOVE',
-        '3': 'HAHA',
-        '4': 'WOW',
-        '5': 'ANGRY',
-        '6': 'SAD'}
-    reaction_type = reaction_types.get(react_choice)
-    if not reaction_type:
-        print(f'''{red}  Invalid reaction choice.''')
-        return None
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Input quantity of reactions, limit is {green}{len(access_tokens)} : {green}'''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(
-            f'''{red}  Error: The specified limit exceeds the number of available reactors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        uid_url = f'''{comment_uid}'''
-        auto_react = f'''https://graph.facebook.com/v18.0/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'''
-        time.sleep(1)
-        headers_ = {
-            'user-agent': W_ueragnt()
-        }
-        response = requests.post(auto_react, headers=headers_)
-        if response.ok:
-            success_count += 1
-            print(f'''{green}  REACTOR {i + 1} ---> Successfully Reacted!''')
-        else:
-            failure_count += 1
-            print(f'''{red}  REACTOR {i + 1} ---> Failed to React!''')
-    linex()
-    print(f'''{yellow}  TOTAL : \n''')
-    print(f'''{green}  Completed : {white}{success_count}''')
-    print(f'''{red}  Failed : {white}{failure_count}''')
-
-def get_access_token_from_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return file.read().strip().split('\n')
-    except FileNotFoundError:
-        print(f'''{red}  Start the tool first!''')
-        return None
-
-def react_reels():
-    ses = requests.Session()
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO REACT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    if account_choose == '1' or account_choose == '01':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-    elif account_choose == '2' or account_choose == '02':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-    elif account_choose == '3' or account_choose == '03':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-    elif account_choose == '4' or account_choose == '04':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    elif account_choose == '0' or account_choose == '00':
-        main()
-        return
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    comment_uid = input(f'''{yellow}  Enter Reels Video UID: {green}''')
-    linex()
-    print(f'''{white}  CHOOSE REACTION: ''')
-    print(f'''{yellow}  [1] {blue}LIKE''')
-    print(f'''{yellow}  [2] {blue}LOVE''')
-    print(f'''{yellow}  [3] {blue}HAHA''')
-    print(f'''{yellow}  [4] {blue}WOW''')
-    print(f'''{yellow}  [5] {blue}ANGRY''')
-    print(f'''{yellow}  [6] {blue}SAD''')
-    linex()
-    react_choice = input(f'''{yellow}  Choose : {green}''')
-    reaction_types = {
-        '1': 'LIKE',
-        '2': 'LOVE',
-        '3': 'HAHA',
-        '4': 'WOW',
-        '5': 'ANGRY',
-        '6': 'SAD'}
-    reaction_type = reaction_types.get(react_choice)
-    if not reaction_type:
-        print(f'''{red}  Invalid reaction choice.''')
-        return None
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Input quantity of reactions, limit is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(
-            f'''{red}  Error: The specified limit exceeds the number of available reactors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        uid_url = f'''{comment_uid}'''
-        auto_react = f'''https://graph.facebook.com/v18.0/{uid_url}/reactions?type={reaction_type}&access_token={access_token}'''
-        headers = {
-            'user-agent': W_ueragnt()
-        }
-        response = requests.post(auto_react, headers=headers)
-        if response.ok:
-            success_count += 1
-            print(f'''{green}  REACTOR {i + 1} ---> Successfully Reacted!''')
-        else:
-            failure_count += 1
-            print(f'''{red}  REACTOR {i + 1} ---> Failed to React!''')
-    linex()
-    print(f'''{yellow}  TOTAL : \n''')
-    print(f'''{green}  Completed : {white}{success_count}''')
-    print(f'''{red}  Failed : {white}{failure_count}''')
-
-def follow():
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO FOLLOW:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    if account_choose == '1' or account_choose == '01':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-    elif account_choose == '2' or account_choose == '02':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-    elif account_choose == '3' or account_choose == '03':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-    elif account_choose == '4' or account_choose == '04':
-        file_path = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    elif account_choose == '0' or account_choose == '00':
-        main()
-        return
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    user_id = input(f'''{yellow}  Enter target UID: {green}''')
-    linex()
-    try:
-        limit = int(
-            input(f'''{yellow}  Input quantity of follows, limit is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available followers.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        auto_follow_url = f'''https://graph.facebook.com/v19.0/{user_id}/subscribers'''
-        time.sleep(1)
-        headers = {
-            'Authorization': f'''Bearer {access_token}''',
-            'user-agent': W_ueragnt()
-        }
-        response = requests.post(auto_follow_url, headers=headers)
-        if response.ok:
-            success_count += 1
-            print(f'''{green}  FOLLOWER {i + 1} ---> Successfully Followed!''')
-        else:
-            failure_count += 1
-            print(f'''{red}  FOLLOWER {i + 1} ---> Failed to Follow!''')
-    linex()
-    print(f'''{yellow}  TOTAL : \n''')
-    print(f'''{green}  Completed : {white}{success_count}''')
-    print(f'''{red}  Failed : {white}{failure_count}''')
-
-def auto_comment():
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f'''{red}  An error occurred: {e}''')
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f'''{red}  Invalid post link.''')
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f'''{red}  Start the tool first!''')
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO COMMENT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_paths = {
-        '1': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt',
-        '2': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt',
-        '3': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt',
-        '4': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    }
-    file_path = file_paths.get(account_choose)
-    if not file_path:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        auto_comment()
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    post_link = input(f'''{yellow}  Enter post link: {green}''')
-    linex()
-    target_uid = extract_uid_from_link(post_link)
-    if not target_uid:
-        print(f'''{red}  UID extraction failed. Please provide a valid post link. Copy link on Facebook Lite!''')
-        return None
-    converted_link = convert_to_traodoisub(post_link)
-    if not converted_link:
-        print(f'''{red}  Failed to convert post link.''')
-        return None
-    input_comment = input(f'''{yellow}  Enter Comment : {green}''')
-    comments = input_comment.split('|')
-    num_comments = len(comments)
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Enter number of comments, total available is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available commentors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        comment_index = i % num_comments
-        comment = comments[comment_index]
-        auto_comment_url = f'''https://graph.facebook.com/{converted_link}/comments'''
-        params = {'message': comment, 'access_token': access_token}
-        headers = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_comment_url,params=params,headers=headers)
-        if response.ok:
-            print(f'''{green}  COMMENTOR {i + 1} ---> Successfully Comment!''')
-            success_count += 1
-        else:
-            print(f'''{red}  COMMENTOR {i + 1} ---> Failed to Comment!''')
-            failure_count += 1
-        linex()
-        print(f'''{yellow}  TOTAL : \n''')
-        print(f'''{green}  Completed : {white}{success_count}''')
-        print(f'''{red}  Failed : {white}{failure_count}''')
-    return None
-
-def auto_comment_to_dp():
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f'''{red}  An error occurred: {e}''')
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f'''{red}  Invalid post link.''')
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f'''{red}  Start the tool first!''')
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO COMMENT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_paths = {
-        '1': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt',
-        '2': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt',
-        '3': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt',
-        '4': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    }
-    file_path = file_paths.get(account_choose)
-    if not file_path:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        auto_comment_to_dp()
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    converted_link = input(f'''{yellow}  Enter post FB ID: {green}''')
-    linex()
-    input_comment = input(f'''{yellow}  Enter Comment : {green}''')
-    comments = input_comment.split('|')
-    num_comments = len(comments)
-    linex()
-    try:
-        limit = int(
-            input(f'''{yellow}  Enter number of comments, total available is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available commentors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        comment_index = i % num_comments
-        comment = comments[comment_index]
-        auto_comment_url = f'''https://graph.facebook.com/{converted_link}/comments'''
-        params = {'message': comment, 'access_token': access_token}
-        time.sleep(1)
-        headers = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_comment_url,params=params,headers=headers)
-        if response.ok:
-            print(f'''{green}  COMMENTOR {i + 1} ---> Successfully Comment!''')
-            success_count += 1
-        else:
-            print(f'''{red}  COMMENTOR {i + 1} ---> Failed to Comment!''')
-            failure_count += 1
-        linex()
-        print(f'''{yellow}  TOTAL : \n''')
-        print(f'''{green}  Completed : {white}{success_count}''')
-        print(f'''{red}  Failed : {white}{failure_count}''')
-    return None
-
-def reply_to_comment():
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f'''{red}  An error occurred: {e}''')
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f'''{red}  Invalid post link.''')
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f'''{red}  Start the tool first!''')
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO REPLY:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_paths = {
-        '1': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt',
-        '2': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt',
-        '3': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt',
-        '4': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    }
-    file_path = file_paths.get(account_choose)
-    if not file_path:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        reply_to_comment()
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    converted_link = input(f'''{yellow}  Enter comment FB ID: {green}''')
-    linex()
-    input_comment = input(f'''{yellow}  Enter Comment : {green}''')
-    comments = input_comment.split('|')
-    num_comments = len(comments)
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Enter number of comments, total available is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available commentors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        comment_index = i % num_comments
-        comment = comments[comment_index]
-        auto_comment_url = f'''https://graph.facebook.com/{converted_link}/comments'''
-        params = {'message': comment, 'access_token': access_token}
-        time.sleep(1)
-        headers = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_comment_url,params=params,headers=headers)
-        if response.ok:
-            print(f'''{green}  COMMENTOR {i + 1} ---> Successfully Comment!''')
-            success_count += 1
-        else:
-            print(f'''{red}  COMMENTOR {i + 1} ---> Failed to Comment!''')
-            failure_count += 1
-        linex()
-        print(f'''{yellow}  TOTAL : \n''')
-        print(f'''{green}  Completed : {white}{success_count}''')
-        print(f'''{red}  Failed : {white}{failure_count}''')
-    return None
-
-
-def auto_comment_to_reels():
-
-    def convert_to_traodoisub(url):
-        try:
-            response = requests.post(
-                'https://id.traodoisub.com/api.php',
-                data={
-                    'link': url})
-            if response.status_code == 200:
-                result = response.json().get('id')
-                return result
-        except Exception as e:
-            print(f'''{red}  An error occurred: {e}''')
-        return None
-
-    def extract_uid_from_link(post_link):
-        pattern = 'https://www\\.facebook\\.com/(\\d+)/posts/[^/]+/?'
-        match = re.match(pattern, post_link)
-        if match:
-            return match.group(1)
-        print(f'''{red}  Invalid post link.''')
-        return None
-
-    def get_access_token_from_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                return file.read().strip().split('\n')
-        except FileNotFoundError:
-            print(f'''{red}  Start the tool first!''')
-            return None
-    clear()
-    logo()
-    print(f'''{white}  CHOOSE FACEBOOK TO COMMENT:''')
-    print(f'''{yellow}  [1] {blue}YOUR FRA LIST''')
-    print(f'''{yellow}  [2] {blue}YOUR RPA LIST''')
-    print(f'''{yellow}  [3] {blue}YOUR FRA PAGES LIST''')
-    print(f'''{yellow}  [4] {blue}YOUR RPA PAGES LIST''')
-    print(f'''{red}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    account_choose = input(f'''{yellow}  Choose : {green}''')
-    linex()
-    file_paths = {
-        '1': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt',
-        '2': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt',
-        '3': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt',
-        '4': 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
-    }
-    file_path = file_paths.get(account_choose)
-    if not file_path:
-        print(f'''{red}  Invalid Input!''')
-        sleep(1.5)
-        auto_comment_to_reels()
-    access_tokens = get_access_token_from_file(file_path)
-    if not access_tokens:
-        return None
-    converted_link = input(f'''{yellow}  Enter Reels Video UID: {green}''')
-    linex()
-    input_comment = input(f'''{yellow}  Enter Comment : {green}''')
-    comments = input_comment.split('|')
-    num_comments = len(comments)
-    linex()
-    try:
-        limit = int(input(f'''{yellow}  Enter number of comments, total available is {green}{len(access_tokens)} : '''))
-    except ValueError:
-        print(f'''{red}  Error: Please enter a valid number for the limit.''')
-        return None
-    if limit > len(access_tokens):
-        print(f'''{red}  Error: The specified limit exceeds the number of available commentors.''')
-        return None
-    success_count = 0
-    failure_count = 0
-    for i, access_token in enumerate(access_tokens[:limit]):
-        comment_index = i % num_comments
-        comment = comments[comment_index]
-        auto_comment_url = f'''https://graph.facebook.com/{converted_link}/comments'''
-        params = {'message': comment, 'access_token': access_token}
-        time.sleep(1)
-        headers = {'user-agent': W_ueragnt()}
-        response = requests.post(auto_comment_url,params=params,headers=headers)
-        if response.ok:
-            print(f'''{green}  COMMENTOR {i + 1} ---> Successfully Comment!''')
-            success_count += 1
-        else:
-            print(f'''{red}  COMMENTOR {i + 1} ---> Failed to Comment!''')
-            failure_count += 1
-        linex()
-        print(f'''{yellow}  TOTAL : \n''')
-        print(f'''{green}  Completed : {white}{success_count}''')
-        print(f'''{red}  Failed : {white}{failure_count}''')
-    return None
-
-def login():
-    clear()
-    logo()
-    cookie = input(f'''{yellow}  Cookie : {green}''')
-    linex()
-    try:
-        data = ses.get("https://business.facebook.com/business_locations",
-            headers={
-                "user-agent": "Mozilla/5.0 (Linux; Android 8.1.0; MI 8 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.86 Mobile Safari/537.36",
-                "referer": "https://www.facebook.com/",
-                "host": "business.facebook.com",
-                "origin": "https://business.facebook.com",
-                "upgrade-insecure-requests": "1",
-                "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-                "cache-control": "max-age=0",
-                "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                "content-type": "text/html; charset=utf-8"},
-            cookies={"cookie": cookie})
-        find_token = re.search(r"(EAAG\w+)", data.text)
-        open("token.txt", "w").write(find_token.group(1))
-        open("cookie.txt", "w").write(cookie)
-        print(f"{green}  Login successfully")
-        time.sleep(2)
-        bot_share()
-    except BaseException:
-        pass
-
-def bot_share():
-    linex()
-    try:
-        token = open("token.txt", "r").read()
-        cok = open("cookie.txt", "r").read()
-        cookie = {"cookie": cok}
-        nama = ses.get(f"https://graph.facebook.com/me?fields=name&access_token={token}",cookies=cookie).json()["name"]
-        id = requests.get("https://graph.facebook.com/me/?access_token=%s" %(token), cookies={"cookie": cok}).json()["id"]
-        requests.post(f"https://graph.facebook.com/826244541950192/comments/?message={kom1}&access_token={token}",headers={"cookie": cok})
-    except BaseException:
-        pass
-    link = input(f'''{yellow}  Enter post link: {green}''')
-    linex()
-    lmt = int(input(f'''{yellow}  Enter limit of shares : {green}'''))
-    linex()
-    try:
-        n = 0
-        header = {
-            "authority": "graph.facebook.com",
-            "cache-control": "max-age=0",
-            "sec-ch-ua-mobile": "?0",
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1"}
-        for x in range(lmt):
-            n += 1
-            post = ses.post(f"https://graph.facebook.com/v13.0/me/feed?link={link}&published=0&access_token={token}",headers=header,cookies=cookie).text
-            data = json.loads(post)
-            if "id" in post:
-                print(f'''{green}  SHARE {x + 1} ---> Successfully Sent! {yellow}---> UID : {post or 'id'}''')
-            else:
-                print(f'{red}  Invalid')
-                exit()
-            if n == lmt:
-                print(f"{green}  Share Limit Reached. Sent {lmt} Share")
-                linex()
-                input(f"  Press enter to go back ")
-                main()
-    except requests.exceptions.ConnectionError:
-        print(f'{red}  No internet connection')
-        exit()
-
-class reg_pro5():
-    def __init__(self, cookies, name) -> None:
+class RegPro5:
+    def __init__(self, cookies) -> None:
         self.cookies = cookies
         self.id_acc = self.cookies.split('c_user=')[1].split(';')[0]
         headers = {
             'authority': 'www.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'accept-language': 'vi',
             'cookie': self.cookies,
             'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua': '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '""',
+            'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'none',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-            'viewport-width': '980',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+            'viewport-width': '1366',
         }
-        url_profile = requests.get('https://www.facebook.com/me',headers=headers).url
+        
+        url_profile = requests.get('https://www.facebook.com/me', headers=headers).url
         profile = requests.get(url_profile, headers=headers).text
-        try:
-            self.fb_dtsg = profile.split('{"name":"fb_dtsg","value":"')[1].split('"},')[0]
-        except BaseException:
-            self.fb_dtsg = profile.split(',"f":"')[1].split('","l":null}')[0]
 
-    def Reg(self):
+        # Initialize fb_dtsg to None
+        self.fb_dtsg = None
+        
+        # Try to find fb_dtsg using multiple patterns
+        patterns = [
+            '{"name":"fb_dtsg","value":"',  # Primary pattern
+            ',"f":"',                      # Secondary pattern
+            # Add more patterns if necessary
+        ]
+
+        for pattern in patterns:
+            try:
+                self.fb_dtsg = profile.split(pattern)[1].split('"},')[0]
+                break  # Break if the pattern is found
+            except IndexError:
+                continue  # Try the next pattern
+
+        if not self.fb_dtsg:
+            kolor("Error: fb_dtsg not found in profile data.", 'red')
+    import requests
+import threading
+from concurrent.futures import ThreadPoolExecutor
+import random
+import time
+import sys
+import os
+import platform
+# Color codes for formatting output
+purple = "\033[1;35m"
+blue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+white = "\033[1;37m"
+import random
+import string
+def clear_screen():
+    if 'termux' in platform.system().lower():
+        os.system('clear')
+    elif platform.system().lower() == 'windows':
+        os.system('cls')
+    else:
+        os.system('clear')
+def generate_user_agent():
+    fbav = f"{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}"
+    fbbv = str(random.randint(111111111, 999999999))
+    fbrv = '0'
+    random_seed = random.Random()
+    adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+    # Randomly vary the Android OS version, device, and app version for realism
+    device = random.choice(["HUAWEI MAR-LX1M", "Samsung SM-G960F", "OnePlus GM1913"])
+    fbav_version = str(random.randint(49, 150))  # Updated range for FBAV versions
+    fbbv_version = str(random.randint(11111111, 77777777))
+    carrier = random.choice(["Ooredoo TN", "Orange", "Vodafone", "T-Mobile"])
+
+    ua_bgraph = f'[FBAN/FB4A;FBAV/{fbav_version}.0.0.{random.randrange(20, 49)}.{random.randint(11, 99)};FBBV/{fbbv_version};' \
+                f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1080,height=2107}};FBLC/fr_FR;' \
+                f'FBRV/{fbrv};FBCR/{carrier};FBMF/{device.split(" ")[0]};FBBD/{device.split(" ")[0]};' \
+                f'FBPN/com.facebook.katana;FBDV/{device};FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+    
+    return ua_bgraph
+
+ua_bgraph = generate_user_agent()
+
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+# Random FB version generation
+fbav = f'{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+# User agent string
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def bgraph(uid, pw, path_file, extract_type, success_count, existing_uids):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+
+    data = {
+        'method': 'auth.login',
+        'fb_api_req_friendly_name': 'authenticate',
+        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        
+        if uid in existing_uids:
+            print(f"     {yellow}[INFO] {red}ACCOUNT --> {white}{uid} {red}already exists.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            return
+
+        response = requests.post(url, data=data).json()
+        
+        print(response)
+        if 'access_token' in response:
+            token = response['access_token']
+
+            with open(path_file, 'a') as f:
+                f.write(f"{uid}|{token}\n")
+
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[32m[SUCCESS]\033[0m: Extracted Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            success_count.append(uid)
+        else:
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[31m[FAILED]\033[0m: TO EXTRACT Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except Exception as e:
+        print(f"     \033[1;31m[ERROR]\033[0m Error extracting account: {uid}. Reason: {str(e)}\033[0m\n")
+
+
+def proz(accounts_file, token_output_path, extract_type):
+    """Process the accounts and extract tokens concurrently."""
+    success_count = []
+
+    # Load existing uids from the output file to avoid duplicates
+    existing_uids = set()
+    if os.path.exists(token_output_path):
+        with open(token_output_path, 'r') as f:
+            existing_uids = {line.split('|')[0] for line in f.readlines()}
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph, uid, pw, token_output_path, extract_type, success_count, existing_uids)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+        return
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+fbav = f'''{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'''
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def load_existing_tokens(path_file):
+    """Load existing accounts or pages from the output file."""
+    if os.path.exists(path_file):
+        with open(path_file, 'r') as f:
+            return {line.split('|')[0] for line in f.readlines()}  # Set of existing uids or page ids
+    return set()
+
+def bgraph_page(uid, pw, path_file, extract_type, success_count, existing_tokens):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+    
+    if uid in existing_tokens:
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     {white}ACCOUNT ─────> {red}{uid} {green}ALREADY EXISTS")
+        return
+
+    data = {
+        'method': 'auth.login',
+        'fb_api_req_friendly_name': 'authenticate',
+        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        response = requests.post(url, data=data).json()
+        
+        if 'access_token' in response:
+            token = response['access_token']
+
+            # Extract Facebook Pages associated with the account token
+            pages = extract_fb_pages(token)
+            if pages:
+                for page in pages:
+                    page_id = page['id']
+                    if page_id not in existing_tokens:
+                        with open(path_file, 'a') as f:
+                            f.write(f"{page_id}|{page['accessToken']}\n")
+                        print(f"{white}{uid}  ─────> {green}Page ID: {red}{page_id} {yellow}EXTRACTED SUCCESSFULLY")
+                        existing_tokens.add(page_id)
+                    else:
+                        print(f"{white}ID:  {page_id} ─────> {green}ALREADY EXISTS ! ")
+
+            else:
+                print(f"{white}{uid} ─────> {red}DOESN'T HAVE PAGES !")
+            
+            success_count.append(uid)
+        else:
+            print(f"{white}{uid}  ─────> {red}FAILED TO EXTRACT ! ")
+
+    except Exception as e:
+        print(f"[ERROR] Error extracting account: {uid}. Reason: {str(e)}")
+
+def extract_fb_pages(token):
+    url = 'https://graph.facebook.com/v18.0/me/accounts'
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+    
+    pages_data = []
+    
+    while url:
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code != 200:
+            print(f'Error: {response.text}')
+            return None
+        
+        data = response.json()
+        for page in data.get('data', []):
+            pages_data.append({
+                'id': page.get('id'),
+                'accessToken': page.get('access_token')
+            })
+        
+        url = data.get('paging', {}).get('next')  # Update the URL for the next request
+
+    return pages_data
+
+def prozc(accounts_file, token_output_path, extract_type):
+    success_count = []
+    existing_tokens = load_existing_tokens(token_output_path)
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph_page, uid, pw, token_output_path, extract_type, success_count, existing_tokens)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+def extraction():
+
+    clear_screen()
+    jovan()
+    print(f"     {white}[1] {yellow}EXTRACT {red}ACCOUNT")
+    print(f"     {white}[2] {yellow}EXTRACT {red}PAGES")
+    print("     \033[1;34m───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {green}CHOICE: ").strip() 
+    if choice == '1':
+        axl1()
+    elif choice == '2':
+        axl2()
+    else:
+        print(f"     {red}INVALID CHOICE")
+def axl2():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"  
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    prozc(file_path, account_file, extract_type)
+def axl1():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    token_output_path = account_file
+
+    proz(file_path, token_output_path, extract_type)
+
+
+def get_token_from_file(file_path):
+    """Read tokens from the file and return a random token."""
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        tokens = [line.strip().split('|')[1] for line in lines if '|' in line]
+    return random.choice(tokens)
+
+class FacebookPoster:
+    def __init__(self, link):
+        self.link = link
+
+    def share_post(self, token):
+        """Shares a post on the user's feed with 'Only Me' privacy."""
+        url = "https://graph.facebook.com/v13.0/me/feed"
+        payload = {
+            'link': self.link,
+            'published': '0',
+            'privacy': '{"value":"SELF"}',
+            'access_token': token
+        }
+        try:
+            response = requests.post(url, data=payload)
+            print(response)
+            if response.status_code == 200:
+                
+                print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+                print("      Successfully Shared")
+                return True
+            else:
+                return False
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+            return False
+
+def share_in_threads(link, file_path, num_shares):
+    start_all = time.time()  # Record the start time for the entire operation
+    
+    def worker():
+        success = False
+        while not success:
+            token = get_token_from_file(file_path)
+            fb_poster = FacebookPoster(link)
+            success = fb_poster.share_post(token)
+
+    max_workers = 40
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        for _ in range(num_shares):
+            executor.submit(worker)
+
+    end_all = time.time()  # Record the end time for the entire operation
+    duration = end_all - start_all
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"\n  {yellow}Sharing started: {start_all}")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     {yellow}Sharing ended: {end_all}")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    print(f"    {yellow}Total duration: {duration:.2f} seconds\033[0m")
+def count_tokens(accounts_file, pages_file):
+    """Count the number of accounts and pages stored in the respective files."""
+    total_accounts = 0
+    total_pages = 0
+
+    try:
+        with open(accounts_file, 'r') as af:
+            total_accounts = sum(1 for line in af if line.strip())  # Count non-empty lines
+    except FileNotFoundError:
+        print(f"Account file not found: {accounts_file}")
+
+    try:
+        with open(pages_file, 'r') as pf:
+            total_pages = sum(1 for line in pf if line.strip())  # Count non-empty lines
+    except FileNotFoundError:
+        print(f"Page file not found: {pages_file}")
+
+    return total_accounts, total_pages
+def share():
+    clear_screen()
+    jovan()
+    print(f"""     \033[1;37mCHOOSE TYPE OF ACCOUNTS TO AUTO SHARE: 
+     \033[1;34m[1] \033[1;32mFRA ACCOUNT 
+     \033[1;34m[2] \033[1;32mFRA PAGES
+     \033[1;34m[3] \033[1;32mRPW ACCOUNT
+     \033[1;34m[4] \033[1;32mRPW PAGES
+     \033[1;31m[0] \033[1;31mEXIT 
+    \033[1;34m───────────────────────────────────────────────────────────────\033[0m""")
+    choice = input(f"     {blue}Choice ")
+    
+    file_map = {
+        '1': 'C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt',
+        '2': 'C:\\Users\\Beam\\Documents\\FRAPAGES.txt',
+        '3': 'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt',
+        '4': 'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt'
+    }
+
+    file_path = file_map.get(choice)
+    if not file_path:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    post_id = input(f"   {yellow}Enter the post ID to share: ")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    num_shares = int(input(f"   {blue}Limit: "))
+
+    # Construct the link using the post ID
+    link = f"https://www.facebook.com/{post_id}"
+
+    share_in_threads(link, file_path, num_shares)
+def main2(): 
+    fraaccounts_file = 'C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt'
+    frapages_file = 'C:\\Users\\Beam\\Documents\\FRAPAGES.txt'
+    rpwaccounts = 'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt'
+    rpwpages = 'C:\\Users\\Beam\\Documents\\RPWPAGES.txt'
+    total_accounts, total_pages = count_tokens(fraaccounts_file, frapages_file)
+    total_account_rpw, total_pages_rpw = count_tokens(rpwaccounts,rpwpages)
+    clear_screen()
+    jovan()
+    print(f"""                 {yellow}OVERVIEW OF STORED ACCOUNT & PAGES💫
+          
+                            {blue}FRA ACCOUNT{yellow} : {green}{total_accounts}
+                            {blue}FRA PAGES  {yellow} : {green}{total_pages}
+                            {blue}RPW ACCOUNT{yellow} : {green}{ total_account_rpw}
+                            {blue}RPW PAGES  {yellow} : {green}{total_pages_rpw}
+      {blue}───────────────────────────────────────────────────────────────\033[0m""")
+    print(f"     {blue}[1] {yellow}EXTRACT ACCOUNT")
+    print(f"     {blue}[2] {yellow}AUTO SHARE ")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f'    {yellow}Enter Choice: ')
+    if choice == '1': 
+        extraction()
+    if choice == '2': 
+        share()
+
+
+
+def extraction():
+
+    clear_screen()
+    jovan()
+    print(f"     {white}[1] {yellow}EXTRACT {red}ACCOUNT")
+    print(f"     {white}[2] {yellow}EXTRACT {red}PAGES")
+    print("     \033[1;34m───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {green}CHOICE: ").strip() 
+    if choice == '1':
+        axl1()
+    elif choice == '2':
+        axl2()
+    else:
+        print(f"     {red}INVALID CHOICE")
+    def reg(self, name):
         headers = {
             'authority': 'www.facebook.com',
             'accept': '*/*',
@@ -2848,20 +4265,18 @@ class reg_pro5():
             'origin': 'https://www.facebook.com',
             'referer': 'https://www.facebook.com/pages/creation?ref_type=launch_point',
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '""',
+            'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-            'viewport-width': '980',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+            'viewport-width': '979',
             'x-fb-friendly-name': 'AdditionalProfilePlusCreationMutation',
             'x-fb-lsd': 'ZM7FAk6cuRcUp3imwqvHTY',
         }
+
         data = {
             'av': self.id_acc,
             '__user': self.id_acc,
@@ -2889,290 +4304,1624 @@ class reg_pro5():
             'server_timestamps': 'true',
             'doc_id': '5903223909690825',
         }
-        response = requests.post('https://www.facebook.com/api/graphql/',headers=headers,data=data).json()
+
+        response = requests.post('https://www.facebook.com/api/graphql/', headers=headers, data=data)
+
         try:
-            return response['data']['additional_profile_plus_create']['additional_profile']['id']
-        except BaseException:
-            return (f'''{red}  ID : {red}{self.id_acc} {white}---> {red}Failed to Create Page!''')
+            result = response.json()
+            if 'id' in result:
+                page_id = result['id']
+                self.set_profile_picture(page_id)
+            return result
+        except:
+            return response.text
 
-def create_page():
-    clear()
-    logo()
-    dem = 0
-    ck = []
-    filecreate = input(f'''{yellow}  Input File Path : {green}''')
-    linex()
-    first = input(f"{yellow}  First Name : {green}")
-    linex()
-    middle = input(f"{yellow}  Middle Name : {green}")
-    linex()
-    last = input(f"{yellow}  Last Name : {green}")
-    linex()
-    for i in open(filecreate).read().splitlines():
-        ck.append(i.split("|")[0])
-    dl = input(f'{yellow}  How Many Create Pages : {green}')
+    def set_profile_picture(self, page_id):
+        picture_path = "/home/spade/Desktop/load data/Profile.jpeg"  # Replace with your actual path to the profile picture
+        headers = {
+            'authority': 'www.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+            'cookie': self.cookies,
+            'origin': 'https://www.facebook.com',
+            'referer': f'https://www.facebook.com/{page_id}',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+            'viewport-width': '979',
+            'x-fb-friendly-name': 'ProfilePicUpload',
+            'x-fb-lsd': 'ZM7FAk6cuRcUp3imwqvHTY',
+        }
 
-    def delay(dl):
-        t = datetime.now().strftime("%H:%M")
-        for ti in range(int(dl), 0, -1):
-            print(f'\r{green}  Task Start > {ti} < Bryx', end='\r')
-            sleep(0.10)
-        for cookies in ck:
-            bryxxx = (first)
-            bryxxx1 = (middle)
-            bryxxx2 = (last)
-            name = str(bryxxx + ' ' + bryxxx1 + ' ' + bryxxx2)
-            dem = dem + 1
-            try:
-                print(dem, reg_pro5(cookies, name).Reg())
-            except BaseException:
-                pass
-            delay(dl)
-            main()
+        files = {
+            'source': (os.path.basename(picture_path), open(picture_path, 'rb'), 'image/jpeg')
+        }
 
-def save_ids_to_file(user_id, post_id, choice):
-    folder = 'UID'
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-    if choice == 'both' and user_id and post_id:
-        file_path = os.path.join(folder, 'user_postid.txt')
-        with open(file_path, 'w') as file:
-            file.write(f'{user_id}_{post_id}\n')
-    elif choice == 'user' and user_id:
-        file_path = os.path.join(folder, 'userid.txt')
-        with open(file_path, 'w') as file:
-            file.write(f'{user_id}\n')
-    elif choice == 'post' and post_id:
-        file_path = os.path.join(folder, 'postid.txt')
-        with open(file_path, 'w') as file:
-            file.write(f'{post_id}\n')
+        data = {
+            'av': self.id_acc,
+            '__user': self.id_acc,
+            'profile_id': page_id,
+            'fb_dtsg': self.fb_dtsg,
+            'photo_source': '4',
+            'composer_entry_time': '0',
+            'composer_session_id': 'abc',
+            'ref': 'timeline',
+            'upload_id': 'profile_pic',
+            'upload_type': 'profile',
+        }
 
-def uid_main():
-    linex()
-    post_link = input(f'{yellow}  Enter the Facebook post link : {green}')
-    user_id, post_id = extract_ids_from_link(post_link)
-    if user_id or post_id:
-        choice = input(f'{yellow}  What would you like to extract? (user/post/both) :{green}').strip().lower()
-        if choice == 'both':
-            if user_id and post_id:
-                print(f'{yellow}  Extracted User ID and Post ID: {green}{user_id}_{post_id}{white}')
-                save_ids_to_file(user_id, post_id, 'both')
-            else:
-                print(f'''{red}  Invalid choice.''')
-        elif choice == 'user' and user_id:
-            print(f'{yellow}  Extracted User ID: {green}{user_id}{white}')
-            save_ids_to_file(user_id, None, 'user')
-        elif choice == 'post' and post_id:
-            print(f'{yellow}  Extracted Post ID: {green}{post_id}{white}')
-            save_ids_to_file(None, post_id, 'post')
+        response = requests.post('https://www.facebook.com/photos/upload', headers=headers, files=files, data=data)
+
+        try:
+            return response.json()
+        except:
+            return response.text
+
+# Function to print colored text
+def kolor(text, color):
+    if color == 'green':
+        print(Fore.GREEN + text + Style.RESET_ALL)
+    elif color == 'red':
+        print(Fore.RED + text + Style.RESET_ALL)
+    else:
+        print(text)
+
+def get_cookies_file_path():
+    clear_screen()
+    jovan()
+    return input("Enter the path to the cookies.txt file: ")
+
+def hackezr():
+    
+    cookies_file = get_cookies_file_path()
+
+    try:
+        with open(cookies_file, 'r') as f:
+            cookies_list = f.readlines()
+    except FileNotFoundError:
+        kolor("Error: File not found. Please check the path.", 'red')
+        return
+
+    for cookie_line in cookies_list:
+        cookie_line = cookie_line.strip()  # Remove leading/trailing whitespace
+
+        # For your provided format, no need to split further; just use the entire line as cookies
+        cookies = cookie_line
+
+        vietnamese_names = [
+           "MrsTexasUNIVERSE Dr.MeenakshiRavi",
+"Melanii",
+"Israt Jahan",
+"Md Rubel Kahan",
+"Mariya Akthr Sathi",
+"Israt Xahan Esha",
+"Younietha Wasilah",
+"Nusaiba Islam Eva",
+"Lx Zoya",
+"Tasnia Rahman",
+"Mehedi Hasan",
+"Roja Islam",
+"Esme Johnston",
+"Riya Jahan",
+"Sinthiya Chowdhury",
+"Jannatul Ferdos",
+"Aysha Jannat",
+"Moinul Islam Shanto",
+"Tanveer Rahman",
+"Rosabel Mercado Oaing",
+"Bnegali Basi",
+"Ashlie Allaisa",
+"Rapk Miah",
+"Saima Akter",
+"Md Minar",
+"Tahmina Jannat Mim",
+"Humaryra Bin Allbihi",
+"Sadiya Akter",
+"MD Naeem",
+"Foysol Khan",
+"Md Robiul Sheikh",
+"Md Sohel",
+"Alex Hels Afridy",
+"Ocena Manus",
+"Shohag Sheikh",
+"Gojo Saturo",
+"Shaddat Khan",
+"MD Mithun",
+"Rakib Ahmmed Foysal",
+"Md Oliull Sheikh",
+"Md Sabbir Shaike",
+"Sk Tushar",
+"Vagne Dev",
+"MB �m�m",
+"Limon Sehk Limon Sehk",
+"Md Milan",
+"Reyad Islam",
+"Md Shobuzpra",
+"Md Masum Islam",
+"Tanzim Rabby",
+"R�bin Here",
+"MD Sumon MD Sumon",
+"Asif Khan",
+"Mis Afia",
+"���m�l H�q��",
+"Md Shakib Mridha",
+"Urzzal Mia",
+"Samuel Ramirez",
+"Shaddat Khan",
+"Shaheen Kanaipur",
+"MD Salman Sak",
+"MD Amirol",
+"Mahedi Islam",
+"MD Alhassan Hawlder",
+"Anis Osim",
+"Raihan Islam",
+"Hamida Forid Pur",
+"MD Sohel Sheikh",
+"Md Emram",
+"Md Nijam Uddin Sheikh",
+"MD Biplob",
+"Md Moyazzem",
+"Md Azad",
+"BA DH ON",
+"Md Rezaul Rezaul",
+"Tanjin Molla",
+"Md Sumon",
+"Obaidul Krim",
+"Rabby Khan",
+"Jahangir Gazi",
+"Md. Tamim",
+"Najir Sheikh",
+"Abu Bakar Khan",
+"Md Alamin",
+"Sgush Rsuhe",
+"Rabby Sheikh",
+        ]
+
+        random_name = random.choice(vietnamese_names)
+
+        reg_instance = RegPro5(cookies)
+        result = reg_instance.reg(random_name)
+
+        if 'error' not in result:
+            print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+            kolor(f"     {green}[SUCCESS] {red}Created Page", 'green')
         else:
-            print(f'''{red}  Invalid choice.''')
-    else:
-        print(f'{red}  Invalid post link.')
+            print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+            kolor(f"     {red}[UNSUCCESSFUL] {green}Created Page", 'red')
+import requests
+import os
 
-user_agents = [
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15.7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15',
-    'Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Mobile Safari/537.36']
+class Color:
+    END = '\033[0m'
+    BOLD = '\033[1m'
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    CYAN = '\033[96m'
 
-class ProfileGuard:
-    def __init__(self, token):
-        self.token = token
-        self.api_url = 'https://graph.facebook.com/v18.0/me'
+def pzl(username, passwords):
+    # Define the new access token and API details
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
 
-    def update_guard_status(self, activate=True):
-        params = {'access_token': self.token, 'fields': 'id,name,profile_pic'}
-        headers = {'Content-Type': 'application/json','User-Agent': random.choice(user_agents)}
+    for password in passwords:
+        data = {
+            'method': 'auth.login',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+            'email': username,
+            'password': password,
+            'access_token': accessToken
+        }
+        
         try:
-            response = requests.get(self.api_url, headers=headers, params=params)
-            if response.status_code == 200:
-                data = response.json()
-                status = 'activated' if activate else 'deactivated'
-                return f"Profile shield {status} successfully: {data.get('name', 'Unknown')}"
-            return f'{R}Failed to update profile shield. Status code: {response.status_code}'
-        except requests.RequestException as e:
-            return f'{R}Error updating profile shield: {e}'
+            response = requests.post(url, data=data)
+            response.raise_for_status()
+            responses = response.json()
+            
+            if 'access_token' in responses:
+                return responses['access_token'], True
+            else:
+                error_msg = responses.get('error_msg', 'Unknown error')
+                print(f"{Color.RED}Error for {username}: {error_msg}{Color.END}")
+        except requests.exceptions.RequestException as e:
+            print(f"{Color.RED}Error for {username}: {str(e)}{Color.END}")
+    
+    return None, False
 
-def profile_shield():
-    linex()
-    token = input(f'{yellow}  Enter your access token : {green}').strip()
-    linex()
-    command = input(f'{yellow}  Enter command (on/off): {green}').strip().lower()
-    linex()
-    if command not in ('on', 'off'):
-        print(f'{red}Invalid command. please enter \'on\' or \'off\'.')
+def sav(tokens_array, token_file_path):
+    """Save tokens in uid|token format."""
+    with open(token_file_path, 'w') as file:
+        for token_info in tokens_array:
+            uid = token_info['email']
+            access_token = token_info['access_token']
+            file.write(f"{uid}|{access_token}\n")
+
+def prz(file_path, tokens_array):
+    """Process the file and extract tokens for uid|pass format."""
+    if not os.path.isfile(file_path):
+        print(f"{Color.BOLD}File {file_path} does not exist.{Color.END}")
         return
-    if not token:
-        print(f'{red}Error: Access token is required.')
+
+    print(f"     {Color.BOLD}Processing file: {file_path}{Color.END}")
+
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    if not lines:
+        print(f"{Color.BOLD}File {file_path} is empty.{Color.END}")
         return
-    guard = ProfileGuard(token)
-    result = guard.update_guard_status(command == 'on')
-    print(result)
 
-def other_menu():
-    clear()
-    logo()
-    print(f'''{yellow}  [1] {cyan}UID GETTER''')
-    print(f'''{yellow}  [2] {cyan}PROFILE GUARD''')
-    print(f'''{yellow}  [3] {cyan}ACCOUNT CHECKER''')
-    print(f'''{yellow}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    choice = input(f'''{yellow}  Choose : {green}''')
-    if choice == '1':
-        uid_main()
-    elif choice == '2':
-        profile_shield()
-    elif choice == '3':
-        check_account()
-    elif choice == '0':
-        main()
+    account_pairs = [line.strip() for line in lines if '|' in line]
+
+    if not account_pairs:
+        print(f"{Color.BOLD}No valid uid|pass pairs found in {file_path}.{Color.END}")
+        return
+
+    for account in account_pairs:
+        uid, password = account.split('|')
+        pass
+        token, success = pzl(uid, [password])  # Using the password as a single element list
+        if success:
+            tokens_array.append({"email": uid, "access_token": token})
+            print(f"{Color.GREEN}Successfully extracted token for {uid}{Color.END}")
+        else:
+            print(f"{Color.BOLD}Failed to get token for {uid}.{Color.END}")
+
+def maz():
+    clear_screen()
+    jovan()
+    file_path = input(f"{Color.YELLOW}Enter the path of the text file with accounts and passwords: {Color.END}").strip()
+    token_file_path = input(f"{Color.YELLOW}Enter the path of the file where tokens should be stored: {Color.END}").strip()
+    
+    tokens_array = []
+    prz(file_path, tokens_array)
+
+    if tokens_array:
+        pass
+        for token_info in tokens_array:
+            pass
+        
+        sav(tokens_array, token_file_path)  # Save tokens in uid|token format
     else:
-        print(f'''{red}  Invalid choice. Please pick a number from 1 to 5 or 0 to return to the main menu.''')
-        return other_menu()
+        print(f"{Color.BOLD}No tokens collected.{Color.END}")
 
-headers_global = {
-    'user-agent': W_ueragnt(),
-    'viewport-width': '576'}
-ser = requests.get(
-    'https://raw.githubusercontent.com/Shuvo-BBHH/cnt/main/MY_SELL_PROJECT/smm.txt').text
-speed = 100
-allcookie = []
-s_react = []
-s_comment = []
-s_flw = []
-logos = logo
+    print(f"{Color.BLUE}Exiting the program...{Color.END}")
 
-def enc(txt):
-    encoded_bytes = base64.b64encode(txt.encode('utf-8'))
-    encoded_string = encoded_bytes.decode('utf-8')
-    return encoded_string
+# Run the program
 
-def start_tool():
-    clear()
-    logo()
-    print(f'''{yellow}  [1] {cyan}EXTRACT NORMAL ACCOUNT PAGES     {yellow}-  {green}[UID and Password]''')
-    print(f'''{yellow}  [2] {cyan}EXTRACT SINGLE NORMAL ACCOUNT    {yellow}-  {green}[No Duplicate Checker]''')
-    print(f'''{yellow}  [3] {cyan}EXTRACT BULK NORMAL ACCOUNTS M1  {yellow}-  {green}[Thru TXT File]''')
-    print(f'''{yellow}  [4] {cyan}EXTRACT BULK NORMAL ACCOUNTS M2  {yellow}-  {green}[Thru TXT File]''')
-    print(f'''{yellow}  [5] {cyan}EXTRACT BULK ACCOUNTS PAGES      {yellow}-  {green}[Thru TXT File]''')
-    print(f'''{yellow}  [0] {red}RETURN TO MAIN MENU''')
-    linex()
-    choice = input(f'''{yellow}  Choose : {green}''')
-    if choice == '1':
-        get_facebook_pages()
-    elif choice == '2':
-        get_facebook_account()
-    elif choice == '3':
-        bgraph_bulk_account()
-    elif choice == '4':
-        datr()
-    elif choice == '5':
-        bgraph_bulk_pages()
-    elif choice == '0':
-        main()
-    else:
-        print(f'''{red}  Invalid choice. Please pick a number from 1 to 5 or 0 to return to the main menu.''')
-        return start_tool()
 
-def count_lines_in_files(*file_paths):
-    for i, file_path in enumerate(file_paths, start=1):
-        try:
-            with open(file_path, 'r') as file:
-                total_lines = sum(1 for line in file)
-            if i == 1:
-                print(f'''\t\t{white}     FRA ACCOUNT {yellow}: {green}{total_lines}''')
-            elif i == 2:
-                print(f'''\t\t{white}     RPA ACCOUNT {yellow}: {green}{total_lines}''')
-            elif i == 3:
-                print(f'''\t\t{white}     FRA PAGES   {yellow}: {green}{total_lines}''')
-            elif i == 4:
-                print(f'''\t\t{white}     RPA PAGES   {yellow}: {green}{total_lines}''')
-        except FileNotFoundError:
-            print(f'''\t\t{red}   {file_path} Not Found!''')
+
+
+
+
+# Start the program
+
+
+
+def start():
+    clear_screen()
+    jovan()
+    token_file_path = input("Enter the path to the file containing the tokens: ").strip()
+    
+    tokens = rad(token_file_path)
+    if not tokens:
+        print("No tokens found. Exiting.")
+        return
+
+    if not os.path.exists(DIRECTORY):
+        print(f"Error: Directory '{DIRECTORY}' does not exist.")
+        return
+
+    files_in_directory = os.listdir(DIRECTORY)
+    if not files_in_directory:
+        print(f"Error: No files found in directory '{DIRECTORY}'.")
+        return
+
+    for user_token in tokens:
+        pages = pigzs(user_token)
+        if not pages:
+            print(f"No pages found for token {user_token}. Skipping.")
             continue
 
-path_file1 = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt'
-path_file2 = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt'
-path_file3 = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt'
-path_file4 = 'C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt'
+        for page in pages:
+            pass
+            page_id = page['id']
+            page_access_token = page.get('access_token')
 
-def main():
-    clear()
-    logo()
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-ACCOUNT-NAME-ID.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-ACCOUNT-NAME-ID.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-FRA-PAGES-NAME-ID.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES.txt', 'a').write('')
-    open('C:\\Users\\Beam\\Documents\\.EXTRACT-TOKEN-RP-PAGES-NAME-ID.txt', 'a').write('')
-    print(f'''\t\t{blue}YOUR BOOSTING TOOL OVERVIEW''')
-    linex()
-    count_lines_in_files(path_file1, path_file2, path_file3, path_file4)
-    linex()
-    print(f'''{red}  [01] {red}START''')
-    print(f'''{yellow}  [02] {blue}AUTO REACT W/O CARE      {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [03] {blue}AUTO REACT WITH CARE     {yellow}-  {green}[NORMAL ACCOUNT ONLY]''')
-    print(f'''{yellow}  [04] {blue}AUTO REACT TO COMMENT    {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [05] {blue}AUTO REACT TO DP & COVER {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [06] {blue}AUTO REACT TO REELS      {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [07] {blue}AUTO FOLLOW              {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [08] {blue}AUTO COMMENT TO POST     {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [09] {blue}AUTO COMMENT TO REELS    {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [10] {blue}AUTO COMMENT TO DP       {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [11] {blue}REPLY TO COMMENT         {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [12] {blue}AUTO SHARE               {yellow}-  {green}[NORMAL ACCOUNT ONLY]''')
-    print(f'''{yellow}  [13] {blue}AUTO GROUP JOIN          {yellow}-  {green}[FACEBOOK PAGE ONLY]''')
-    print(f'''{yellow}  [14] {blue}LIKE & FOLLOW PAGE       {yellow}-  {green}[FACEBOOK PAGE ONLY]''')
-    print(f'''{yellow}  [15] {blue}STORED PAGES AND ACCOUNT {yellow}-  {green}[PAGE & NORMAL ACCOUNT]''')
-    print(f'''{yellow}  [16] {blue}AUTO CREATE PAGE         {yellow}-  {green}[PHB NAMES]''')
-    print(f'''{red}  [17] {red}RESET''')
-    linex()
-    print(f'''{yellow}  [18] {blue}OTHER TOOLS              {yellow}-  {green}[ACCURATE]''')
-    linex()
-    choice = input(f'''{yellow}  Choose : {green}''').upper()
-    if choice == '1' or choice == '01':
-        start_tool()
-    elif choice == '2' or choice == '02':
-        react()
-    elif choice == '3' or choice == '03':
-        react_with_care()
-    elif choice == '4' or choice == '04':
-        react_comment()
-    elif choice == '5' or choice == '05':
-        react_dp_cover()
-    elif choice == '6' or choice == '06':
-        react_reels()
-    elif choice == '7' or choice == '07':
-        follow()
-    elif choice == '8' or choice == '08':
-        auto_comment()
-    elif choice == '9' or choice == '09':
-        auto_comment_to_reels()
-    elif choice == '10':
-        auto_comment_to_dp()
-    elif choice == '11':
-        reply_to_comment()
-    elif choice == '12':
-        login()
-    elif choice == '13':
-        g_join()
-    elif choice == '14':
-        p_like()
-    elif choice == '15':
-        store()
-    elif choice == '16':
-        create_page()
-    elif choice == '17':
-        delete_files()
-    elif choice == '18':
-        other_menu()
-    elif choice == '19':
-        print(f'''\n{red}  Byeeeeers!''')
+            if not page_access_token:
+                print(f"No access token found for page {page_id}. Skipping.")
+                continue
+
+            # Check if the page already has a profile picture
+            if pec(page_id):
+                pass
+                continue
+
+            # Randomly select a file from the directory
+            file_name = random.choice(files_in_directory)
+            file_path = os.path.join(DIRECTORY, file_name)
+
+            result = plod(page_id, page_access_token, file_path)
+            print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+            print(f"    {green}SUCCESSFULLY UPLOADED PROFILE PICTURE {page['name']} ──────> {page['id']} ")
+            print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+            # Add a delay between requests to avoid hitting rate limits
+            time.sleep(2)  # Adjust delay as needed
+import requests
+import os
+import random
+import time
+
+BASE_URL = 'https://graph.facebook.com/v18.0'
+DIRECTORY = 'Picture'
+
+def pigzs(access_token):
+    url = f'{BASE_URL}/me/accounts'
+    params = {
+        'access_token': access_token
+    }
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        return response.json().get('data', [])
+    except requests.exceptions.RequestException as e:
+        print(f"Error getting pages for token {access_token}: {str(e)}")
+        return []
+
+def pec(page_id):
+    url = f'{BASE_URL}/{page_id}?fields=picture'
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        picture_data = response.json().get('picture', {})
+        return 'data' in picture_data and 'url' in picture_data['data']
+    except requests.exceptions.RequestException as e:
+        print(f"Error checking profile picture for page {page_id}: {str(e)}")
+        return False
+
+def plod(page_id, page_access_token, file_path):
+    try:
+        with open(file_path, 'rb') as file:
+            files = {
+                'source': file
+            }
+            data = {
+                'access_token': page_access_token
+            }
+            url = f'{BASE_URL}/{page_id}/picture'
+            response = requests.post(url, files=files, data=data)
+            response.raise_for_status()
+            return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error uploading profile picture to page {page_id}: {str(e)}")
+        return {'error': str(e)}
+    except FileNotFoundError as e:
+        print(f"Error: File not found {file_path}: {str(e)}")
+        return {'error': str(e)}
+
+def rad(file_path):
+    tokens = []
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                # Strip any whitespace and check if the line contains the expected format
+                line = line.strip()
+                if '|' in line:
+                    uid, token = line.split('|', 1)  # Split on the first '|'
+                    tokens.append((uid.strip(), token.strip()))  # Append as a tuple
+    except FileNotFoundError as e:
+        print(f"Error: Tokens file not found {file_path}: {str(e)}")
+    return tokens
+
+def mainzsa():
+    clear_screen()
+    jovan()
+    print(f"     {red}[1] {green}GET TOKEN")
+    print()
+    print(f"     {red}[2] {green}SET PFP")
+    print("\033[1;37m───────────────────────────────────────────────────────────────\033")
+    choice = input("Enter: ")
+    if choice == '1':
+        maz()
+    if choice == '2':
+        start()
+    else: 
+        print("invalid po")
+        clear_screen()
+
+
+
+           
+
+
+import requests
+import random
+import string
+import os
+
+CODE_FILE = 'C:\\Users\\Beam\\Documents\\generated_code.txt'  # File to store the generated code
+
+def ensure_file_exists():
+    """Ensure that the code file exists by creating it if it doesn't exist."""
+    open(CODE_FILE, 'a').write('')  # This will create the file if it doesn't exist, but won't modify it.
+
+def generate_code():
+    """Generate a unique code in the format BOOSTPHERE-XXX-XXXXX."""
+    prefix = "BOOSTPHERE"
+    number_part = ''.join(random.choices(string.digits, k=3))  # 3 random digits
+    letters_part = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))  # 5 alphanumeric characters
+    code = f"{prefix}-{number_part}-{letters_part}"
+    return code
+
+def save_code(code):
+    """Save the generated code to a file."""
+    with open(CODE_FILE, 'w') as file:
+        file.write(code)
+
+def load_code():
+    """Load the code from the file, if it exists."""
+    if os.path.exists(CODE_FILE):
+        with open(CODE_FILE, 'r') as file:
+            return file.read().strip()
+    return None
+
+def is_code_approved(code):
+    """Check if the generated code is approved by fetching the approval list."""
+    try:
+        response = requests.get("https://raw.githubusercontent.com/testerz559/BOOSTINGAPPROVAL/refs/heads/main/Approval")
+        response.raise_for_status()  # Raise an error for bad responses
+        approved_codes = response.text.splitlines()  # Split the response into lines
+        
+        # Remove comments and strip whitespace, then check for the code
+        approved_codes = [line.split('#')[0].strip() for line in approved_codes if line]
+        return code in approved_codes  # Check if the code is in the approved list
+    except requests.RequestException as e:
+        print(f"Error fetching the approval list: {e}")
+        return False
+
+
+def generate_and_check_code():
+    """Generate a code if not existing, check if it's approved, then run main()."""
+    ensure_file_exists()  # Ensure the code file exists before proceeding
+    
+    code = load_code()
+    
+    if code is None or code == '':
+        code = generate_code()
+        save_code(code)
+        clear_screen()
+        jovan()
+        
+        print(f"      {yellow}YOUR GENERATED CODE {white}: {red}{code}")
+    else:
+        clear_screen()
+        jovan()
+        
+        print(f"     {yellow}YOUR CODE {white}: {red}{code}")
+
+    if is_code_approved(code):
+        main()
+    else:
+        print(f"     {red}───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     {red}CODE IS NOT APPROVED ! {yellow}PLEASE SEND IT TO {white}: {yellow}https://www.facebook.com/profile.php?id=100078043222260")
+
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def get_profile_id(access_token):
+    """Retrieve the profile ID using the provided access token."""
+    try:
+        url = 'https://graph.facebook.com/me'
+        params = {'access_token': access_token}
+        response = requests.get(url, params=params)
+        
+        if response.status_code == 200:
+            return response.json().get('id')
+        else:
+            return None
+    except requests.exceptions.RequestException:
+        return None
+
+import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def join_group(group_id, profile_id, access_token):
+    """Attempt to join a group using the provided access token."""
+    try:
+        # Construct the URL by including the profile ID in the path
+        url = f'https://graph.facebook.com/{group_id}/members/{profile_id}'
+        params = {'access_token': access_token}
+        
+        response = requests.post(url, params=params)
+        
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except requests.exceptions.RequestException:
+        return False
+import requests
+#https://graph.facebook.com/debug_token?input_token={token}&access_token={token}
+def val(token):
+    # Create the validation URL
+    validation_url = f"https://graph.facebook.com/debug_token?input_token={token}&access_token={token}"
+
+    # Send the request to the Facebook Graph API
+    response = requests.get(validation_url)
+
+    # Return the response as JSON if valid, otherwise return None
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+import requests
+import base64
+
+# Your GitHub token
+token = ''
+
+# GitHub API headers
+headers = {
+    'Authorization': f'token {token}',
+    'Accept': 'application/vnd.github.v3+json'
+}
+
+# Define file options for storing tokens
+file_options = {
+    1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+    2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+    3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+    4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+}
+
+def git(repo_owner, repo_name, file_path):
+    # GitHub API URL for file content
+    file_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+
+    response = requests.get(file_url, headers=headers)
+    
+    if response.status_code == 200:
+        content = response.json()
+        file_sha = content['sha']
+        file_content = base64.b64decode(content['content']).decode('utf-8')
+        return file_content, file_sha
+    elif response.status_code == 404:
+        print(f"     FAILED")
+        return None, None
+    else:
+        print(f"     FAILED")
+        return None, None
+
+def contint(repo_owner, repo_name, file_path, file_sha):
+    # GitHub API URL for updating the file content (clearing the file)
+    file_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+    
+    empty_content = base64.b64encode(''.encode('utf-8')).decode('utf-8')
+    commit_message = f"Clear {file_path}"
+
+    data = {
+        "message": commit_message,
+        "content": empty_content,
+        "sha": file_sha
+    }
+
+    response = requests.put(file_url, json=data, headers=headers)
+    
+    if response.status_code == 200:
+        pass
+    else:
+        pass
+
+def choose_file_path():
+    clear_screen()
+    jovan()
+    print(f"""     \033[1;37mCHOOSE TYPE OF FILE TO SAVE TOKENS: 
+     \033[1;34m[1] \033[1;32mFRA ACCOUNT 
+     \033[1;34m[2] \033[1;32mFRA PAGES
+     \033[1;34m[3] \033[1;32mRPW ACCOUNT
+     \033[1;34m[4] \033[1;32mRPW PAGES
+     \033[1;31m[0] \033[1;31mEXIT 
+    \033[1;34m───────────────────────────────────────────────────────────────\033[0m""")
+
+    # Ask the user to enter their choice
+    choice = int(input(f"     {red}ENTER NUMBER {white}: "))
+    
+    if choice == 0:
+        print("Exiting the program.")
+        exit()  # Exit the program if the user chooses 0
+    elif choice in file_options:
+        return file_options[choice]  # Return the selected file path
+    else:
+        print("Invalid choice. Please try again.")
+        return choose_file_path()  # Retry if the choice is invalid
+
+def cynt(content):
+    # Count the number of tokens by splitting the content into lines
+    tokens = content.splitlines()
+    return len(tokens)
+
+def count_cookies(cookies_content):
+    # Count the number of cookies by splitting the content into lines
+    cookies = cookies_content.splitlines()
+    return len(cookies)
+
+def githubtoks():
+    clear_screen()
+    jovan()
+    repo_owner = 'boostphere'  # Change this to your GitHub username
+    
+    repo_name = input(f"    {yellow}CODE: ")
+
+    # Fetch contents of the Tokens file
+    tokens_content, tokens_sha = git(repo_owner, repo_name, 'Tokens')
+    if tokens_content:
+        token_count = cynt(tokens_content)
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print(f"       {red}{token_count} {green}TOKENS FOUND !")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        # Ask the user where to store the tokens
+        storage_path = choose_file_path()
+        with open(storage_path, 'a') as file:
+
+           file.write(tokens_content + '\n')  # Append new tokens to the file
+
+        
+        # Clear the Tokens file
+        contint(repo_owner, repo_name, 'Tokens', tokens_sha)
+
+    # Fetch contents of the Cookies file
+    cookies_content, cookies_sha = git(repo_owner, repo_name, 'Cookies')
+    
+    if cookies_content:
+        cookie_count = count_cookies(cookies_content)
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        print(f"       {red}{cookie_count} {green}COOKIES FOUND !")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        # Ask the user where to store the cookies
+        cookie_path = input("PATH TO SAVE COOKIES: ")
+        with open(cookie_path, 'a') as cookie_file:
+
+            cookie_file.write(cookies_content + '\n')  # Append new cookies to the file
+
+        
+        # Clear the Cookies file
+        contint(repo_owner, repo_name, 'Cookies', cookies_sha)
+    else:
+        pass
+
+
+
+
+
+def check():
+    clear_screen()
+    jovan()
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+
+    # Display the available file options
+    print(f"""     \033[1;37mCHOOSE TYPE OF FILE TO VERIFY: 
+     \033[1;34m[1] \033[1;32mFRA ACCOUNT 
+     \033[1;34m[2] \033[1;32mFRA PAGES
+     \033[1;34m[3] \033[1;32mRPW ACCOUNT
+     \033[1;34m[4] \033[1;32mRPW PAGES
+     \033[1;31m[0] \033[1;31mEXIT 
+    \033[1;34m───────────────────────────────────────────────────────────────\033[0m""")
+
+    choice = int(input(f"     {green}Enter your choice: "))
+    if choice in file_options:
+        file_path = file_options[choice]
+    elif choice == 0:
+        print("Exiting...")
         return
     else:
-        print(f'''{red}  Invalid choice.''')
+        print("Invalid choice. Exiting...")
+        return
 
-if __name__ == '__main__':
-    main()
+    # Read the tokens from the selected file
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    valid_tokens = []
+    
+    # Validate each token and keep valid ones
+    for line in lines:
+        uid, token = line.strip().split('|')
+        if val(token):
+            valid_tokens.append(line.strip())
+            print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     {green}ACCOUNT ─────> {blue}{uid} {white}= {yellow} IS VALID")
+        else:
+            print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     {red}ACCOUNT ─────> {blue}{uid} {white}= {yellow} IS NOT VALID AND WILL BE REMOVED")
+
+    # Write the valid tokens back to the file
+    with open(file_path, 'w') as file:
+        for valid_token in valid_tokens:
+            file.write(valid_token + '\n')
+
+    
+
+
+def perform_group_join():
+    """Perform group joins based on user input for file choice, group ID, and number of tokens."""
+    
+    clear_screen()
+    jovan()
+    file_options = {
+        1: "C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt",
+        2: "C:\\Users\\Beam\\Documents\\FRAPAGES.txt",
+        3: "C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt",
+        4: "C:\\Users\\Beam\\Documents\\RPWPAGES.txt"
+    }
+    
+    # Display the available file options
+    print(f"""     \033[1;37mCHOOSE TYPE OF ACCOUNTS TO JOIN GROUP: 
+     \033[1;34m[1] \033[1;32mFRA ACCOUNT 
+     \033[1;34m[2] \033[1;32mFRA PAGES
+     \033[1;34m[3] \033[1;32mRPW ACCOUNT
+     \033[1;34m[4] \033[1;32mRPW PAGES
+     \033[1;31m[0] \033[1;31mEXIT 
+    \033[1;34m───────────────────────────────────────────────────────────────\033[0m""")
+
+    try:
+        file_choice = int(input("   \033[1;32mChoose: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if file_choice not in file_options:
+            print("Invalid choice.")
+            return
+        file_path = file_options[file_choice]
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    # Step 2: Load the tokens from the selected file
+    try:
+        with open(file_path, 'r') as file:
+            tokens = [line.strip() for line in file.readlines() if line.strip()]  # Ensure no empty lines
+    except FileNotFoundError:
+        print("File not found.")
+        return
+    except Exception as e:
+        print(f"Error loading tokens: {e}")
+        return
+
+    available_tokens = len(tokens)
+
+    # Step 3: Ask the user for the starting line
+    if available_tokens == 0:
+        print("No tokens available from the selected file.")
+        return
+
+    try:
+        start_line = int(input(f"   \033[1;32mEnter the starting line (1 to {available_tokens}): "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        if start_line < 1 or start_line > available_tokens:
+            print(f"Please enter a valid line number between 1 and {available_tokens}.")
+            return
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    tokens = tokens[start_line - 1:]
+
+    # Step 4: Ask the user for the group ID
+    group_id = input(f"   {yellow}[1;32mEnter the group ID: ")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+
+    # Step 5: Ask the user for the number of tokens to process
+    try:
+        num_tokens = int(input(f"   \033[1;32mEnter Limit: "))
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    except ValueError:
+        print("Please enter a valid number for tokens.")
+        return
+
+    # Step 6: Check if the requested number of tokens exceeds the available tokens
+    if num_tokens > len(tokens):
+        print(f"\033[1;31mERROR: Number exceeds available tokens ({len(tokens)}).")
+        print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+        return
+
+    # Step 7: Join the group using multithreading and dynamic profile ID retrieval
+    join_count = 0
+    failed_count = 0
+    retries_left = num_tokens  # The number of retries left to perform
+    max_workers = 10  # Set maximum number of threads
+    results = []
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_token = {}
+        
+        # Attempt to join the group for the specified number of tokens
+        while join_count < num_tokens and retries_left > 0:
+            for token in tokens[:retries_left]:
+                access_token = token.split('|')[1]
+                profile_id = get_profile_id(access_token)
+                
+                if profile_id:
+                    future = executor.submit(join_group, group_id, profile_id, access_token)
+                    future_to_token[future] = token
+                else:
+                    print(f"\033[1;31m[FAILED] \033[1;37mFailed to retrieve profile ID for token \033[1;33m{token}\033[0m")
+
+            # Process the results of the joins
+            for future in as_completed(future_to_token):
+                token = future_to_token[future]
+                try:
+                    success = future.result()
+                    if success:
+                        join_count += 1
+                        print(f"\033[1;32m[SUCCESS] \033[1;37mSuccessfully joined group {group_id}")
+                    else:
+                        failed_count += 1
+                        print(f"{red}[UNSUCCESS] \033[1;FAILED joined group {group_id}")
+                    
+                    # Stop retrying if we've reached the success limit
+                    if join_count >= num_tokens:
+                        break
+                except Exception as e:
+                    print(f"Error processing token {token}: {e}")
+
+            
+            retries_left = num_tokens - join_count
+
+        print("\033[1;34m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"\033[1;32mTOTAL SUCCESSFUL: {join_count}\033[0m")
+        print(f"\033[1;31mTOTAL FAILED: {failed_count}\033[0m")
+def live(url):
+    # Split the URL by slashes
+    parts = url.split('/')
+    
+    # Ensure that the URL has enough parts
+    if len(parts) > 4:
+        user_id = parts[3]  # The user/page ID
+        video_id = parts[5]  # The video ID
+        
+        # Combine them with an underscore
+        return f"{user_id}_{video_id}"
+    else:
+        return None  # Return None if the URL format is unexpected
+import requests
+import threading
+from concurrent.futures import ThreadPoolExecutor
+import random
+import time
+import sys
+import os
+import platform
+import re
+purple = "\033[1;35m"
+blue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+white = "\033[1;37m"
+def jovan():
+    adrkz = "\033[34m "
+    
+    
+def jovan():
+    adrkz = "\033[34m "
+    print(f"""
+    {skyblue} 
+                
+          
+              ██╗███╗   ██╗██████╗ ██╗ ██████╗  ██████╗ 
+              ██║████╗  ██║██╔══██╗██║██╔════╝ ██╔═══██╗
+              ██║██╔██╗ ██║██║  ██║██║██║  ███╗██║   ██║
+              ██║██║╚██╗██║██║  ██║██║██║   ██║██║   ██║
+              ██║██║ ╚████║██████╔╝██║╚██████╔╝╚██████╔╝
+              ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝ ╚═════╝  ╚═════╝ 
+{hotpink}─────────────────────────────⋆⋅☆⋅⋆────────────────────────────────\033[0m
+     {green}OWNER     {red}: {yellow}NOBODY 
+     {green}FACEBOOK  {red}: {yellow}https://www.facebook.com/hucks/
+{hotpink}─────────────────────────────⋆⋅☆⋅⋆────────────────────────────────\033[0m""")
+purple = "\033[1;35m"
+blue = "\033[34m"
+green = "\033[1;32m"
+red = "\033[1;31m"
+yellow = "\033[1;33m"
+white = "\033[1;37m"
+import random
+import string
+def get_combined_data(url):
+    """
+    Fetch the response from the given URL and extract the `actrs` number and `post_id`.
+    Combine these values and return the result.
+
+    Args:
+        url (str): The URL to fetch data from.
+
+    Returns:
+        str: The combined string of `actrs` number and `post_id`, or an error message.
+    """
+    headers = {
+        'User-Agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        'cache-control': "max-age=0",
+        'dpr': "2",
+        'viewport-width': "980",
+        'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+        'sec-ch-ua-mobile': "?0",
+        'sec-ch-ua-platform': "\"Linux\"",
+        'sec-ch-ua-platform-version': "\"\"",
+        'sec-ch-ua-model': "\"\"",
+        'sec-ch-ua-full-version-list': "\"Google Chrome\";v=\"131.0.6778.104\", \"Chromium\";v=\"131.0.6778.104\", \"Not_A Brand\";v=\"24.0.0.0\"",
+        'sec-ch-prefers-color-scheme': "light",
+        'upgrade-insecure-requests': "1",
+        'sec-fetch-site': "same-origin",
+        'sec-fetch-mode': "navigate",
+        'sec-fetch-user': "?1",
+        'sec-fetch-dest': "document",
+        'accept-language': "en-US,en;q=0.9",
+        'priority': "u=0, i",
+        'Cookie': "sb=fuZTZ8Zyl9dXj5TFodlxDrGD; dpr=2; wd=980x1628; datr=fuZTZxL-gtbBjTkfeBq-VVDZ"
+    }
+
+    try:
+        response = requests.get(url, headers=headers).text
+
+        # Extract `actrs` number
+        actrs_match = re.search(r'"actrs\\":\\"(\d+)\\"', response)
+        actrs_number = actrs_match.group(1) if actrs_match else None
+
+        # Extract `post_id`
+        post_id_match = response.split('"post_id":"')[1].split('"')[0] if '"post_id":"' in response else None
+
+        if actrs_number and post_id_match:
+            return f"{actrs_number}_{post_id_match}"
+        elif not actrs_number:
+            return "actrs number not found!"
+        elif not post_id_match:
+            return "post_id not found!"
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+def clear_screen():
+    if 'termux' in platform.system().lower():
+        os.system('clear')
+    elif platform.system().lower() == 'windows':
+        os.system('cls')
+    else:
+        os.system('clear')
+def generate_user_agent():
+    fbav = f"{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}"
+    fbbv = str(random.randint(111111111, 999999999))
+    fbrv = '0'
+    random_seed = random.Random()
+    adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+    # Randomly vary the Android OS version, device, and app version for realism
+    device = random.choice(["HUAWEI MAR-LX1M", "Samsung SM-G960F", "OnePlus GM1913"])
+    fbav_version = str(random.randint(49, 150))  # Updated range for FBAV versions
+    fbbv_version = str(random.randint(11111111, 77777777))
+    carrier = random.choice(["Ooredoo TN", "Orange", "Vodafone", "T-Mobile"])
+
+    ua_bgraph = f'[FBAN/FB4A;FBAV/{fbav_version}.0.0.{random.randrange(20, 49)}.{random.randint(11, 99)};FBBV/{fbbv_version};' \
+                f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1080,height=2107}};FBLC/fr_FR;' \
+                f'FBRV/{fbrv};FBCR/{carrier};FBMF/{device.split(" ")[0]};FBBD/{device.split(" ")[0]};' \
+                f'FBPN/com.facebook.katana;FBDV/{device};FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+    
+    return ua_bgraph
+
+ua_bgraph = generate_user_agent()
+
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+# Random FB version generation
+fbav = f'{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+
+# User agent string
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def bgraph(uid, pw, path_file, extract_type, success_count, existing_uids):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+
+    data = {
+        'method': 'auth.login',
+        'fb_api_req_friendly_name': 'authenticate',
+        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        
+        if uid in existing_uids:
+            print(f"     {yellow}[INFO] {red}ACCOUNT --> {white}{uid} {red}already exists.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            return
+
+        response = requests.post(url, data=data).json()
+        
+        print(response)
+        if 'access_token' in response:
+            token = response['access_token']
+
+            with open(path_file, 'a') as f:
+                f.write(f"{uid}|{token}\n")
+
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[32m[SUCCESS]\033[0m: Extracted Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            success_count.append(uid)
+        else:
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+            print(f"     \033[31m[FAILED]\033[0m: TO EXTRACT Account ─────> {uid}.")
+            print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except Exception as e:
+        print(f"     \033[1;31m[ERROR]\033[0m Error extracting account: {uid}. Reason: {str(e)}\033[0m\n")
+
+
+def proz(accounts_file, token_output_path, extract_type):
+    """Process the accounts and extract tokens concurrently."""
+    success_count = []
+
+    # Load existing uids from the output file to avoid duplicates
+    existing_uids = set()
+    if os.path.exists(token_output_path):
+        with open(token_output_path, 'r') as f:
+            existing_uids = {line.split('|')[0] for line in f.readlines()}
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph, uid, pw, token_output_path, extract_type, success_count, existing_uids)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+        return
+
+import requests
+import random
+import concurrent.futures as thread
+import os
+import string
+
+fbav = f'''{random.randint(111, 999)}.0.0.{random.randint(11, 99)}.{random.randint(111, 999)}'''
+fbbv = str(random.randint(111111111, 999999999))
+fbrv = '0'
+random_seed = random.Random()
+adid = ''.join(random_seed.choices(string.hexdigits, k=16))
+ua_bgraph = '[FBAN/FB4A;FBAV/' + str(random.randint(49, 66)) + '.0.0.' + str(random.randrange(20, 49)) + str(random.randint(11, 99)) + ';FBBV/' + str(random.randint(11111111, 77777777)) + ';' + '[FBAN/FB4A;FBAV/' + fbav + ';FBBV/' + fbbv + ';FBDM/{density=3.0,width=1080,height=2107};FBLC/fr_FR;FBRV/' + fbrv + ';FBCR/Ooredoo TN;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/MAR-LX1M;FBSV/9;FBOP/1;FBCA/arm64-v8a:]'
+
+def load_existing_tokens(path_file):
+    """Load existing accounts or pages from the output file."""
+    if os.path.exists(path_file):
+        with open(path_file, 'r') as f:
+            return {line.split('|')[0] for line in f.readlines()}  # Set of existing uids or page ids
+    return set()
+
+def bgraph_page(uid, pw, path_file, extract_type, success_count, existing_tokens):
+    accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'  # Example token
+    
+    if uid in existing_tokens:
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     {white}ACCOUNT ─────> {red}{uid} {green}ALREADY EXISTS")
+        return
+
+    data = {
+        'method': 'auth.login',
+        'fb_api_req_friendly_name': 'authenticate',
+        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+        'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+        'email': uid,
+        'password': pw,
+        'access_token': accessToken
+    }
+
+    url = 'https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+
+    try:
+        response = requests.post(url, data=data).json()
+        
+        if 'access_token' in response:
+            token = response['access_token']
+
+            # Extract Facebook Pages associated with the account token
+            pages = extract_fb_pages(token)
+            if pages:
+                for page in pages:
+                    page_id = page['id']
+                    if page_id not in existing_tokens:
+                        with open(path_file, 'a') as f:
+                            f.write(f"{page_id}|{page['accessToken']}\n")
+                        print(f"{white}{uid}  ─────> {green}Page ID: {red}{page_id} {yellow}EXTRACTED SUCCESSFULLY")
+                        existing_tokens.add(page_id)
+                    else:
+                        print(f"{white}ID:  {page_id} ─────> {green}ALREADY EXISTS ! ")
+
+            else:
+                print(f"{white}{uid} ─────> {red}DOESN'T HAVE PAGES !")
+            
+            success_count.append(uid)
+        else:
+            print(f"{white}{uid}  ─────> {red}FAILED TO EXTRACT ! ")
+
+    except Exception as e:
+        print(f"[ERROR] Error extracting account: {uid}. Reason: {str(e)}")
+
+def extract_fb_pages(token):
+    url = 'https://graph.facebook.com/v18.0/me/accounts'
+    headers = {
+        'Authorization': f'Bearer {token}'
+    }
+    
+    pages_data = []
+    
+    while url:
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code != 200:
+            print(f'Error: {response.text}')
+            return None
+        
+        data = response.json()
+        for page in data.get('data', []):
+            pages_data.append({
+                'id': page.get('id'),
+                'accessToken': page.get('access_token')
+            })
+        
+        url = data.get('paging', {}).get('next')  # Update the URL for the next request
+
+    return pages_data
+
+def prozc(accounts_file, token_output_path, extract_type):
+    success_count = []
+    existing_tokens = load_existing_tokens(token_output_path)
+
+    try:
+        with open(accounts_file, 'r') as file:
+            accounts = file.readlines()
+
+        accounts = [line.strip() for line in accounts if '|' in line.strip()]
+
+        if not accounts:
+            print(f"No valid accounts found in {accounts_file}.")
+            return
+
+        with thread.ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(bgraph_page, uid, pw, token_output_path, extract_type, success_count, existing_tokens)
+                       for uid, pw in [account.split('|') for account in accounts]]
+
+            for future in futures:
+                future.result()
+
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+        print(f"     \033[1;34m[SUCCESS]\033[0m: {len(success_count)} {extract_type}(s) successfully extracted.")
+        print("\033[1;37m───────────────────────────────────────────────────────────────\033[0m")
+
+    except FileNotFoundError:
+        print(f"File not found: {accounts_file}")
+def extraction():
+
+    clear_screen()
+    jovan()
+    print(f"     {white}[1] {yellow}EXTRACT {red}ACCOUNT")
+    print(f"     {white}[2] {yellow}EXTRACT {red}PAGES")
+    print("     \033[1;34m───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {green}CHOICE: ").strip() 
+    if choice == '1':
+        axl1()
+    elif choice == '2':
+        axl2()
+    else:
+        print(f"     {red}INVALID CHOICE")
+def axl2():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"  
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    prozc(file_path, account_file, extract_type)
+def axl1():
+    clear_screen()
+    jovan()
+    folder_path = "C:\\Users\\Beam\\Documents\\"
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[31m[01] \033[32mFRA EXTRACT ACCOUNT")
+    print(f"     \033[31m[02] \033[32mFRA EXTRACT PAGES")
+    print(f"     \033[31m[03] \033[32mRPW EXTRACT ACCOUNT")
+    print(f"     \033[31m[04] \033[32mRPW EXTRACT PAGES")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    save_choice = input(f"     \033[32mCHOICE: ").strip()
+
+    if save_choice == '1':
+        account_file = os.path.join(folder_path, "FRAACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '2':
+        account_file = os.path.join(folder_path, "FRAPAGES.txt")
+        extract_type = 'page'
+    elif save_choice == '3':
+        account_file = os.path.join(folder_path, "RPWACCOUNT.txt")
+        extract_type = 'account'
+    elif save_choice == '4':
+        account_file = os.path.join(folder_path, "RPWPAGES.txt")
+        extract_type = 'page'
+    else:
+        print("Invalid choice. Exiting.")
+        return
+
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    print(f"     \033[33mTHE FORMAT SHOULD BE \033[31muid|pass")
+    print(f"    \033[34m───────────────────────────────────────────────────────────────\033[0m")
+    file_path = input(f"     \033[33mPATH: ").strip()
+
+    token_output_path = account_file
+
+    proz(file_path, token_output_path, extract_type)
+
+
+import os
+import random
+import requests
+import time
+from concurrent.futures import ThreadPoolExecutor
+
+
+def gettokesz(file_path):
+    """Read tokens from the file and return a list of tokens."""
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        return [line.strip().split('|')[1] for line in lines if '|' in line]
+
+
+class fbpost:
+    def __init__(self, link):
+        self.link = link
+
+    def shir(self, token):
+        """Shares a post on the user's feed with 'Only Me' privacy."""
+        url = "https://graph.facebook.com/me/feed"
+        payload = {
+            'link': self.link,
+            'published': '1',
+            'privacy': '{"value":"EVERYONE"}',
+            'access_token': token
+        }
+
+        try:
+            response = requests.post(url, data=payload)
+            if response.status_code == 200:
+                print("Successfully Shared")
+                return True
+            else:
+                pass
+                return False
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+            return False
+
+
+def sgtz(link, file_path, num_shares):
+    start_all = time.time()
+
+    tokens = gettokesz(file_path)
+    if len(tokens) < num_shares:
+        print("Not enough tokens to meet the requested number of shares.")
+        return
+
+    def worker(token):
+        fb_poster = fbpost(link)
+        fb_poster.shir(token)
+
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        for token in tokens[:num_shares]:
+            executor.submit(worker, token)
+
+    end_all = time.time()
+    print(f"\nSharing started at: {time.ctime(start_all)}")
+    print(f"Sharing ended at: {time.ctime(end_all)}")
+    print(f"Total duration: {end_all - start_all:.2f} seconds")
+
+
+def ttsu(*file_paths):
+    """Count the number of lines in each provided file."""
+    counts = []
+    for file_path in file_paths:
+        try:
+            with open(file_path, 'r') as file:
+                counts.append(sum(1 for line in file if line.strip()))
+        except FileNotFoundError:
+            counts.append(0)
+    return counts
+
+
+def tts():
+    """Ensure directories and files exist."""
+    file_paths = [
+        'C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt',
+        'C:\\Users\\Beam\\Documents\\FRAPAGES.txt',
+        'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt',
+        'C:\\Users\\Beam\\Documents\\RPWPAGES.txt',
+    ]
+
+    for file_path in file_paths:
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+            print(f"Created directory: {directory}")
+
+        if not os.path.exists(file_path):
+            with open(file_path, 'w') as file:
+                pass  # Create an empty file
+            print(f"Created file: {file_path}")
+
+
+def public():
+    print("CHOOSE TYPE OF ACCOUNTS TO AUTO SHARE:")
+    print("[1] FRA ACCOUNT")
+    print("[2] FRA PAGES")
+    print("[3] RPW ACCOUNT")
+    print("[4] RPW PAGES")
+    print("[0] EXIT")
+    choice = input("Choice: ")
+
+    file_map = {
+        '1': 'C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt',
+        '2': 'C:\\Users\\Beam\\Documents\\FRAPAGES.txt',
+        '3': 'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt',
+        '4': 'C:\\Users\\Beam\\Documents\\RPWPAGES.txt'
+    }
+
+    file_path = file_map.get(choice)
+    if not file_path:
+        print("Invalid choice. Exiting.")
+        return
+
+    a = input("Enter the post ID to share: ")
+    post_id = get_combined_data(a)
+    num_shares = int(input("Limit: "))
+    link = f"https://www.facebook.com/{post_id}"
+
+    sgtz(link, file_path, num_shares)
+
+
+def pub():
+    tts()
+    fra_file = 'C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt'
+    fra_pages_file = 'C:\\Users\\Beam\\Documents\\FRAPAGES.txt'
+    rpw_file = 'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt'
+    rpw_pages_file = 'C:\\Users\\Beam\\Documents\\RPWPAGES.txt'
+
+    total_accounts, total_pages, rpw_accounts, rpw_pages = ttsu(
+        fra_file, fra_pages_file, rpw_file, rpw_pages_file
+    )
+    jovan()
+    print(f"""                 {blue}OVERVIEW OF STORED ACCOUNT & PAGES💫
+          
+                            {blue}FRA ACCOUNT{yellow} : {green}{total_accounts}
+                            {blue}FRA PAGES  {yellow} : {green}{total_pages}
+                            {blue}RPW ACCOUNT{yellow} : {green}{ rpw_accounts}
+                            {blue}RPW PAGES  {yellow} : {green}{rpw_pages}
+      {yellow}───────────────────────────────────────────────────────────────\033[0m[0m""")
+    print(f"     {blue}[1] {yellow}EXTRACT ACCOUNT")
+    print(f"     {blue}[2] {yellow}AUTO SHARE ")
+    print(f"    {blue}───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f'    {yellow}Enter Choice: ')
+
+    if choice == '2':
+        public()
+
+
+
+
+
+
+# Function to clear console
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+
+
+def extraction():
+
+    clear_screen()
+    jovan()
+    print(f"     {white}[1] {yellow}EXTRACT {red}ACCOUNT")
+    print(f"     {white}[2] {yellow}EXTRACT {red}PAGES")
+    print("     \033[1;34m───────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {green}CHOICE: ").strip() 
+    if choice == '1':
+        axl1()
+    elif choice == '2':
+        axl2()
+    else:
+        print(f"     {red}INVALID CHOICE")
+def main():
+    open('C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt', 'a').write('')
+    open('C:\\Users\\Beam\\Documents\\FRAPAGES.txt', 'a').write('')
+    open('C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt', 'a').write('')
+    open('C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt', 'a').write('')
+    fraaccounts_file = 'C:\\Users\\Beam\\Documents\\FRAACCOUNT.txt'
+    frapages_file = 'C:\\Users\\Beam\\Documents\\FRAPAGES.txt'
+    rpwaccounts = 'C:\\Users\\Beam\\Documents\\RPWACCOUNT.txt'
+    rpwpages = 'C:\\Users\\Beam\\Documents\\RPWPAGES.txt'
+    total_accounts, total_pages = count_tokens(fraaccounts_file, frapages_file)
+    total_account_rpw, total_pages_rpw = count_tokens(rpwaccounts,rpwpages)
+    jovan()
+    print(f"""                 {lightblue}OVERVIEW OF STORED ACCOUNT & PAGES💫
+          
+                            {blue}FRA ACCOUNT{yellow} : {green}{total_accounts}
+                            {blue}FRA PAGES  {yellow} : {green}{total_pages}
+                            {blue}RPW ACCOUNT{yellow} : {green}{ total_account_rpw}
+                            {blue}RPW PAGES  {yellow} : {green}{total_pages_rpw}
+ {blue}────────────────────────────────────────────────────────────────\033[0m""")
+    print(f"                          {green} Services We Offer✨                               ")
+    print(f"      {red}[01]  {red}START")
+    print(f"      {green}[02]  {blue}REACT TO POST             {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[03]  {blue}REACT TO REELS            {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[04]  {blue}REACT TO GROUP POST       {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[05]  {blue}REACT TO POST[VID & PHOTO]{yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[06]  {blue}AUTO FOLLOW               {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[07]  {blue}AUTO REACT TO DP & POST   {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[08]  {blue}AUTO COMMENT              {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[09]  {blue}AUTO LIKE & FOLLOW PAGE   {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[10]  {blue}AUTO SHARE [VIA COOKIE]   {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[11]  {blue}AUTO REACT COMMENT        {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[12]  {blue}AUTO REPLY COMMENT        {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[13]  {blue}REACT TO POST (W CARE)    {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[14]  {blue}AUTO GROUP JOIN           {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[15]  {blue}AUTO REACT {red}LIVE           {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {green}[16]  {blue}AUTO COMMENT {red}LIVE         {yellow}- {green}[PAGE & ACCOUNT]")
+    print(f"      {red}[17]  {red}RESET")
+    print(f" {blue}─────────────────────────────────────────────────────────────────\033[0m")
+    print(f"                         {red}ADDITIONALS 🔥                                 ")
+    print()
+    print(f"      {green}[18] {blue}AUTO CREATE PAGE          {yellow}- {green}[PHB NAMES]")
+    print(f"      {green}[19] {blue}AUTO SET PFP              {yellow}- {green}[RANDOM]")
+    print(f"      {green}[20] {blue}CREATE FILE               {yellow}- {green}[RANDOM]")
+    print(f"      {red}[21] {red}REMOVE DUPLICATES         {yellow}- {green}[ACCURATE]")
+    print(f" {blue}─────────────────────────────────────────────────────────────────\033[0m")
+    print(f"                      {green}ACCOUNT CHECKER ✅                                 ")
+    print()
+    print(f"      {green}[22] {blue}ACCOUNT CHECKER         {yellow}- {green}[ACCURATE]")
+    print(f"      {green}[23] {blue}VALIDATE TOKENS         {yellow}- {green}[ACCURATE]")
+    print(f"      {green}[24] {blue}REEDEM ACCOUNTS         {yellow}- {green}[ACCURATE]") 
+    print(f"      {green}[25] {blue}AUTO SHARE              {yellow}- {green}[MAX SPEED/PRIVATE MAX SPEED]") 
+    print(f"      {green}[26] {blue}AUTO SHARE              {yellow}- {green}[MAX SPEED/PUBLIC MAX SPEED]") 
+    print(f" {blue}─────────────────────────────────────────────────────────────────\033[0m")
+    choice = input(f"     {green}CHOICE: ").strip()         
+#C:\Users\Dont touch my pc\Desktop\OPENSOURCE\zeke.py
+    if choice == '1':
+        extraction()
+    if choice == '2':
+        perform_reaction_fast()
+    if choice == '3':
+        reels()
+    if choice == '4':
+        perform_reaction_fast()
+    if choice == '5':
+        vid()
+    if choice == '6':
+        auto_follow_fast()
+    if choice == '7':
+        perform_reaction_fast_dp()
+    if choice == '8':
+        perform_comment_fast()
+    
+    if choice == '9':
+        perform_actions_from_file()
+    if choice == '10':
+        shar()
+    if choice == '11': 
+        comment_react()
+    if choice == '12': 
+        reply()
+    if choice == '13':
+        AutoReact()
+    if choice == '14':
+        perform_group_join()
+    if choice == '15':
+        live_react()  
+    if choice == '16':
+        live_comment()   
+    if choice == '17':
+        clear_text_files()
+    if choice == '18':
+        bitz()
+    if choice == '19':
+        mainzsa()
+    if choice == '20':
+        pass
+    if choice == '21':
+        remove_duplicates()
+    if choice == '22':
+        fetch_account_info(file_options)
+    if choice == '23':
+        check()
+    if choice == '24': 
+        githubtoks()
+    else:
+        print("Invalid choice, exiting.")
+    if choice == '25':
+        main2()
+    if choice == '26':
+        pub()
+    else:
+        print("Invalid choice, exiting.")
+
+
+
+
+
+
+if __name__ == "__main__":
+       main()
+   
+    
+    
+    
