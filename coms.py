@@ -1,6 +1,5 @@
 from rich.console import Console
 import requests
-import threading
 
 console = Console()
 
@@ -55,46 +54,23 @@ def comment_on_post(post_id, user_id, access_token, comment_text):
         console.print(f"Failed to comment. User ID: {user_id}, Post ID: {post_id}", style="bold red")
     return False
 
-def threaded_commenting(post_id, user_ids, access_tokens, comment_texts, num_comments):
+def comment_exactly(post_id, user_ids, access_tokens, comment_texts, num_comments):
     successful_comments = 0
-    used_indices = set()  # Keep track of used accounts
-    lock = threading.Lock()  # Ensure thread safety for shared variables
-
-    def worker():
-        nonlocal successful_comments
-        while True:
-            with lock:
-                if successful_comments >= num_comments:
-                    break
-                # Find the next unused account
-                for i in range(len(user_ids)):
-                    if i not in used_indices:
-                        used_indices.add(i)
-                        user_id = user_ids[i]
-                        access_token = access_tokens[i]
-                        break
-                else:
-                    break  # Exit if no unused accounts remain
-
-                # Rotate through the provided comment scripts
-                comment_text = comment_texts[successful_comments % len(comment_texts)]
-
-            # Perform the comment action
+    used_indices = set()
+    
+    for i in range(len(user_ids)):
+        if successful_comments >= num_comments:
+            break
+        if i not in used_indices:
+            used_indices.add(i)
+            user_id = user_ids[i]
+            access_token = access_tokens[i]
+            comment_text = comment_texts[successful_comments % len(comment_texts)]
+            
             if not has_commented(post_id, access_token, user_id):
                 if comment_on_post(post_id, user_id, access_token, comment_text):
-                    with lock:
-                        successful_comments += 1
-
-    threads = []
-    for _ in range(5):  # Number of threads
-        thread = threading.Thread(target=worker)
-        threads.append(thread)
-        thread.start()
-
-    for thread in threads:
-        thread.join()
-
-    # Exact comments check
+                    successful_comments += 1
+    
     if successful_comments < num_comments:
         console.print(f"Could not reach the exact target. Only {successful_comments}/{num_comments} comments were made.", style="bold red")
     else:
@@ -113,7 +89,7 @@ def main():
     num_scripts = int(input('How many different comment scripts do you want to enter? '))
     comment_texts = [input(f'Enter comment script {i + 1}: ') for i in range(num_scripts)]
 
-    threaded_commenting(post_id, user_ids, access_tokens, comment_texts, num_comments)
+    comment_exactly(post_id, user_ids, access_tokens, comment_texts, num_comments)
 
 if __name__ == '__main__':
     main()
