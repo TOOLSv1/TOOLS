@@ -3,13 +3,12 @@ import string
 import os
 import requests
 
-# Replace with your actual GitHub links
-GITHUB_KEYS_URL = "https://raw.githubusercontent.com/yourusername/yourrepo/main/approved_keys.txt"
-GITHUB_SCRIPT_URL = "https://raw.githubusercontent.com/otherusername/otherrepo/main/script.py"  # Change this
+# Replace these with your actual GitHub links
+GITHUB_KEYS_URL = "https://raw.githubusercontent.com/TOOLSv1/TOOLS/refs/heads/main/key.txt"
+GITHUB_SCRIPT_URL = "https://raw.githubusercontent.com/TOOLSv1/FB-TOOL/refs/heads/main/auto.py"  # Change this
 
 # Path to store the generated key
 KEY_FILE = "/sdcard/.atc-key.txt"
-SCRIPT_FILE = "/sdcard/remote_script.py"
 
 def generate_fixed_key():
     """Generate and store a fixed key if not already created."""
@@ -47,25 +46,23 @@ def check_key_approval():
         print(f"❌ Error: {e}")
         return False
 
-def download_and_run_script():
-    """Download and execute the script from the external GitHub repo."""
+def run_script_from_github():
+    """Fetch and execute the script directly from GitHub."""
     try:
         response = requests.get(GITHUB_SCRIPT_URL)
         if response.status_code == 200:
-            with open(SCRIPT_FILE, "w") as f:
-                f.write(response.text)
-            
-            print("✅ Script downloaded successfully. Running it now...")
-            os.system(f"python {SCRIPT_FILE}")  # Run the script
+            script_content = response.text
+            print("✅ Running script from GitHub...\n")
+            exec(script_content)  # Execute the script directly
         else:
-            print("❌ Failed to download script. Check the GitHub URL.")
+            print("❌ Failed to fetch script. Check the GitHub URL.")
     except Exception as e:
         print(f"❌ Error: {e}")
 
 def main():
-    """Main function to check key approval and run the script."""
+    """Main function to check key approval and run the script remotely."""
     if check_key_approval():
-        download_and_run_script()
+        run_script_from_github()
     else:
         print("⛔ Access denied. Please get your key approved.")
 
